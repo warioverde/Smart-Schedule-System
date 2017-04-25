@@ -14,14 +14,13 @@ import java.util.Date;
 public class Notificacion {
     
     public void tiempoRestante(int diaA,int mesA, int añoA,/**/int diaE, int mesE, int añoE){
-        //contadorDias= (metodo que invoque a la fecha de hoy en el calendario)
-        int diasRestantes=contadorDiasE(diaE,mesE,añoE,añoA)-contadorDias(diaA,mesA,añoA);
-        System.out.println(diasRestantes);
-        //System.out.println("El tiempo restante para la evaluacion es de: "/*+(fechaEvaluacion separada en día y mes - fechaActual tambien separada en dia y mes*/);
+
+        int diasRestantes=contadorDiasE(diaE,mesE,añoE,añoA)-contadorDias(diaA,mesA,añoA);  //Se crea una variable diasRestantes, que guarde la diferencia de dias entre la fecha actual y la de la evaluacion
+        System.out.println(diasRestantes);  //Muestra la diferencia de los dias
     }
     
-    public int contadorDiasE(int dia,int mes,int añoE, int añoA){
-        int dias=contadorDias(dia,mes,añoE);
+    public int contadorDiasE(int dia,int mes,int añoE, int añoA){               //Metodo que tiene de fin calcular los dias desde la fecha de la evaluacion hasta el primer dia del año actual
+        int dias=contadorDias(dia,mes,añoE);                                    
         for (int i = (añoE-1); i >= (añoA); i--) {
             dias=dias+contadorDias(31,12,i);
         }
