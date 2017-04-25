@@ -11,7 +11,7 @@ import java.util.Date;
  *
  * @author Jorge
  */
-public class Aviso {
+public class Notificacion {
     
     public void tiempoRestante(int diaA,int mesA, int añoA,/**/int diaE, int mesE, int añoE){
         //contadorDias= (metodo que invoque a la fecha de hoy en el calendario)

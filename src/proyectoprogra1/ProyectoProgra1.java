@@ -23,7 +23,7 @@ public class ProyectoProgra1 {
     
     
         
-        Aviso alert= new Aviso();
+        Notificacion alert= new Notificacion();
         Calendar c = new GregorianCalendar();
         
     public void metodo(){
