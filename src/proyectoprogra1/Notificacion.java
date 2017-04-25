@@ -13,6 +13,7 @@ import java.util.Date;
  */
 public class Notificacion {
     
+    //Esta clase no posee atributos , por que todos ellos llega ; Fecha actual del main Y fecha evaluacion de clase evaluacion.
     public void tiempoRestante(int diaA,int mesA, int añoA,/**/int diaE, int mesE, int añoE){
 
         int diasRestantes=contadorDiasE(diaE,mesE,añoE,añoA)-contadorDias(diaA,mesA,añoA);  //Se crea una variable diasRestantes, que guarde la diferencia de dias entre la fecha actual y la de la evaluacion

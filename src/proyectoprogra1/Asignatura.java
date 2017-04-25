@@ -12,7 +12,27 @@ import java.util.ArrayList;
  * @author Jorge
  */
 public class Asignatura {
-    ArrayList<Evaluacion> pruebas;
-    String nombre;
+   private ArrayList<Evaluacion> pruebas;
+   private String nombre;
+
+    public Asignatura(Evaluacion evaluacion, String nombre) {
+        
+        this.pruebas = new ArrayList<Evaluacion>();
+        this.nombre = nombre;
+        agregarPrueba(evaluacion);
+    }
+   public boolean agregarPrueba(Evaluacion prueba){
+       this.pruebas.add(prueba);
+       return true;
+      }
+
+    public String getNombre() {
+        return nombre;
+    }
+
+    public void setNombre(String nombre) {
+        this.nombre = nombre;
+    }
+   
     
 }
