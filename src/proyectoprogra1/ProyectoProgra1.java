@@ -13,38 +13,38 @@ import java.util.GregorianCalendar;
  * @author Jorge
  */
 public class ProyectoProgra1 {
-    int añoE;
-    int mesE;
-    int diaE;
-    public void set(int dia, int mes,int año){
-        this.añoE=año; this.mesE=mes; this.diaE=dia;
-        System.out.println("adasd");
-    }
+    static int diaA;
+    static int mesA;
+    static int añoA;
     
     
         
-        Notificacion alert= new Notificacion();
         Calendar c = new GregorianCalendar();
         
-    public void metodo(){
+    public void fechaActual(){
         String diaS = Integer.toString(c.get(Calendar.DATE));
         String mesS = Integer.toString(c.get(Calendar.MONTH));
         String añoS = Integer.toString(c.get(Calendar.YEAR));
-        int diaA=Integer.parseInt(diaS);
-        int mesA=Integer.parseInt(mesS)+1;
-        int añoA=Integer.parseInt(añoS);
+        this.diaA=Integer.parseInt(diaS);
+        this.mesA=Integer.parseInt(mesS)+1;
+        this.añoA=Integer.parseInt(añoS);
         
-        set(1,1,2017);
-        System.out.println(diaA+"-"+mesA+"-"+añoA+" fecha evaluacion "+diaE+"-"+mesE+"-"+añoE);
-        alert.tiempoRestante(diaA, mesA, añoA, diaE, mesE, añoE);
+        
+        System.out.println("sdfsdf");
     }
     /**
      * @param args the command line arguments
      */
     public static void main(String[] args) {
+        Notificacion alert= new Notificacion();
+        Evaluacion prueba1=new Evaluacion();
         ProyectoProgra1 min = new ProyectoProgra1();
-        min.metodo();
+        min.fechaActual();
+        prueba1.set(1,1,2017);
         
+        
+        System.out.println(diaA+"-"+mesA+"-"+añoA+" fecha evaluacion "+prueba1.getDia()+"-"+prueba1.getMes()+"-"+prueba1.getAño());
+        alert.tiempoRestante(diaA, mesA, añoA, prueba1.getDia(), prueba1.getMes(), prueba1.getAño());
         
         //System.out.println(dia);
         //System.out.println((Integer.parseInt(mes)+1));
