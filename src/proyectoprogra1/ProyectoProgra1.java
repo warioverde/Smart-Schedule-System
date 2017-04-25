@@ -92,7 +92,7 @@ public class ProyectoProgra1 {
         
         //los primeros 7 meses si es impar {tiene 31 dias, }sino{ si es febrero y bisiesto {tiene 29 dias, }sino{ 28, }sino {tiene 30 dias}
         //los ultimos 5 meses, si es par tiene 31 dias, sino tiene 30.
-        
+        //
         
   
       }
