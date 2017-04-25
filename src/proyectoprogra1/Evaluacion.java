@@ -10,12 +10,14 @@ package proyectoprogra1;
  * @author Jorge
  */
 public class Evaluacion {
-    Asignatura clase;
-    String fecha;
+   private Asignatura clase;
+   private String fecha;
     
-    int añoE;
-    int mesE;
-    int diaE;
+   private int añoE;
+   private int mesE;
+   private int diaE;
+   
+   
     public void set(int dia, int mes,int año){
         this.añoE=año; this.mesE=mes; this.diaE=dia;
     }
@@ -23,5 +25,10 @@ public class Evaluacion {
     public int getDia(){return this.diaE;}
     public int getMes(){return this.mesE;}
     public int getAño(){return this.añoE;}
+    
+    public boolean asociarAsignatura(Asignatura ramo){
+       this.clase=ramo;
+       return true;
+    }
     
 }
