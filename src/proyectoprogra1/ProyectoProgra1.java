@@ -18,6 +18,7 @@ public class ProyectoProgra1 {
     int diaE;
     public void set(int dia, int mes,int año){
         this.añoE=año; this.mesE=mes; this.diaE=dia;
+        System.out.println("adasd");
     }
     
     
