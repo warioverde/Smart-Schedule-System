@@ -38,19 +38,40 @@ public class ProyectoProgra1 {
      * @param args the command line arguments
      */
     public static void main(String[] args) {
-        String nombre;
-        Scanner leer = new Scanner(System.in);
+        
         Notificacion alert= new Notificacion();
         Evaluacion prueba1=new Evaluacion();
-        Asignatura calculo = new Asignatura(prueba1,"asdad");
-        System.out.println("ingrese nombre asignatura");
-        nombre = leer.nextLine();
-        calculo.setNombre(nombre);
-        System.out.println(calculo.getNombre());
-        prueba1.asociarAsignatura(calculo);
+        prueba1.set(12, 05, 2017);
+       
+        
+        
         Evaluacion prueba2= new Evaluacion();
         Asignatura algebra = new Asignatura(prueba2,"Algebra");
         prueba2.asociarAsignatura(algebra);
+        
+       //ArrayList<Asignatura>horario = new ArrayList();
+       Asignatura [][] horario = new Asignatura[2][2];
+        
+        horario [0][0] = new Asignatura(prueba1,"Calculo"); 
+        prueba1.asociarAsignatura(horario [0][0]);
+        horario[1][0] = horario [0][0];
+        
+        horario[0][1] = algebra;
+        horario[1][1]=algebra;
+        
+        for (int i = 0; i < horario.length; i++) {
+            
+            for (int j = 0; j < horario.length; j++) {
+                
+                System.out.print(horario[i][j].getNombre()+"\t");
+                
+                
+            }
+            System.out.println();
+        }
+       
+        
+
         
         
         
@@ -63,25 +84,10 @@ public class ProyectoProgra1 {
         
         
         
-        int dia;
-        int mes;
-        int año;
-        
-        System.out.println("ingrese dia");
-        dia = leer.nextInt();
-        leer.nextLine();
-        System.out.println("ingrese mes");
-        mes = leer.nextInt();
-        leer.nextLine();
-        System.out.println("ingrese año");
-        año= leer.nextInt();
-        prueba1.set(dia,mes,año);
-        
-       
         
         
-        System.out.println(diaA+"-"+mesA+"-"+añoA+" fecha evaluacion "+prueba1.getDia()+"-"+prueba1.getMes()+"-"+prueba1.getAño());
-        alert.tiempoRestante(diaA, mesA, añoA, prueba1.getDia(), prueba1.getMes(), prueba1.getAño());
+//        System.out.println(diaA+"-"+mesA+"-"+añoA+" fecha evaluacion "+prueba1.getDia()+"-"+prueba1.getMes()+"-"+prueba1.getAño());
+//        alert.tiempoRestante(diaA, mesA, añoA, prueba1.getDia(), prueba1.getMes(), prueba1.getAño());
 //        alert.tiempoRestante(diaA, mesA, añoA, prueba2.getDia(), prueba2.getMes(), prueba2.getAño());
 //        alert.tiempoRestante(diaA, mesA, añoA, prueba3.getDia(), prueba3.getMes(), prueba3.getAño());
 //        
