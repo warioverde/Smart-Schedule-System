@@ -38,6 +38,10 @@ public class ProyectoProgra1 {
      * @param args the command line arguments
      */
     public static void main(String[] args) {
+        
+        GuiIndex index = new GuiIndex();
+        
+        /*
         String nombre;
         Scanner leer = new Scanner(System.in);
         Notificacion alert= new Notificacion();
@@ -94,7 +98,7 @@ public class ProyectoProgra1 {
         //los ultimos 5 meses, si es par tiene 31 dias, sino tiene 30.
         //
         
-  
+        */
       }
     
 }
