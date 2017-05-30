@@ -39,7 +39,7 @@ public class ProyectoProgra1 {
      */
     public static void main(String[] args) {
         
-        GuiIndex index = new GuiIndex();
+        GUIIndex index = new GUIIndex();
         
         /*
         String nombre;
