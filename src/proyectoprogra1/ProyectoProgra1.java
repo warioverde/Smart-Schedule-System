@@ -38,9 +38,9 @@ public class ProyectoProgra1 {
      * @param args the command line arguments
      */
     public static void main(String[] args) {
-        GUINotificacion notificacion=new GUINotificacion();
+        //GUINotificacion notificacion=new GUINotificacion();
         //GUIIngreso ingreso=new GUIIngreso();
-        //GUIIndex index = new GUIIndex();
+        GUIIndex index = new GUIIndex();
         
         /*
         String nombre;

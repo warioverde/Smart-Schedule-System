@@ -87,10 +87,11 @@ public class GUIIndex extends JFrame implements ActionListener  {
             break;
         }
     }
+    public void ingresarAsignatura(){GUIIngreso ingreso=new GUIIngreso();}
     
-    public void ingresarAsignatura(){}
-    
-    public void verNotificaciones(){}
+    public void verNotificaciones(){
+        GUINotificacion notificacion=new GUINotificacion(); 
+    }
     
     public void verHorario(){}
 

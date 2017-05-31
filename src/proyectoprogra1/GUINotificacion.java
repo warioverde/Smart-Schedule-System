@@ -73,7 +73,7 @@ public class GUINotificacion extends JFrame implements ActionListener  {
             setSize(600,300);  //-----------------------------------------------//Se establece el tamaño de la frame
             setLayout(null);  //------------------------------------------------//No se establece un layout, puesto que se eligio la posicion anteriormente
             setVisible(true);  //-----------------------------------------------//Se permite la visibilidad a la frame y sus partes (lValor y bClick)
-            setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);  //--------//Se especifica que al cerrar la frame se detenga la ejecucion
+            //setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);  //--------//Se especifica que al cerrar la frame se detenga la ejecucion
     }
     public void actionPerformed(ActionEvent ae) {
         switch(ae.getActionCommand()){
