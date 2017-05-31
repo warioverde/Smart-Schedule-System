@@ -37,19 +37,19 @@ public class GUIIndex extends JFrame implements ActionListener  {
             bIr=new JButton("Ir"); //----------------------------------//Instanciacion de JButton como bClick 
             bIr.addActionListener(this); //--------------------------------//Añadir un actionListener a "esta" instancia
             bIr.setActionCommand("Ir");    //--------------------------//Establecer un string que se recibirá al accionar el boton
-           // bIr.setBounds(50,50, 100,30);
+            bIr.setBounds(40,100, 100,30);
             
             bNotificacion=new JButton("Notificaciones"); //----------------------------------//Instanciacion de JButton como bClick 
             bNotificacion.addActionListener(this); //--------------------------------//Añadir un actionListener a "esta" instancia
             bNotificacion.setActionCommand("Notificacion");    //--------------------------//Establecer un string que se recibirá al accionar el boton
-           // bNotificacion.setBounds(50,50, 100,30);
+            bNotificacion.setBounds(170,100, 100,30);
             
             bHorario=new JButton("Horario"); //----------------------------------//Instanciacion de JButton como bClick 
             bHorario.addActionListener(this); //--------------------------------//Añadir un actionListener a "esta" instancia
             bHorario.setActionCommand("Horario");    //--------------------------//Establecer un string que se recibirá al accionar el boton
-           // bHorario.setBounds(50,50, 100,30);
+            bHorario.setBounds(300,100, 100,30);
             
-            
+            add(bIr);add(bNotificacion);add(bHorario);
         //----------------------------------------------------------------------
         //--------JLabel--------------------------------------------------------[]//Seccion JLabel
         
@@ -58,49 +58,17 @@ public class GUIIndex extends JFrame implements ActionListener  {
             //add(lValor);
             
             lIngresar=new JLabel("Ingresar asignatura");  //---------------------------------//Instanciacion de JLabel como lValor
-            lIngresar.setBounds(50,50, 100,30);    //------------------------------//Mediante SetBounds se especifica su pocicion en la frame
+            lIngresar.setBounds(40,50, 150,30);    //------------------------------//Mediante SetBounds se especifica su pocicion en la frame
             
             
             lNotificacion=new JLabel("Ver notificaciones");  //---------------------------------//Instanciacion de JLabel como lValor
-            lNotificacion.setBounds(50,50, 100,30);    //------------------------------//Mediante SetBounds se especifica su pocicion en la frame
+            lNotificacion.setBounds(170,50, 150,30);    //------------------------------//Mediante SetBounds se especifica su pocicion en la frame
             
             
             lHorario=new JLabel("Ver horario");  //---------------------------------//Instanciacion de JLabel como lValor
-            lHorario.setBounds(50,50, 100,30);    //------------------------------//Mediante SetBounds se especifica su pocicion en la frame
-            
+            lHorario.setBounds(310,50, 150,30);    //------------------------------//Mediante SetBounds se especifica su pocicion en la frame
+            add(lIngresar);add(lNotificacion);add(lHorario);
         //----------------------------------------------------------------------
-        
-            JPanel panelL=new JPanel();  
-            //panelL.setBounds(1,1,361,31);
-            panelL.add(lIngresar);panelL.add(lNotificacion);panelL.add(lHorario);
-            //panelL.setBackground(Color.gray);
-            panelL.setLayout(new FlowLayout(FlowLayout.CENTER,50,1));
-            add(panelL);
-            
-            JPanel panelB=new JPanel();  
-            //panelB.setBounds(1,1,301,200);
-            panelB.add(bIr);panelB.add(bNotificacion);panelB.add(bHorario);
-            //panelB.setBackground(Color.gray);
-            panelB.setLayout(new FlowLayout(FlowLayout.CENTER,30,1));
-            
-            
-            JPanel panelCont=new JPanel();  
-            panelCont.setBounds(1,1,500,200);
-            panelCont.add(panelL);
-            panelCont.add(panelB);
-            
-            add(panelCont);
-            panelCont.setLayout(new FlowLayout(FlowLayout.CENTER,20,50));
-            
-            
-            //setLayout(new FlowLayout(FlowLayout.CENTER,20,1));
-            
-            
-            
-            
-            
-            
-            
         //---------JFrame-------------------------------------------------------[]//Seccion JFrame
         
             setSize(500,300);  //-----------------------------------------------//Se establece el tamaño de la frame
