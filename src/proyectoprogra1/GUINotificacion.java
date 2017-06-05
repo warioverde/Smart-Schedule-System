@@ -20,11 +20,14 @@ public class GUINotificacion extends JFrame implements ActionListener  {
     
     
 
-    protected JLabel lAsignatura,lNotificacion;
+    protected JLabel lAsignatura,lNotificacion,lFecha;
     protected JPanel pNotificacion;
     protected JButton bVolver,bSiguiente;
     protected String asignatura="Calculo de una variable";
-    protected String dia=7+"";
+    
+    Notificacion notificacion=new Notificacion();
+    int fecha[]={25,8,2017};
+    protected String dia=notificacion.tiempoRestante(fecha[0], fecha[1], fecha[2])+"";
     protected GUINotificacion(){ 
         super();
         
@@ -65,7 +68,18 @@ public class GUINotificacion extends JFrame implements ActionListener  {
             lNotificacion=new JLabel(dia+" dias restantes para la siguiente evaluacion");
             lNotificacion.setBounds(50,100,450,60);
             lNotificacion.setFont(fontNotificacion);
-            add(lAsignatura);pNotificacion.add(lNotificacion);
+            
+            lFecha=new JLabel(fecha[0]+"/"+fecha[1]+"/"+fecha[2]);
+            lFecha.setBounds(240,150,100,60);
+            lFecha.setFont(fontAsignatura);
+            /*lHora=new JLabel("");
+            lHora.setBounds(150,50,450,60);
+            lTipo=new JLabel("");
+            lTipo.setBounds(150,50,450,60);
+            lPorcentaje=new JLabel(asignatura);
+            lPorcentaje.setBounds(150,50,450,60);*/
+            
+            add(lAsignatura);pNotificacion.add(lNotificacion);add(lFecha);
         //----------------------------------------------------------------------
         
         //---------JFrame-------------------------------------------------------[]//Seccion JFrame
