@@ -4,8 +4,9 @@
  * and open the template in the editor.
  */
 
-package proyectoprogra1;
+package Ventanas;
 
+import ClasesPrincipales.GestorArchivo;
 import com.toedter.calendar.JCalendar;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -21,7 +22,7 @@ public class GUIIngresoAsign extends JFrame implements ActionListener  {
 
     protected JLabel lAsignatura,lHoras,lCodigo,lLunes,lMartes,lMiercoles,lJueves,lViernes,lSabado,lPrimero,lSegundo,lTercero,lCuarto,lAlmuerzo,lQuinto,lSexto,lSeptimo,lOctavo,lNoveno,lDecimo,lPeriodo;
     protected JButton bIngresar;
-    protected JTextField tfAsignatura,tfHoras,tfCodigo;
+    protected JTextField tfNombre,tfHoras,tfCodigo;
     protected JCheckBox cbL1,cbL2,cbL3,cbL4,cbL5,cbL6,cbL7,cbL8,cbL9,cbL10,cbMar1,cbMar2,cbMar3,cbMar4,cbMar5,cbMar6,cbMar7,cbMar8,cbMar9,cbMar10,cbMie1,cbMie2,cbMie3,cbMie4,cbMie5,cbMie6,cbMie7,cbMie8,cbMie9,cbMie10,cbJ1,cbJ2,cbJ3,cbJ4,cbJ5,cbJ6,cbJ7,cbJ8,cbJ9,cbJ10,cbV1,cbV2,cbV3,cbV4,cbV5,cbV6,cbV7,cbV8,cbV9,cbV10,cbS1,cbS2,cbS3,cbS4,cbS5,cbS6,cbS7,cbS8,cbS9,cbS10;
     protected boolean checkMatrix;
     protected String cbMatrix;
@@ -94,13 +95,13 @@ public class GUIIngresoAsign extends JFrame implements ActionListener  {
         //----------------------------------------------------------------------
         //--------JTextField----------------------------------------------------
         
-            tfAsignatura=new JTextField();
-            tfAsignatura.setBounds(50,55,150,30);
+            tfNombre=new JTextField();
+            tfNombre.setBounds(50,55,150,30);
             tfHoras=new JTextField();
             tfHoras.setBounds(250,55,150,30);
             tfCodigo=new JTextField();
             tfCodigo.setBounds(450,55,150,30);
-            add(tfAsignatura);add(tfHoras);add(tfCodigo);
+            add(tfNombre);add(tfHoras);add(tfCodigo);
             
         //----------------------------------------------------------------------
         //--------JCheckBox-----------------------------------------------------
@@ -241,8 +242,8 @@ public class GUIIngresoAsign extends JFrame implements ActionListener  {
                 if (chkNombre() && chkHoras() && chkCodigo() && chkBoxes()){
                     GestorArchivo gestor=new GestorArchivo();
                         String horario=returnHorario();
-                        System.out.println(tfCodigo.getText()+","+tfAsignatura.getText()+","+tfHoras.getText()+","+horario);
-                    gestor.addAsignatura(tfCodigo.getText()+","+tfAsignatura.getText()+","+tfHoras.getText()+","+horario);
+                        System.out.println(tfCodigo.getText()+","+tfNombre.getText()+","+tfHoras.getText()+","+horario);
+                    gestor.addAsignatura(tfCodigo.getText(),tfNombre.getText(),tfHoras.getText(),horario);
                 }
             break;
         }
@@ -251,7 +252,7 @@ public class GUIIngresoAsign extends JFrame implements ActionListener  {
     //Validaciones internas
     
     public boolean chkNombre(){
-        if (tfAsignatura.getText().equals("")){return false;}
+        if (tfNombre.getText().equals("")){return false;}
         else{return true;}
     }
     

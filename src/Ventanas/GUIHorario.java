@@ -4,7 +4,7 @@
  * and open the template in the editor.
  */
 
-package proyectoprogra1;
+package Ventanas;
 
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;

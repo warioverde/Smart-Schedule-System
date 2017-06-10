@@ -4,8 +4,9 @@
  * and open the template in the editor.
  */
 
-package proyectoprogra1;
+package Ventanas;
 
+import ClasesPrincipales.Notificacion;
 import java.awt.Font;
 import javax.swing.border.*;
 import java.awt.event.ActionEvent;

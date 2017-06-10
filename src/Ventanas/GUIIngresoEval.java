@@ -4,8 +4,9 @@
  * and open the template in the editor.
  */
 
-package proyectoprogra1;
+package Ventanas;
 
+import ClasesPrincipales.GestorArchivo;
 import com.toedter.calendar.JDateChooser;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -98,9 +99,8 @@ public class GUIIngresoEval extends JFrame implements ActionListener  {
         
             case "guardar": if(chkTipo() && chkOtro() && chkFecha() ){
                 GestorArchivo gestor=new GestorArchivo();
-                String evaluacion=asignaturas[cbAsignatura.getSelectedIndex()]+"-"+getTipo()+"-"+(dcFecha.getDate().getDate())+"_"+(dcFecha.getDate().getMonth()+1)+"_"+(dcFecha.getDate().getYear()+1900);
-                System.out.println(evaluacion);
-                gestor.addEvaluacion(evaluacion);
+                
+                gestor.addEvaluacion(asignaturas[cbAsignatura.getSelectedIndex()],getTipo(),(dcFecha.getDate().getDate()),(dcFecha.getDate().getMonth()+1),(dcFecha.getDate().getYear()+1900));
             }
                 
                 

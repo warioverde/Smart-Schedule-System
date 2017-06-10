@@ -4,10 +4,11 @@
  * and open the template in the editor.
  */
 
-package proyectoprogra1;
+package Ventanas;
 
 import java.awt.Color;
 import java.awt.FlowLayout;
+import java.awt.Font;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import javax.swing.*; //librerias de JFrame,JButton,JLabel,etc.
@@ -20,10 +21,11 @@ public class GUIIndex extends JFrame implements ActionListener  {
     
     
 
-    protected JLabel lIngresar,lNotificacion,lHorario,lIngresarEval;
+    protected JLabel lIngresar,lNotificacion,lHorario,lIngresarEval,lTitulo,lSubtitulo;
     protected JButton bIr,bNotificacion,bHorario,bIngresarEval;
+    protected JSeparator jSeparador;
     
-    protected GUIIndex(){ 
+    public GUIIndex(){ 
         super();
         
         //-------Button---------------------------------------------------------[]//Seccion JButton
@@ -37,22 +39,22 @@ public class GUIIndex extends JFrame implements ActionListener  {
             bIr=new JButton("Ingresar"); //----------------------------------//Instanciacion de JButton como bClick 
             bIr.addActionListener(this); //--------------------------------//Añadir un actionListener a "esta" instancia
             bIr.setActionCommand("Ir");    //--------------------------//Establecer un string que se recibirá al accionar el boton
-            bIr.setBounds(40,100, 100,30);
+            bIr.setBounds(40,200, 100,30);
             
             bNotificacion=new JButton("Notificaciones"); //----------------------------------//Instanciacion de JButton como bClick 
             bNotificacion.addActionListener(this); //--------------------------------//Añadir un actionListener a "esta" instancia
             bNotificacion.setActionCommand("Notificacion");    //--------------------------//Establecer un string que se recibirá al accionar el boton
-            bNotificacion.setBounds(290,100, 115,30);
+            bNotificacion.setBounds(290,200, 115,30);
             
             bHorario=new JButton("Horario"); 
             bHorario.addActionListener(this);
             bHorario.setActionCommand("Horario");   
-            bHorario.setBounds(430,100, 100,30);
+            bHorario.setBounds(430,200, 100,30);
             
             bIngresarEval=new JButton("Ingresar"); 
             bIngresarEval.addActionListener(this);
             bIngresarEval.setActionCommand("evaluacion");   
-            bIngresarEval.setBounds(170,100, 100,30);
+            bIngresarEval.setBounds(170,200, 100,30);
             
             add(bIr);add(bNotificacion);add(bHorario);add(bIngresarEval);
         //----------------------------------------------------------------------
@@ -61,21 +63,31 @@ public class GUIIndex extends JFrame implements ActionListener  {
             //lValor=new JLabel(contador+"");  //---------------------------------//Instanciacion de JLabel como lValor
             //lValor.setBounds(50,50, 100,30);    //------------------------------//Mediante SetBounds se especifica su pocicion en la frame
             //add(lValor);
+            Font fontSSS = new Font("TimesRoman", Font.BOLD, 25);
             
             lIngresar=new JLabel("Ingresar asignatura"); 
-            lIngresar.setBounds(40,50, 150,30);   
+            lIngresar.setBounds(40,150, 150,30);   
             
             lIngresarEval=new JLabel("Ingresar Evaluacion"); 
-            lIngresarEval.setBounds(170,50, 150,30);  
+            lIngresarEval.setBounds(170,150, 150,30);  
             
             
             lNotificacion=new JLabel("Ver notificaciones");  
-            lNotificacion.setBounds(300,50, 150,30);   
+            lNotificacion.setBounds(300,150, 150,30);   
             
             
             lHorario=new JLabel("Ver horario"); 
-            lHorario.setBounds(430,50, 150,30);
-            add(lIngresar);add(lNotificacion);add(lHorario);add(lIngresarEval);
+            lHorario.setBounds(430,150, 150,30);
+            lTitulo=new JLabel("SMART SCHEDULE SYSTEM"); 
+            lTitulo.setBounds(120,40, 350,60);
+            lTitulo.setFont(fontSSS);
+            add(lIngresar);add(lNotificacion);add(lHorario);add(lIngresarEval);add(lTitulo);
+        //----------------------------------------------------------------------
+        //-----------JSeparator-------------------------------------------------
+        
+             jSeparador= new JSeparator();
+             jSeparador.setBounds(0,100,600,5);
+             add(jSeparador);
         //----------------------------------------------------------------------
         //---------JFrame-------------------------------------------------------[]//Seccion JFrame
         
