@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package proyectoprogra1;
+package ClasesPrincipales;
 
 import java.util.ArrayList;
 
@@ -14,7 +14,8 @@ import java.util.ArrayList;
 public class Asignatura {
    private ArrayList<Evaluacion> pruebas;
    private String nombre;
-
+   private String codigo;
+   
     public Asignatura(Evaluacion evaluacion, String nombre) {
         
         this.pruebas = new ArrayList<Evaluacion>();
