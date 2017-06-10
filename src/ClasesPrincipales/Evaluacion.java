@@ -3,32 +3,31 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package proyectoprogra1;
+package ClasesPrincipales;
 
 /**
  *
  * @author Jorge
  */
 public class Evaluacion {
-   private Asignatura clase;
-   private String fecha;
+   
     
    private int añoE;
    private int mesE;
    private int diaE;
+   private String tipo;
+   private String codigoAsignatura;
    
    
-    public void set(int dia, int mes,int año){
-        this.añoE=año; this.mesE=mes; this.diaE=dia;
+    public void set(int dia, int mes,int año,String codigoAsignatura,String tipo){
+        this.añoE=año; this.mesE=mes; this.diaE=dia; this.codigoAsignatura=codigoAsignatura;this.tipo=tipo;
     }
     
     public int getDia(){return this.diaE;}
     public int getMes(){return this.mesE;}
     public int getAño(){return this.añoE;}
+    public String getCodigo(){return this.codigoAsignatura;}
+    public String getTipo(){return this.tipo;}
     
-    public boolean asociarAsignatura(Asignatura ramo){
-       this.clase=ramo;
-       return true;
-    }
     
 }
