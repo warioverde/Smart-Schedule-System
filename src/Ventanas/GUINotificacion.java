@@ -6,7 +6,6 @@
 
 package Ventanas;
 
-import ClasesPrincipales.GestorArchivo;
 import ClasesPrincipales.Notificacion;
 import java.awt.Font;
 import javax.swing.border.*;
@@ -25,19 +24,14 @@ public class GUINotificacion extends JFrame implements ActionListener  {
     protected JLabel lAsignatura,lNotificacion,lFecha;
     protected JPanel pNotificacion;
     protected JButton bVolver,bSiguiente;
+    protected String asignatura="Calculo de una variable";
     
-    protected String[][] evaluaciones;                                          //Evaluaciones de [1-n] y [nombreAsignatura,tipoEvaluacion,dia,mes,año]
-    private int contadorNotificaciones;
-    /*protected String asignatura="Calculo de una variable";
-    Notificacion notificacion=new Notificacion();                                 //Borrar
+    Notificacion notificacion=new Notificacion();
     int fecha[]={25,8,2017};
-    protected String dia=notificacion.tiempoRestante(fecha[0], fecha[1], fecha[2])+"";*/
+    protected String dia=notificacion.tiempoRestante(fecha[0], fecha[1], fecha[2])+"";
     protected GUINotificacion(){ 
         super();
-        //-------Apartado para obtener la informacion de las evaluaciones-------[]
-            GestorArchivo gestor = new GestorArchivo();
-            this.evaluaciones=gestor.separarDatosEvaluacion();
-        //----------------------------------------------------------------------
+        
         //-------Button---------------------------------------------------------[]//Seccion JButton
             
             //bClick=new JButton("nombre"); //----------------------------------//Instanciacion de JButton como bClick 
@@ -69,16 +63,16 @@ public class GUINotificacion extends JFrame implements ActionListener  {
             //lValor=new JLabel(contador+"");  //---------------------------------//Instanciacion de JLabel como lValor
             //lValor.setBounds(50,50, 100,30);    //------------------------------//Mediante SetBounds se especifica su pocicion en la frame
             //add(lValor);
-            lAsignatura=new JLabel();
+            lAsignatura=new JLabel(asignatura);
             lAsignatura.setBounds(150,50,450,60);
             lAsignatura.setFont(fontAsignatura);
-            lNotificacion=new JLabel();
+            lNotificacion=new JLabel(dia+" dias restantes para la siguiente evaluacion");
             lNotificacion.setBounds(50,100,450,60);
             lNotificacion.setFont(fontNotificacion);
-            lFecha=new JLabel();
-            lFecha.setBounds(240,150,300,60);
+            
+            lFecha=new JLabel(fecha[0]+"/"+fecha[1]+"/"+fecha[2]);
+            lFecha.setBounds(240,150,100,60);
             lFecha.setFont(fontAsignatura);
-            actualizarLabels();
             /*lHora=new JLabel("");
             lHora.setBounds(150,50,450,60);
             lTipo=new JLabel("");
@@ -94,41 +88,14 @@ public class GUINotificacion extends JFrame implements ActionListener  {
             setSize(600,300);  //-----------------------------------------------//Se establece el tamaño de la frame
             setLayout(null);  //------------------------------------------------//No se establece un layout, puesto que se eligio la posicion anteriormente
             setVisible(true);  //-----------------------------------------------//Se permite la visibilidad a la frame y sus partes (lValor y bClick)
-            setDefaultCloseOperation(WindowConstants.DISPOSE_ON_CLOSE);  //--------//Se especifica que al cerrar la frame se detenga la ejecucion
-            
+            //setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);  //--------//Se especifica que al cerrar la frame se detenga la ejecucion
     }
     public void actionPerformed(ActionEvent ae) {
         switch(ae.getActionCommand()){
         
-            case "siguiente": actualizarLabels();
+            case "plus": ;
             break;
         }
-    }
-    
-    public int getDiasRestantes(int dia,int mes,int año){
-        Notificacion notificacion = new Notificacion();
-        return notificacion.tiempoRestante(dia, mes, año);
-    }
-    
-    //Conectar con el gestor
-    
-    public void actualizarLabels(){
-        if (!(this.contadorNotificaciones>evaluaciones.length-1)){
-            System.out.println(evaluaciones[this.contadorNotificaciones][2]+"/"+evaluaciones[this.contadorNotificaciones][3]+"/"+evaluaciones[this.contadorNotificaciones][4]);
-            lAsignatura.setText(evaluaciones[this.contadorNotificaciones][0]);
-            int dia=Integer.parseInt(evaluaciones[this.contadorNotificaciones][2]);
-            int mes=Integer.parseInt(evaluaciones[this.contadorNotificaciones][3]);
-            int año=Integer.parseInt(evaluaciones[this.contadorNotificaciones][4]);
-            int dias=getDiasRestantes(dia,mes,año);
-            lNotificacion.setText(dias+" dias restantes para la siguiente evaluacion");
-            lFecha.setText(evaluaciones[this.contadorNotificaciones][1]+"-"+dia+"/"+mes+"/"+año);
-            this.contadorNotificaciones++;
-        }
-        else{
-            this.dispose();
-        }
-        
-        
     }
 
     

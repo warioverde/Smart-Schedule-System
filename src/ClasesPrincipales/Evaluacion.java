@@ -16,18 +16,44 @@ public class Evaluacion {
    private int mesE;
    private int diaE;
    private String tipo;
-   private String codigoAsignatura;
+
+    public Evaluacion(int añoE, int mesE, int diaE, String tipo) {
+        this.añoE = añoE;
+        this.mesE = mesE;
+        this.diaE = diaE;
+        this.tipo = tipo;
+        
+    }
    
    
-    public void set(int dia, int mes,int año,String codigoAsignatura,String tipo){
-        this.añoE=año; this.mesE=mes; this.diaE=dia; this.codigoAsignatura=codigoAsignatura;this.tipo=tipo;
+
+   public void set(int dia, int mes,int año,String tipo){
+        this.añoE=año; this.mesE=mes; this.diaE=dia; this.tipo=tipo;
     }
     
     public int getDia(){return this.diaE;}
     public int getMes(){return this.mesE;}
     public int getAño(){return this.añoE;}
-    public String getCodigo(){return this.codigoAsignatura;}
+    
     public String getTipo(){return this.tipo;}
+
+    public void setAñoE(int añoE) {
+        this.añoE = añoE;
+    }
+
+    public void setMesE(int mesE) {
+        this.mesE = mesE;
+    }
+
+    public void setDiaE(int diaE) {
+        this.diaE = diaE;
+    }
+
+    public void setTipo(String tipo) {
+        this.tipo = tipo;
+    }
+
+    
     
     
 }
