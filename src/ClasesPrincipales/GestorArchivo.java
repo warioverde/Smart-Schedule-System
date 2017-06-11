@@ -85,7 +85,7 @@ public class GestorArchivo {
                 contador++;
             }
         }
-        String datosSeparados[][]=new String[contador][3];
+        String datosSeparados[][]=new String[contador][5];
         
         for (int i = 0; i < contador; i++) {
             String cadena="";
@@ -94,17 +94,18 @@ public class GestorArchivo {
                 
                     if (datos.get(i).charAt(j)==','){
                         datosSeparados[i][posDato]=cadena;
+                        
                         cadena="";
                         posDato++;
                     }else{
                        cadena+=datos.get(i).charAt(j); 
                     }
                 
-                    
+                    if (posDato>=5){     //Metodo para limitar la lectura de datos por linea  
+                       break;
+                    }    
                 }
-               if (posDato>=5){     //Metodo para limitar la lectura de datos por linea  
-                   break;
-                }
+               
                 
             }
         return datosSeparados;
@@ -121,7 +122,7 @@ public class GestorArchivo {
                 contador++;
             }
         }
-        String datosSeparados[][]=new String[contador][3];
+        String datosSeparados[][]=new String[contador][4];
         
         for (int i = 0; i < contador; i++) {
             String cadena="";
@@ -136,14 +137,23 @@ public class GestorArchivo {
                        cadena+=datos[i].charAt(j); 
                     }
                                                                                 //Pendiente: separar los periodos de la asignatura
-                    
+                    if (posDato>=4){     //Metodo para limitar la lectura de datos por linea  
+                       break;
+                    }                                                                
                 }
-               if (posDato>=4){     //Metodo para limitar la lectura de datos por linea  
-                   break;
-                }
+               
                 
             }
         return datosSeparados;
+    }
+    
+    public void ordenarArray(String[][] array){
+        int contador=0;
+        int dia=Integer.parseInt(array[contador][2]);
+        int mes=Integer.parseInt(array[contador][3]);
+        int año=Integer.parseInt(array[contador][4]);
+        Notificacion notificacion = new Notificacion();
+        notificacion.tiempoRestante(dia, mes, año);
     }
     
     
