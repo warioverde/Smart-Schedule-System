@@ -110,6 +110,12 @@ public class GUIIngresoEval extends JFrame implements ActionListener  {
                ArrayList<Asignatura>asignaturas=gestor.getAsignaturas();
                 
                 gestor.addEvaluacion(asignaturas.get(cbAsignatura.getSelectedIndex()),getTipo(),(dcFecha.getDate().getDate()),(dcFecha.getDate().getMonth()+1),(dcFecha.getDate().getYear()+1900));
+                JOptionPane.showMessageDialog(null, "Evaluacion ingresada exitosamente");
+                this.dispose();
+            }else{
+                int ax = JOptionPane.showConfirmDialog(null, "Se han encontrado campos incompletos, ¿desea volver al menu principal?");
+                    if(ax == JOptionPane.YES_OPTION)
+                        this.dispose();
             }
                 
                 

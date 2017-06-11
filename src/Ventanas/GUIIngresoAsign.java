@@ -244,6 +244,14 @@ public class GUIIngresoAsign extends JFrame implements ActionListener  {
                         String horario=returnHorario();
                         System.out.println(tfCodigo.getText()+","+tfNombre.getText()+","+tfHoras.getText()+","+horario);
                     gestor.addAsignatura(tfCodigo.getText(),tfNombre.getText(),tfHoras.getText(),horario);
+                    JOptionPane.showMessageDialog(null, "Asignatura ingresada exitosamente");
+                    this.dispose();
+                }else{
+                    int ax = JOptionPane.showConfirmDialog(null, "Se han encontrado campos incompletos, ¿desea volver al menu principal?");
+                    if(ax == JOptionPane.YES_OPTION)
+                        this.dispose();
+                    
+                        
                 }
             break;
         }

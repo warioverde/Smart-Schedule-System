@@ -1,2 +1,3 @@
 Programacion,Prueba,22,6,2017,
 Programacion,Trabajo,30,6,2017,
+Ciencias de la computacion 2,Avance,29,6,2017,

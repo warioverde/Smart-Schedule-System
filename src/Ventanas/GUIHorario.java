@@ -44,7 +44,7 @@ public class GUIHorario extends JFrame implements ActionListener  {
             bVolver=new JButton("VOLVER");  
             bVolver.setBounds(500,200,100, 30);
             bVolver.addActionListener(this); 
-            bVolver.setActionCommand("String");    
+            bVolver.setActionCommand("volver");    
             add(bVolver);    
         //----------------------------------------------------------------------
         //--------JTable---------------------------------------------------------
@@ -69,7 +69,7 @@ public class GUIHorario extends JFrame implements ActionListener  {
     public void actionPerformed(ActionEvent ae) {
         switch(ae.getActionCommand()){
         
-            case "plus": ;
+            case "volver": this.dispose();
             break;
         }
     }

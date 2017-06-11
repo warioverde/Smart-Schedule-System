@@ -102,6 +102,7 @@ public class GUINotificacion extends JFrame implements ActionListener  {
         
             case "siguiente": actualizarLabels();
             break;
+            case "volver": this.dispose();
         }
     }
     
