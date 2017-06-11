@@ -22,6 +22,10 @@ public class Asignatura {
         this.nombre = nombre;
         agregarPrueba(evaluacion);
     }
+    public Asignatura(String codigo,String nombre){
+        this.codigo=codigo;
+        this.nombre=nombre;
+    }
    public boolean agregarPrueba(Evaluacion prueba){
        this.pruebas.add(prueba);
        return true;

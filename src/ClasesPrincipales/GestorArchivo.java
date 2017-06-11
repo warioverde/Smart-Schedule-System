@@ -3,7 +3,6 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-
 package ClasesPrincipales;
 
 import Archivos.ArchivoAsignatura;
@@ -16,8 +15,34 @@ import java.util.ArrayList;
  */
 public class GestorArchivo {
     
-    public GestorArchivo(){}
+    private ArrayList<Asignatura> asignaturas= new ArrayList();
+
+    public ArrayList<Asignatura> getAsignaturas() {
+        return asignaturas;
+    }
     
+    public void creadorAsignatura(){
+    String array [][] = this.separarDatosAsignatura();
+        for (int i = 0; i < array.length; i++) {
+            Asignatura asignatura = new Asignatura(array[i][0],array[i][1]);
+            this.asignaturas.add(asignatura);
+        }
+        
+    }
+    
+    public String[] getNombres(){
+        //String arrayy[][]=this.separarDatosAsignatura();
+        String[] nombres=new String[this.asignaturas.size()];
+        for (int i = 0; i < this.asignaturas.size(); i++) {
+            nombres[i]=this.asignaturas.get(i).getNombre();
+            
+        }
+        return nombres;
+    }
+
+    public GestorArchivo() {
+    }
+
     /*public void addAsignatura(String asignatura){
     //Llamar al archivo de asignaturas y añadir una nueva
     }
@@ -35,117 +60,112 @@ public class GestorArchivo {
     //Retornar la evaluacion en la linea "i"
     return "";
     }*/
-    
     //Para testeo
-    
-    String asignatura[]=new String[5];
-    
-    
-    public void addAsignatura(String codigo,String nombre, String horas,String horario){
+    String asignatura[] = new String[5];
+
+    public void addAsignatura(String codigo, String nombre, String horas, String horario) {
         //
         ArchivoAsignatura añadir = new ArchivoAsignatura();
-        añadir.escribirArchivo(codigo+","+nombre+","+horas+","+horario+",");
+        añadir.escribirArchivo(codigo + "," + nombre + "," + horas + "," + horario + ",");
     }
-    
-    public String searchAsignatura(String codigo){
+
+    public String searchAsignatura(String codigo) {
         ArchivoAsignatura buscador = new ArchivoAsignatura();
-        String asignaturas[] =buscador.leerArchivo();
+        String asignaturas[] = buscador.leerArchivo();
         for (int i = 0; i < this.asignatura.length; i++) {
-            String contador="";
+            String contador = "";
             for (int j = 0; j < asignatura[i].length(); j++) {
-                if (asignatura[i].charAt(j)==','){
-                    if (contador.equals(codigo)){
+                if (asignatura[i].charAt(j) == ',') {
+                    if (contador.equals(codigo)) {
                         return asignatura[i];
                     }
                     break;
-                    
+
                 }
             }
-            
+
         }
         return "";
     }
-    
-    public void addEvaluacion(String nombreAsignatura,String tipo,int dia,int mes,int año){
-        //
+
+    public void addEvaluacion(Asignatura asignatura, String tipo, int dia, int mes, int año) {
+        Evaluacion evaluacion = new Evaluacion(año, mes, dia, tipo);
+        asignatura.agregarPrueba(evaluacion);
         ArchivoEvaluacion añadir = new ArchivoEvaluacion();
-        añadir.escribirArchivo(nombreAsignatura+","+tipo+","+dia+","+mes+","+año+",");
+
+        //  Asignatura asignatura = new Asignatura();
+        añadir.escribirArchivo(asignatura.getNombre() + "," + tipo + "," + dia + "," + mes + "," + año + ",");
     }
-    
+
     //nuevo, recuperar datos
-    
-    public String[][] separarDatosEvaluacion(){
-        ArchivoEvaluacion archivo=new ArchivoEvaluacion();
-        ArrayList<String> datos=archivo.leerArchivo();
-        int contador=0;
+    public String[][] separarDatosEvaluacion() {
+        ArchivoEvaluacion archivo = new ArchivoEvaluacion();
+        ArrayList<String> datos = archivo.leerArchivo();
+        int contador = 0;
         for (int i = 0; i < datos.size(); i++) {
-            if (datos.get(i)==null){
+            if (datos.get(i) == null) {
                 break;
-            }else{
+            } else {
                 contador++;
             }
         }
-        String datosSeparados[][]=new String[contador][3];
-        
+        String datosSeparados[][] = new String[contador][5];
+
         for (int i = 0; i < contador; i++) {
-            String cadena="";
-            int posDato=0;
+            String cadena = "";
+            int posDato = 0;
             for (int j = 0; j < datos.get(i).length(); j++) {
-                
-                    if (datos.get(i).charAt(j)==','){
-                        datosSeparados[i][posDato]=cadena;
-                        cadena="";
-                        posDato++;
-                    }else{
-                       cadena+=datos.get(i).charAt(j); 
-                    }
-                
-                    
+
+                if (datos.get(i).charAt(j) == ',') {
+                    datosSeparados[i][posDato] = cadena;
+                    cadena = "";
+                    posDato++;
+                } else {
+                    cadena += datos.get(i).charAt(j);
                 }
-               if (posDato>=5){     //Metodo para limitar la lectura de datos por linea  
-                   break;
+                if (posDato >= 5) {     //Metodo para limitar la lectura de datos por linea  
+                    break;
                 }
-                
+
             }
+
+        }
         return datosSeparados;
     }
-    
-    public String[][] separarDatosAsignatura(){
-        ArchivoAsignatura archivo=new ArchivoAsignatura();
-        String[] datos=archivo.leerArchivo();
-        int contador=0;
+
+    public String[][] separarDatosAsignatura() {
+        ArchivoAsignatura archivo = new ArchivoAsignatura();
+        String[] datos = archivo.leerArchivo();
+        int contador = 0;
         for (int i = 0; i < datos.length; i++) {
-            if (datos[i]==null){
+            if (datos[i] == null) {
                 break;
-            }else{
+            } else {
                 contador++;
             }
         }
-        String datosSeparados[][]=new String[contador][3];
-        
+        String datosSeparados[][] = new String[contador][4];
+
         for (int i = 0; i < contador; i++) {
-            String cadena="";
-            int posDato=0;
+            String cadena = "";
+            int posDato = 0;
             for (int j = 0; j < datos[i].length(); j++) {
-                
-                    if (datos[i].charAt(j)==','){
-                        datosSeparados[i][posDato]=cadena;
-                        cadena="";
-                        posDato++;
-                    }else{
-                       cadena+=datos[i].charAt(j); 
-                    }
-                                                                                //Pendiente: separar los periodos de la asignatura
-                    
+
+                if (datos[i].charAt(j) == ',') {
+                    datosSeparados[i][posDato] = cadena;
+                    cadena = "";
+                    posDato++;
+                } else {
+                    cadena += datos[i].charAt(j);
                 }
-               if (posDato>=4){     //Metodo para limitar la lectura de datos por linea  
-                   break;
+                //Pendiente: separar los periodos de la asignatura
+                if (posDato >= 4) {     //Metodo para limitar la lectura de datos por linea  
+                    break;
                 }
-                
             }
+
+        }
         return datosSeparados;
     }
-    
-    
-    
+
 }
