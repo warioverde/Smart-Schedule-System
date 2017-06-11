@@ -51,7 +51,8 @@ public class GUIHorario extends JFrame implements ActionListener  {
             tHorario=new JTable(horario,col);
             tHorario.setBounds(50,50,440,192);
             
-            
+            tHorario.getColumnModel().getSelectionModel();
+            tHorario.se
             add(tHorario);
         //----------------------------------------------------------------------
         //--------JLabel--------------------------------------------------------[]//Seccion JLabel

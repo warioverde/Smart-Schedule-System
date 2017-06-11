@@ -97,7 +97,6 @@ public class GestorArchivo {
         añadir.escribirArchivo(asignatura.getNombre() + "," + tipo + "," + dia + "," + mes + "," + año + ",");
     }
 
-    //nuevo, recuperar datos
     public String[][] separarDatosEvaluacion() {
         ArchivoEvaluacion archivo = new ArchivoEvaluacion();
         ArrayList<String> datos = archivo.leerArchivo();
@@ -167,5 +166,24 @@ public class GestorArchivo {
         }
         return datosSeparados;
     }
+    
+    public void SepararDato() {
+        ArchivoAsignatura archivo = new ArchivoAsignatura();
+       
+        String [] letras2 ;
+        String[] letras = archivo.leerArchivo();
+        String[] hola = letras[0].split("@");
+        String [] alfa = archivo.leerArchivo()[0].split("@");
+        String[] omega[]=new String[alfa.length][2];
+        for (int i = 0; i < alfa.length-1; i++) {
+            //System.out.println(alfa[i]);
+            
+            omega[i]=alfa[i].split("_");
+            System.out.print(omega[i][0]+"---");
+            System.out.println(omega[i][1]);
+            
+            
+        }
+
 
 }
