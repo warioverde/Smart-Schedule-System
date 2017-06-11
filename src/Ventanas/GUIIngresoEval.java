@@ -6,13 +6,10 @@
 
 package Ventanas;
 
-import Archivos.ArchivoAsignatura;
-import ClasesPrincipales.Asignatura;
 import ClasesPrincipales.GestorArchivo;
 import com.toedter.calendar.JDateChooser;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.util.ArrayList;
 import javax.swing.*; //librerias de JFrame,JButton,JLabel,etc.
 
 /**
@@ -31,14 +28,11 @@ public class GUIIngresoEval extends JFrame implements ActionListener  {
     protected JTextField tfOtro;
     protected ButtonGroup bgTipo;
     
-   
-    
     //Para testeo
-    //protected String asignaturas[]={"Programacion","Base de datos","Sistemas Operativos"};
+    protected String asignaturas[]={"Programacion","Base de datos","Sistemas Operativos"};
     protected GUIIngresoEval(){ 
         super();
-        GestorArchivo gestor=new GestorArchivo();
-        gestor.creadorAsignatura();
+        
         //-------Button---------------------------------------------------------[]//Seccion JButton
         
             bGuardar=new JButton("Ingresar"); //----------------------------------//Instanciacion de JButton como bClick 
@@ -89,8 +83,7 @@ public class GUIIngresoEval extends JFrame implements ActionListener  {
             add(dcFecha);
         //----------------------------------------------------------------------
         //--------JComboBox-----------------------------------------------------
-        
-            cbAsignatura=new JComboBox(gestor.getNombres());
+            cbAsignatura=new JComboBox(asignaturas);
             cbAsignatura.setBounds(50,100,150,30);
             add(cbAsignatura);
         //----------------------------------------------------------------------
@@ -106,10 +99,8 @@ public class GUIIngresoEval extends JFrame implements ActionListener  {
         
             case "guardar": if(chkTipo() && chkOtro() && chkFecha() ){
                 GestorArchivo gestor=new GestorArchivo();
-                gestor.creadorAsignatura();
-               ArrayList<Asignatura>asignaturas=gestor.getAsignaturas();
                 
-                gestor.addEvaluacion(asignaturas.get(cbAsignatura.getSelectedIndex()),getTipo(),(dcFecha.getDate().getDate()),(dcFecha.getDate().getMonth()+1),(dcFecha.getDate().getYear()+1900));
+                gestor.addEvaluacion(asignaturas[cbAsignatura.getSelectedIndex()],getTipo(),(dcFecha.getDate().getDate()),(dcFecha.getDate().getMonth()+1),(dcFecha.getDate().getYear()+1900));
             }
                 
                 
