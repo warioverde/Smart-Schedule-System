@@ -20,15 +20,17 @@ public class Asignatura {
         
         this.pruebas = new ArrayList<Evaluacion>();
         this.nombre = nombre;
-        agregarPrueba(evaluacion);
+        //agregarPrueba(evaluacion);
     }
+    
     public Asignatura(String codigo,String nombre){
+        this.pruebas = new ArrayList<Evaluacion>();
         this.codigo=codigo;
         this.nombre=nombre;
     }
-   public boolean agregarPrueba(Evaluacion prueba){
+   public void agregarPrueba(Evaluacion prueba){
        this.pruebas.add(prueba);
-       return true;
+       //return true;
       }
 
     public String getNombre() {
