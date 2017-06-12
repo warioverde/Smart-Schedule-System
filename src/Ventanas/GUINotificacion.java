@@ -25,8 +25,7 @@ public class GUINotificacion extends JFrame implements ActionListener  {
     protected JLabel lAsignatura,lNotificacion,lFecha;
     protected JPanel pNotificacion;
     protected JButton bVolver,bSiguiente;
-    
-    protected String[][] evaluaciones;                                          //Evaluaciones de [1-n] y [nombreAsignatura,tipoEvaluacion,dia,mes,año]
+                                            //Evaluaciones de [1-n] y [nombreAsignatura,tipoEvaluacion,dia,mes,año]
     private int contadorNotificaciones;
     /*protected String asignatura="Calculo de una variable";
     Notificacion notificacion=new Notificacion();                                 //Borrar
@@ -34,9 +33,7 @@ public class GUINotificacion extends JFrame implements ActionListener  {
     protected String dia=notificacion.tiempoRestante(fecha[0], fecha[1], fecha[2])+"";*/
     protected GUINotificacion(){ 
         super();
-        //-------Apartado para obtener la informacion de las evaluaciones-------[]
-            GestorArchivo gestor = new GestorArchivo();
-            this.evaluaciones=gestor.separarDatosEvaluacion();
+           
         //----------------------------------------------------------------------
         //-------Button---------------------------------------------------------[]//Seccion JButton
             
@@ -114,6 +111,8 @@ public class GUINotificacion extends JFrame implements ActionListener  {
     //Conectar con el gestor
     
     public void actualizarLabels(){
+        GestorArchivo gestor = new GestorArchivo();
+        String[][] evaluaciones=gestor.separarDatosEvaluacion(); 
         if (!(this.contadorNotificaciones>evaluaciones.length-1)){
             System.out.println(evaluaciones[this.contadorNotificaciones][2]+"/"+evaluaciones[this.contadorNotificaciones][3]+"/"+evaluaciones[this.contadorNotificaciones][4]);
             lAsignatura.setText(evaluaciones[this.contadorNotificaciones][0]);

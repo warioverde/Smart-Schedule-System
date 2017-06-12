@@ -28,8 +28,9 @@ public class Asignatura {
         this.codigo=codigo;
         this.nombre=nombre;
     }
-   public void agregarPrueba(Evaluacion prueba){
-       this.pruebas.add(prueba);
+   public void agregarPrueba(int año,int mes,int dia,String tipo){
+       Evaluacion evaluacion = new Evaluacion(año, mes, dia, tipo);
+       this.pruebas.add(evaluacion);
        //return true;
       }
 

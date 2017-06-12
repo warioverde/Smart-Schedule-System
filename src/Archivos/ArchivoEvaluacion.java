@@ -9,7 +9,7 @@ import java.util.ArrayList;
  * @author Jorge
  */
 public class ArchivoEvaluacion {
-    String ruta="build\\classes\\Archivos\\Evaluaciones.txt";
+    private String ruta="build\\classes\\Archivos\\Evaluaciones.txt";
     public ArchivoEvaluacion(){
         
         

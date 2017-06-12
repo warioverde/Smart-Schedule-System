@@ -43,57 +43,34 @@ public class GestorArchivo {
     public GestorArchivo() {
     }
 
-    /*public void addAsignatura(String asignatura){
-    //Llamar al archivo de asignaturas y añadir una nueva
-    }
-    public void addEvaluacion(String evaluacion){
-    //Llamar al archivo de evaluaciones y añadir una nueva junto con el codigo de asignatura
-    }
-    
-    public String getAsignatura(String codigo){
-    //Buscar asignatura de codigo
-    //retornar nombre,codigo u horario
-    return "";
-    }
-    public String getEvaluacion(String codigo,int i){
-    //Buscar evaluacion por codigo de asignatura
-    //Retornar la evaluacion en la linea "i"
-    return "";
-    }*/
-    //Para testeo
-    String asignatura[] = new String[5];
-
     public void addAsignatura(String codigo, String nombre, String horas, String horario) {
-        //
         ArchivoAsignatura añadir = new ArchivoAsignatura();
         añadir.escribirArchivo(codigo + "," + nombre + "," + horas + "," + horario + ",");
     }
 
-    public String searchAsignatura(String codigo) {
-        ArchivoAsignatura buscador = new ArchivoAsignatura();
-        String asignaturas[] = buscador.leerArchivo();
-        for (int i = 0; i < this.asignatura.length; i++) {
-            String contador = "";
-            for (int j = 0; j < asignatura[i].length(); j++) {
-                if (asignatura[i].charAt(j) == ',') {
-                    if (contador.equals(codigo)) {
-                        return asignatura[i];
-                    }
-                    break;
-
-                }
-            }
-
-        }
-        return "";
+    /*public String searchAsignatura(String codigo) {
+    ArchivoAsignatura buscador = new ArchivoAsignatura();
+    String asignaturas[] = buscador.leerArchivo();
+    for (int i = 0; i < this.asignatura.length; i++) {
+    String contador = "";
+    for (int j = 0; j < asignatura[i].length(); j++) {
+    if (asignatura[i].charAt(j) == ',') {
+    if (contador.equals(codigo)) {
+    return asignatura[i];
     }
+    break;
+    
+    }
+    }
+    
+    }
+    return "";
+    }*/
 
     public void addEvaluacion(Asignatura asignatura, String tipo, int dia, int mes, int año) {
-        Evaluacion evaluacion = new Evaluacion(año, mes, dia, tipo);
-        asignatura.agregarPrueba(evaluacion);
+        asignatura.agregarPrueba(año,mes,dia,tipo);
         ArchivoEvaluacion añadir = new ArchivoEvaluacion();
 
-        //  Asignatura asignatura = new Asignatura();
         añadir.escribirArchivo(asignatura.getNombre() + "," + tipo + "," + dia + "," + mes + "," + año + ",");
     }
 
@@ -167,23 +144,23 @@ public class GestorArchivo {
         return datosSeparados;
     }
     
-    public void SepararDato() {
-        ArchivoAsignatura archivo = new ArchivoAsignatura();
-       
-        String [] letras2 ;
-        String[] letras = archivo.leerArchivo();
-        String[] hola = letras[0].split("@");
-        String [] alfa = archivo.leerArchivo()[0].split("@");
-        String[] omega[]=new String[alfa.length][2];
-        for (int i = 0; i < alfa.length-1; i++) {
-            //System.out.println(alfa[i]);
-            
-            omega[i]=alfa[i].split("_");
-            System.out.print(omega[i][0]+"---");
-            System.out.println(omega[i][1]);
-            
-            
-        }
-
-
+    /*public void SepararDato() {
+    ArchivoAsignatura archivo = new ArchivoAsignatura();
+    
+    String [] letras2 ;
+    String[] letras = archivo.leerArchivo();
+    String[] hola = letras[0].split("@");
+    String [] alfa = archivo.leerArchivo()[0].split("@");
+    String[] omega[]=new String[alfa.length][2];
+    for (int i = 0; i < alfa.length-1; i++) {
+    //System.out.println(alfa[i]);
+    
+    omega[i]=alfa[i].split("_");
+    System.out.print(omega[i][0]+"---");
+    System.out.println(omega[i][1]);
+    
+    
+    }
+    
+    }*/
 }

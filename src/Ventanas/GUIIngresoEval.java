@@ -31,10 +31,6 @@ public class GUIIngresoEval extends JFrame implements ActionListener  {
     protected JTextField tfOtro;
     protected ButtonGroup bgTipo;
     
-   
-    
-    //Para testeo
-    //protected String asignaturas[]={"Programacion","Base de datos","Sistemas Operativos"};
     protected GUIIngresoEval(){ 
         super();
         GestorArchivo gestor=new GestorArchivo();
@@ -103,12 +99,12 @@ public class GUIIngresoEval extends JFrame implements ActionListener  {
     }
     public void actionPerformed(ActionEvent ae) {
         switch(ae.getActionCommand()){
-        
-            case "guardar": if(chkTipo() && chkOtro() && chkFecha() ){
+            
+            case "guardar": if(chkTipo() && chkOtro() && chkFecha() && cbAsignatura.getSelectedItem()!=null ){
                 GestorArchivo gestor=new GestorArchivo();
                 gestor.creadorAsignatura();
                ArrayList<Asignatura>asignaturas=gestor.getAsignaturas();
-                
+               
                 gestor.addEvaluacion(asignaturas.get(cbAsignatura.getSelectedIndex()),getTipo(),(dcFecha.getDate().getDate()),(dcFecha.getDate().getMonth()+1),(dcFecha.getDate().getYear()+1900));
                 JOptionPane.showMessageDialog(null, "Evaluacion ingresada exitosamente");
                 this.dispose();

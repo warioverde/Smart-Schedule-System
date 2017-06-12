@@ -1,2 +1,0 @@
-P1,Programacion,4,Martes_1°8:30-9:30.Martes_2°9:40-10:40.Miercoles_1°8:30-9:30.Miercoles_2°9:40-10:40.,
-CDLC2,Ciencias de la computacion 2,5,Lunes_5°14:30-15:30.Lunes_6°15:40-16:40.Jueves_1°8:30-9:30.Jueves_2°9:40-10:40.,

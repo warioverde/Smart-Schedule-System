@@ -8,7 +8,7 @@ import java.io.*;
  * @author Jorge
  */
 public class ArchivoAsignatura {
-    String ruta="build\\classes\\Archivos\\Asignaturas.txt";
+    private String ruta="build\\classes\\Archivos\\Asignaturas.txt";
     
     public ArchivoAsignatura(){
         
