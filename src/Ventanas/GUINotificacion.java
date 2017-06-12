@@ -113,18 +113,34 @@ public class GUINotificacion extends JFrame implements ActionListener  {
     public void actualizarLabels(){
         GestorArchivo gestor = new GestorArchivo();
         String[][] evaluaciones=gestor.separarDatosEvaluacion(); 
-        if (!(this.contadorNotificaciones>evaluaciones.length-1)){
-            System.out.println(evaluaciones[this.contadorNotificaciones][2]+"/"+evaluaciones[this.contadorNotificaciones][3]+"/"+evaluaciones[this.contadorNotificaciones][4]);
-            lAsignatura.setText(evaluaciones[this.contadorNotificaciones][0]);
+        if (!(this.contadorNotificaciones>evaluaciones.length-1 )){             //Si el contador no sobrepasa los limites del array
             int dia=Integer.parseInt(evaluaciones[this.contadorNotificaciones][2]);
             int mes=Integer.parseInt(evaluaciones[this.contadorNotificaciones][3]);
             int año=Integer.parseInt(evaluaciones[this.contadorNotificaciones][4]);
             int dias=getDiasRestantes(dia,mes,año);
-            lNotificacion.setText(dias+" dias restantes para la siguiente evaluacion");
-            lFecha.setText(evaluaciones[this.contadorNotificaciones][1]+"-"+dia+"/"+mes+"/"+año);
-            this.contadorNotificaciones++;
+            if (dias>=0) {                                                      //Si la evaluacion no ha ocurrido aún
+                lAsignatura.setText(evaluaciones[this.contadorNotificaciones][0]);
+                lFecha.setText(evaluaciones[this.contadorNotificaciones][1]+"-"+dia+"/"+mes+"/"+año);
+                this.contadorNotificaciones++;
+                lNotificacion.setText(dias+" dias restantes para la siguiente evaluacion");
+                if (dias==0){
+                    lNotificacion.setText("La evaluacion es hoy!!!");
+                    JOptionPane.showMessageDialog(null, "SSS(fs) te desea que vaya exelente en tu evaluacion :)");
+                }else{
+                    if (dias<=3) {
+                        JOptionPane.showMessageDialog(null,"Aviso: Menos de 3 dias restantes \n Accion recomendada: Postergar toda actividad para liberar este tiempo \n y utilizar este tiempo para estudiar, obvio.");
+                    }else if(dias<=7){
+                        JOptionPane.showMessageDialog(null, "Aviso: Menos de una semana restante \n Accion recomendada: Estudiar o trabajar inmediatamente.");
+                    }
+                }
+            }else{
+                this.contadorNotificaciones++;
+                actualizarLabels();
+            }
+            
         }
         else{
+             JOptionPane.showMessageDialog(null,"No quedan mas evaluaciones que mostrar");
             this.dispose();
         }
         
