@@ -140,7 +140,7 @@ public class GUINotificacion extends JFrame implements ActionListener  {
             
         }
         else{
-             JOptionPane.showMessageDialog(null,"No quedan mas evaluaciones que mostrar");
+            JOptionPane.showMessageDialog(null,"No quedan mas evaluaciones que mostrar");
             this.dispose();
         }
         
