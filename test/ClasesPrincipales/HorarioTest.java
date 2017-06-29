@@ -76,7 +76,7 @@ public class HorarioTest {
     
     int dia2 = 2;
     int periodo2 = 3;
-    String asignatura2 = "\n Ciencias";
+    String asignatura2 = "Ciencias";
     horario.setHorario(dia2, periodo2, asignatura2);
     
     horario.showXConsola();

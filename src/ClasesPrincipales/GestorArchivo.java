@@ -16,7 +16,7 @@ import java.util.ArrayList;
 public class GestorArchivo {
     
     private ArrayList<Asignatura> asignaturas= new ArrayList();
-
+    private Horario horario=new Horario();
     public ArrayList<Asignatura> getAsignaturas() {
         return asignaturas;
     }
@@ -27,7 +27,7 @@ public class GestorArchivo {
             Asignatura asignatura = new Asignatura(array[i][0],array[i][1]);
             this.asignaturas.add(asignatura);
         }
-        
+        this.horario.setHorarioInicial();
     }
     
     public String[] getNombres(){
@@ -163,4 +163,21 @@ public class GestorArchivo {
     }
     
     }*/
+    
+    public void addHorario(){
+        
+    }
+    
+    public void mkHorario(){
+        ArchivoAsignatura archivo = new ArchivoAsignatura();
+        String[] datos = archivo.leerArchivo();
+        String[] aux=datos[1].split(",");   //Actualmente lo hago para una sola asignatura
+        String[] clases=aux[3].split(";");
+        
+        String[] diaPeriodo=clases[0].split("@");   //Actualmente solo para 1 periodo de clases
+        
+        this.horario.setHorario(Integer.parseInt(diaPeriodo[0]), Integer.parseInt(diaPeriodo[1]), "test");
+        
+        this.horario.showXConsola();
+    }
 }
