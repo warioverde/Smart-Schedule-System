@@ -16,13 +16,14 @@ public class Evaluacion {
    private int mesE;
    private int diaE;
    private String tipo;
+   private String codigo;
 
-    public Evaluacion(int añoE, int mesE, int diaE, String tipo) {
+    public Evaluacion(String codigo,int diaE, int mesE, int añoE, String tipo) {
         this.añoE = añoE;
         this.mesE = mesE;
         this.diaE = diaE;
         this.tipo = tipo;
-        
+        this.codigo=codigo;
     }
    
    

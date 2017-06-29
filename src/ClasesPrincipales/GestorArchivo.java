@@ -28,12 +28,26 @@ public class GestorArchivo {
     public void creadorAsignatura(){
     String array [][] = this.separarDatosAsignatura();
         for (int i = 0; i < array.length; i++) {
-            Asignatura asignatura = new Asignatura(array[i][0],array[i][1]);
+            Asignatura asignatura = new Asignatura(array[i][0],array[i][1],Integer.parseInt(array[i][2]));
             this.asignaturas.add(asignatura);
+            
+            ArrayList<Evaluacion> evaluaciones = creadorEvaluaciones();
+            
+            for (int j = 0; j < evaluaciones.size(); j++) {
+                if (evaluaciones.get(i).)
+            }
         }
         
     }
-    
+    public ArrayList<Evaluacion> creadorEvaluaciones(){
+    String array [][] = this.separarDatosEvaluacion();
+    ArrayList<Evaluacion> evaluaciones=new ArrayList<>();
+        for (int i = 0; i < array.length; i++) {
+            Evaluacion eva = new Evaluacion(array[i][0],Integer.parseInt(array[i][1]),Integer.parseInt(array[i][2]),Integer.parseInt(array[i][3]),array[i][4]);
+            evaluaciones.add(eva);
+        }
+        return evaluaciones;
+    }
     public String[] getNombres(){
         //String arrayy[][]=this.separarDatosAsignatura();
         String[] nombres=new String[this.asignaturas.size()];

@@ -15,24 +15,32 @@ public class Asignatura {
    private ArrayList<Evaluacion> pruebas;
    private String nombre;
    private String codigo;
+   private int horasExtra;
    
-    public Asignatura(Evaluacion evaluacion, String nombre) {
-        
-        this.pruebas = new ArrayList<Evaluacion>();
-        this.nombre = nombre;
-        //agregarPrueba(evaluacion);
-    }
+   /*public Asignatura(Evaluacion evaluacion, String nombre) {
+   
+   this.pruebas = new ArrayList<Evaluacion>();
+   this.nombre = nombre;
+   //agregarPrueba(evaluacion);
+   }*/
     
-    public Asignatura(String codigo,String nombre){
+    public Asignatura(String codigo,String nombre,int horasExtra){
         this.pruebas = new ArrayList<Evaluacion>();
         this.codigo=codigo;
         this.nombre=nombre;
+        this.horasExtra=horasExtra;
     }
-   public void agregarPrueba(int año,int mes,int dia,String tipo){
-       Evaluacion evaluacion = new Evaluacion(año, mes, dia, tipo);
+   public void agregarPrueba(String codigo,int año,int mes,int dia,String tipo){
+       Evaluacion evaluacion = new Evaluacion(codigo,dia, mes, año, tipo);
        this.pruebas.add(evaluacion);
        //return true;
       }
+   public void agregarPrueba(Evaluacion eva){
+       this.pruebas.add(eva);
+       //return true;
+      }
+   
+   
 
     public String getNombre() {
         return nombre;
@@ -40,6 +48,14 @@ public class Asignatura {
 
     public void setNombre(String nombre) {
         this.nombre = nombre;
+    }
+
+    public String getCodigo() {
+        return codigo;
+    }
+
+    public int getHorasExtra() {
+        return horasExtra;
     }
    
     
