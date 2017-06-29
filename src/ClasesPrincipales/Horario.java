@@ -33,9 +33,9 @@ public class Horario {
     }
     public void setHorario(int dia,int periodo,String asignatura) {
         if(periodo<5){
-            this.horario[dia][periodo] += asignatura;
+            this.horario[dia-1][periodo] += asignatura;
         }else{
-            this.horario[dia][periodo+1] += asignatura;
+            this.horario[dia-1][periodo+1] += asignatura;
         }
         
         
