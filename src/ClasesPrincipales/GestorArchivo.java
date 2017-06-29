@@ -167,15 +167,47 @@ public class GestorArchivo {
     
     }*/
     
+    /*public void mkHorario(){
+    ArchivoAsignatura archivo = new ArchivoAsignatura();
+    String[] datos = archivo.leerArchivo();
+    String[] asignatura=datos[0].split(",");   //Actualmente lo hago para una sola asignatura
+    String[] clases=asignatura[3].split(";");
+    
+    String[] diaPeriodo=clases[0].split("@");   //Actualmente solo para 1 periodo de clases
+    
+    this.horario.setHorario(Integer.parseInt(diaPeriodo[0]), Integer.parseInt(diaPeriodo[1]), asignatura[1]);
+    
+    //this.horario.showXConsola();
+    
+    }*/
+    
     public void mkHorario(){
         ArchivoAsignatura archivo = new ArchivoAsignatura();
         String[] datos = archivo.leerArchivo();
-        String[] asignatura=datos[0].split(",");   //Actualmente lo hago para una sola asignatura
-        String[] clases=asignatura[3].split(";");
+        String asignatura[][]=new String[datos.length][5];
+        for (int i = 0; i < datos.length; i++) {                              //
+            asignatura[i]=datos[0].split(",");
+        }
+        String[] clases;
+        for (int i = 0; i < asignatura.length; i++) {
+            clases=asignatura[i][3].split(";");
+            
+            
+            for (int j = 0; j < clases.length-1; j++) {
+                String[] diaPeriodo=clases[i-1].split("@");
+                
+                this.horario.setHorario(Integer.parseInt(diaPeriodo[0]), Integer.parseInt(diaPeriodo[1]), asignatura[i][3]);
+            }
+            
+            
+        }
         
-        String[] diaPeriodo=clases[0].split("@");   //Actualmente solo para 1 periodo de clases
         
-        this.horario.setHorario(Integer.parseInt(diaPeriodo[0]), Integer.parseInt(diaPeriodo[1]), asignatura[1]);
+        
+        
+           //Actualmente solo para 1 periodo de clases
+        
+        
         
         //this.horario.showXConsola();
         
