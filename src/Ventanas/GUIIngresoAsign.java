@@ -285,12 +285,12 @@ public class GUIIngresoAsign extends JFrame implements ActionListener  {
     public String returnHorario(){
         String horario="";
         boolean localMatrix[][]={{cbL1.isSelected(),cbL2.isSelected(),cbL3.isSelected(),cbL4.isSelected(),cbL5.isSelected(),cbL6.isSelected(),cbL7.isSelected(),cbL8.isSelected(),cbL9.isSelected(),cbL10.isSelected()},{cbMar1.isSelected(),cbMar2.isSelected(),cbMar3.isSelected(),cbMar4.isSelected(),cbMar5.isSelected(),cbMar6.isSelected(),cbMar7.isSelected(),cbMar8.isSelected(),cbMar9.isSelected(),cbMar10.isSelected()},{cbMie1.isSelected(),cbMie2.isSelected(),cbMie3.isSelected(),cbMie4.isSelected(),cbMie5.isSelected(),cbMie6.isSelected(),cbMie7.isSelected(),cbMie8.isSelected(),cbMie9.isSelected(),cbMie10.isSelected()},{cbJ1.isSelected(),cbJ2.isSelected(),cbJ3.isSelected(),cbJ4.isSelected(),cbJ5.isSelected(),cbJ6.isSelected(),cbJ7.isSelected(),cbJ8.isSelected(),cbJ9.isSelected(),cbJ10.isSelected()},{cbV1.isSelected(),cbV2.isSelected(),cbV3.isSelected(),cbV4.isSelected(),cbV5.isSelected(),cbV6.isSelected(),cbV7.isSelected(),cbV8.isSelected(),cbV9.isSelected(),cbV10.isSelected()},{cbS1.isSelected(),cbS2.isSelected(),cbS3.isSelected(),cbS4.isSelected(),cbS5.isSelected(),cbS6.isSelected(),cbS7.isSelected(),cbS8.isSelected(),cbS9.isSelected(),cbS10.isSelected()}};
-        String dia[]={"Lunes","Martes","Miercoles","Jueves","Viernes","Sabado"};
-        String hora[]={"1°8:30-9:30","2°9:40-10:40","3°10:50-11:50","4°12:00-13:00","5°14:30-15:30","6°15:40-16:40","7°16:50-17:50","8°18:00-19:00","9°19:10-20:10","10°20:20-21:20"};
+        String dia[]={"1","2","3","4","5","6"};
+        String hora[]={"1","2","3","4","5","6","7","8","9","10"};
         for (int i = 0; i < localMatrix.length; i++) {
             for (int j = 0; j < localMatrix[0].length; j++) {
                 if (localMatrix[i][j]){
-                    horario+=dia[i]+"_"+hora[j]+".";
+                    horario+=dia[i]+"@"+hora[j]+";";
                 }
             }
         }

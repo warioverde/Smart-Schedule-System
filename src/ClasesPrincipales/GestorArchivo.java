@@ -164,10 +164,6 @@ public class GestorArchivo {
     
     }*/
     
-    public void addHorario(){
-        
-    }
-    
     public void mkHorario(){
         ArchivoAsignatura archivo = new ArchivoAsignatura();
         String[] datos = archivo.leerArchivo();

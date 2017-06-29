@@ -1,6 +1,2 @@
-Pb01,Probabilidades,5,Lunes_3°10:50-11:50.Lunes_4°12:00-13:00.Miercoles_3°10:50-11:50.Miercoles_4°12:00-13:00.,
-Pg01,Programacion,6,Martes_1°8:30-9:30.Martes_2°9:40-10:40.Miercoles_1°8:30-9:30.Miercoles_2°9:40-10:40.,
-MN01,Metodos,3,Lunes_2°9:40-10:40.Jueves_1°8:30-9:30.Viernes_3°10:50-11:50.Viernes_4°12:00-13:00.,
-Cc2,Ciencias,3,Lunes_5°14:30-15:30.Lunes_6°15:40-16:40.Jueves_1°8:30-9:30.Jueves_2°9:40-10:40.,
-SO01,Sistemas,3,Martes_7°16:50-17:50.Martes_8°18:00-19:00.Miercoles_7°16:50-17:50.Miercoles_8°18:00-19:00.,
-BD01,Bases,4,Miercoles_5°14:30-15:30.Miercoles_6°15:40-16:40.Viernes_1°8:30-9:30.Viernes_2°9:40-10:40.,
+Pg01,Programacion,5,2@1;2@2;3@1;3@2;,
+SO01,Sistemas,4,2@7;2@8;3@7;3@8;,
