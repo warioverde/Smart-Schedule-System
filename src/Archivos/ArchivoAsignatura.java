@@ -1,6 +1,7 @@
 package Archivos;
 
 import java.io.*;
+import java.util.ArrayList;
 
 
 /**
@@ -16,20 +17,28 @@ public class ArchivoAsignatura {
     }
     
     public String[] leerArchivo(){
-        String cadenas[]=new String[8]; //Limito a 8 registros para asignaturas
+        ArrayList<String> cadenas=new ArrayList<>(); //Limito a 8 registros para asignaturas
         int contador=0;
         try{
         RandomAccessFile arch = new RandomAccessFile(ruta,"rw");
         String cadena=arch.readLine();
         while(cadena!=null && !cadena.equals("")){
-            cadenas[contador]=cadena;
+            cadenas.add(cadena);
             cadena=arch.readLine();
             contador++;}
         arch.close();
         }catch(IOException e){
             System.out.println(e);
         }
-        return cadenas;
+        return arrayToAList(cadenas);
+    }
+    
+    public String[] arrayToAList(ArrayList<String> list){
+        String[] array=new String[list.size()];
+        for (int i = 0; i < list.size(); i++) {
+            array[i]=list.get(i);
+        }
+        return array;
     }
     
     public void escribirArchivo(int linea,String cadena){

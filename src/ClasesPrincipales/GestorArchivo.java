@@ -185,18 +185,19 @@ public class GestorArchivo {
         ArchivoAsignatura archivo = new ArchivoAsignatura();
         String[] datos = archivo.leerArchivo();
         String asignatura[][]=new String[datos.length][5];
+        
         for (int i = 0; i < datos.length; i++) {                              //
-            asignatura[i]=datos[0].split(",");
+            asignatura[i]=datos[i].split(",");
         }
-        String[] clases;
+        
         for (int i = 0; i < asignatura.length; i++) {
-            clases=asignatura[i][3].split(";");
+            String[] clases=asignatura[i][3].split(";");
             
             
-            for (int j = 0; j < clases.length-1; j++) {
-                String[] diaPeriodo=clases[i-1].split("@");
+            for (int j = 0; j < clases.length; j++) {
+                String[] diaPeriodo=clases[j].split("@");
                 
-                this.horario.setHorario(Integer.parseInt(diaPeriodo[0]), Integer.parseInt(diaPeriodo[1]), asignatura[i][3]);
+                this.horario.setHorario(Integer.parseInt(diaPeriodo[0]), Integer.parseInt(diaPeriodo[1]), asignatura[i][1]);
             }
             
             

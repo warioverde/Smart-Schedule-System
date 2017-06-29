@@ -112,7 +112,8 @@ public class GUINotificacion extends JFrame implements ActionListener  {
     
     public void actualizarLabels(){
         GestorArchivo gestor = new GestorArchivo();
-        String[][] evaluaciones=gestor.separarDatosEvaluacion(); 
+        String[][] evaluaciones=gestor.separarDatosEvaluacion();
+        
         if (!(this.contadorNotificaciones>evaluaciones.length-1 )){             //Si el contador no sobrepasa los limites del array
             int dia=Integer.parseInt(evaluaciones[this.contadorNotificaciones][2]);
             int mes=Integer.parseInt(evaluaciones[this.contadorNotificaciones][3]);
