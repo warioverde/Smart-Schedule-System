@@ -13,7 +13,7 @@ package ClasesPrincipales;
 public class Horario {
     String horario[][];
     public Horario(){
-        horario=new String[7][12];
+        horario=new String[12][7];
     }
 
     public String[][] getHorario() {
@@ -21,21 +21,26 @@ public class Horario {
     }
 
     public void setHorarioInicial(){
-        String[] periodos={"Periodo","1°","2°","3°","4°","Almuerzo","5°","6°","7°","8°","9°","10°"};
-        this.horario[0]=periodos;
         String[] dias={"Periodo","Lunes","Martes","Miercoles","Jueves","Viernes","Sabado"};
-        for (int i = 0; i < 7; i++) {
-            this.horario[i][0]=dias[i];
+        this.horario[0]=dias;
+        String[] periodos={"Periodo","1°","2°","3°","4°","Almuerzo","5°","6°","7°","8°","9°","10°"};
+        for (int i = 0; i < 12; i++) {
+            this.horario[i][0]=periodos[i];
         }
         for (int i = 0; i < 7; i++) {
-            this.horario[i][5]="Almuerzo";
+            this.horario[5][i]="Almuerzo";
+        }
+        for (int i = 0; i < 12; i++) {
+            for (int j = 0; j < 7; j++) {
+                if(this.horario[i][j]==null){this.horario[i][j]="";}
+            }
         }
     }
     public void setHorario(int dia,int periodo,String asignatura) {
         if(periodo<5){
-            this.horario[dia-1][periodo] += asignatura;
+            this.horario[periodo][dia] += asignatura;
         }else{
-            this.horario[dia-1][periodo+1] += asignatura;
+            this.horario[periodo+1][dia] += asignatura;
         }
         
         
@@ -44,7 +49,7 @@ public class Horario {
     public void showXConsola(){
         for (int i = 0; i < 12; i++) {
             for (int j = 0; j < 7; j++) {
-                System.out.print(this.horario[j][i]+"   ");
+                System.out.print(this.horario[i][j]+"   ");
             }
             System.out.println("");
         }

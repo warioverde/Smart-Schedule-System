@@ -177,6 +177,12 @@ public class GestorArchivo {
         
         this.horario.setHorario(Integer.parseInt(diaPeriodo[0]), Integer.parseInt(diaPeriodo[1]), asignatura[1]);
         
-        this.horario.showXConsola();
+        //this.horario.showXConsola();
+        
     }
+    
+    public String[][] getHorario(){
+        return this.horario.getHorario();
+    }
+    
 }
