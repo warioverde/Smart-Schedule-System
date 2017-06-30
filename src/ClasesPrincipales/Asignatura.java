@@ -42,6 +42,10 @@ public class Asignatura {
        //return true;
       }
 
+    public String getHorario(int dia,int periodo) {
+        return horario[dia][periodo];
+    }
+    
     public String[][] getHorario() {
         return horario;
     }

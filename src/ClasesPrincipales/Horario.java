@@ -6,16 +6,18 @@
 
 package ClasesPrincipales;
 
+import java.util.ArrayList;
+
 /**
  *
  * @author Jorge
  */
 public class Horario {
     String horario[][];
-    Asignatura horarioObjetos[][];
+    //ArrayList<Asignatura> horarioObjetos[][];
     public Horario(){
         horario=new String[12][7];
-        horarioObjetos=new Asignatura[12][7];
+        //horarioObjetos=new ArrayList[12][7];
     }
 
     public String[][] getHorario() {
@@ -38,11 +40,13 @@ public class Horario {
             }
         }
     }
-    public void setHorario(int dia,int periodo,String asignatura) {
+    public void setHorario(int dia,int periodo,Asignatura asignatura) {
         if(periodo<5){
-            this.horario[periodo][dia] += asignatura;
+            this.horario[periodo][dia] += asignatura.getNombre();
+            //this.horarioObjetos[periodo][dia].add(asignatura);
         }else{
-            this.horario[periodo+1][dia] += asignatura;
+            this.horario[periodo+1][dia] += asignatura.getNombre();
+            //this.horarioObjetos[periodo+1][dia].add(asignatura);
         }
         
         

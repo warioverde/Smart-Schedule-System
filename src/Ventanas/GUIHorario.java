@@ -78,6 +78,7 @@ public class GUIHorario extends JFrame implements ActionListener  {
     
     public String[][] getHorario(){
         GestorArchivo gestor=new GestorArchivo();
+        gestor.creadorAsignatura();
         gestor.mkHorario();
         String horario[][]=gestor.getHorario();
         return horario;

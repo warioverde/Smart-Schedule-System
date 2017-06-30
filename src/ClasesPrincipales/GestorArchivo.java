@@ -121,37 +121,38 @@ public class GestorArchivo {
         return datosSeparados;
     }
     
+    /*public void mkHorario(){
+    ArchivoAsignatura archivo = new ArchivoAsignatura();
+    String[] datos = archivo.leerArchivo();
+    String asignatura[][]=new String[datos.length][5];
+    
+    for (int i = 0; i < datos.length; i++) {                              //
+    asignatura[i]=datos[i].split(",");
+    }
+    
+    for (int i = 0; i < asignatura.length; i++) {
+    String[] clases=asignatura[i][3].split(";");
+    
+    
+    for (int j = 0; j < clases.length; j++) {
+    String[] diaPeriodo=clases[j].split("@");
+    
+    this.horario.setHorario(Integer.parseInt(diaPeriodo[0]), Integer.parseInt(diaPeriodo[1]), asignatura[i][1]);
+    }
+    
+    
+    }
+    
+    
+    }*/
+    
     public void mkHorario(){
-        ArchivoAsignatura archivo = new ArchivoAsignatura();
-        String[] datos = archivo.leerArchivo();
-        String asignatura[][]=new String[datos.length][5];
-        
-        for (int i = 0; i < datos.length; i++) {                              //
-            asignatura[i]=datos[i].split(",");
-        }
-        
-        for (int i = 0; i < asignatura.length; i++) {
-            String[] clases=asignatura[i][3].split(";");
-            
-            
-            for (int j = 0; j < clases.length; j++) {
-                String[] diaPeriodo=clases[j].split("@");
-                
-                this.horario.setHorario(Integer.parseInt(diaPeriodo[0]), Integer.parseInt(diaPeriodo[1]), asignatura[i][1]);
+        for (int i = 0; i < asignaturas.size(); i++) {
+            for (int j = 0; j < asignaturas.get(i).getHorario().length; j++) {
+                this.horario.setHorario(Integer.parseInt(asignaturas.get(i).getHorario(j, 0)), Integer.parseInt(asignaturas.get(i).getHorario(j, 1)), asignaturas.get(i));
             }
             
-            
         }
-        
-        
-        
-        
-           //Actualmente solo para 1 periodo de clases
-        
-        
-        
-        //this.horario.showXConsola();
-        
     }
     
     public String[][] getHorario(){
