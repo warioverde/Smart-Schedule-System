@@ -1,0 +1,4 @@
+icc123,asd,a,Martes_1°8:30-9:30.,
+icc113,aq,z,Viernes_1°8:30-9:30.,
+icc123,asd,aaa,Jueves_1°8:30-9:30.,
+ICC319,redes,4,Miercoles_8°18:00-19:00.Miercoles_9°19:10-20:10.Jueves_7°16:50-17:50.Jueves_8°18:00-19:00.,
