@@ -90,7 +90,7 @@ public class GestorArchivo {
         
         ArchivoEvaluacion añadir = new ArchivoEvaluacion();
 
-        añadir.escribirArchivo(asignatura.getNombre() + "," + tipo + "," + dia + "," + mes + "," + año + ",");
+        añadir.escribirArchivo(asignatura.getCodigo() + "," + tipo + "," + dia + "," + mes + "," + año + ",");
     }
 
     public String[][] separarDatosEvaluacion() {
@@ -234,4 +234,13 @@ public class GestorArchivo {
         return this.horario.getHorario();
     }
     
+    public Asignatura buscarAsignatura(String codigo){
+        for (int i = 0; i < asignaturas.size(); i++) {
+            if (asignaturas.get(i).getCodigo()==codigo){
+                return asignaturas.get(i);
+            }
+            
+        }
+        return null;
+    }
 }
