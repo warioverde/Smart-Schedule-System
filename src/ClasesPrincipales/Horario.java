@@ -12,8 +12,10 @@ package ClasesPrincipales;
  */
 public class Horario {
     String horario[][];
+    Asignatura horarioObjetos[][];
     public Horario(){
         horario=new String[12][7];
+        horarioObjetos=new Asignatura[12][7];
     }
 
     public String[][] getHorario() {
