@@ -87,7 +87,7 @@ public class GUIHorario extends JFrame implements ActionListener,MouseListener {
         GestorArchivo gestor=new GestorArchivo();
         gestor.creadorAsignatura();
         gestor.mkHorario();
-        String horario[][]=gestor.getHorario();
+        String horario[][]=gestor.getHorario().getHorario();
         return horario;
         
     }
@@ -96,7 +96,10 @@ public class GUIHorario extends JFrame implements ActionListener,MouseListener {
     public void mouseClicked(MouseEvent me) {
         int row = tHorario.rowAtPoint(me.getPoint());
         int column = tHorario.columnAtPoint(me.getPoint());
-        JOptionPane.showMessageDialog(null, "-"+row+"-"+column);
+        GestorArchivo gestor=new GestorArchivo();
+        gestor.creadorAsignatura();
+        gestor.mkHorario();
+        JOptionPane.showMessageDialog(null, gestor.getHorario().getHorarioNombres(row, column));
     }
 
     @Override
