@@ -120,7 +120,6 @@ public class GUINotificacion extends JFrame implements ActionListener  {
             int año=Integer.parseInt(evaluaciones[this.contadorNotificaciones][4]);
             int dias=getDiasRestantes(dia,mes,año);
             if (dias>=0) {                                                      //Si la evaluacion no ha ocurrido aún
-                System.out.println(gestor.buscarAsignatura(evaluaciones[0][0]).getNombre());
                 lAsignatura.setText(gestor.buscarAsignatura(evaluaciones[this.contadorNotificaciones][0]).getNombre());
                 lFecha.setText(evaluaciones[this.contadorNotificaciones][1]+"-"+dia+"/"+mes+"/"+año);
                 this.contadorNotificaciones++;
