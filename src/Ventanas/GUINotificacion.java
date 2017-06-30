@@ -113,14 +113,14 @@ public class GUINotificacion extends JFrame implements ActionListener  {
     public void actualizarLabels(){
         GestorArchivo gestor = new GestorArchivo();
         String[][] evaluaciones=gestor.separarDatosEvaluacion();
-        
+        gestor.creadorAsignatura();
         if (!(this.contadorNotificaciones>evaluaciones.length-1 )){             //Si el contador no sobrepasa los limites del array
             int dia=Integer.parseInt(evaluaciones[this.contadorNotificaciones][2]);
             int mes=Integer.parseInt(evaluaciones[this.contadorNotificaciones][3]);
             int año=Integer.parseInt(evaluaciones[this.contadorNotificaciones][4]);
             int dias=getDiasRestantes(dia,mes,año);
             if (dias>=0) {                                                      //Si la evaluacion no ha ocurrido aún
-                lAsignatura.setText(evaluaciones[this.contadorNotificaciones][0]);
+                lAsignatura.setText(gestor.buscarAsignatura(evaluaciones[this.contadorNotificaciones][0]).getNombre());
                 lFecha.setText(evaluaciones[this.contadorNotificaciones][1]+"-"+dia+"/"+mes+"/"+año);
                 this.contadorNotificaciones++;
                 lNotificacion.setText(dias+" dias restantes para la siguiente evaluacion");

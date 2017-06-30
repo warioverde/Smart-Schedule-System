@@ -1,6 +1,1 @@
-Programacion,Trabajo,30,6,2017,
-Ciencias de la computacion 2,Avance,29,6,2017,
-Programacion,Trabajo,17,6,2017,
-Ciencias de la computacion 2,Avance,10,6,2017,
-Programacion,Tarea,13,6,2017,
-Programacion,Prueba,12,6,2017,
+Pg01,Prueba,8,7,2017,

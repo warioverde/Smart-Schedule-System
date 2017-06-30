@@ -34,8 +34,9 @@ public class GestorArchivo {
             ArrayList<Evaluacion> evaluaciones = creadorEvaluaciones();
             
             for (int j = 0; j < evaluaciones.size(); j++) {
-                if (evaluaciones.get(i).getCodigo()==asignatura.getCodigo()){
-                    asignatura.agregarPrueba(evaluaciones.get(i));
+                if (evaluaciones.get(j).getCodigo()==asignatura.getCodigo()){
+                    asignaturas.get(i).agregarPrueba(evaluaciones.get(j));
+                    
                 }
             }
         }
