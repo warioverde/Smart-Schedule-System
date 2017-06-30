@@ -33,8 +33,7 @@ public class GUIIngresoEval extends JFrame implements ActionListener  {
     
     protected GUIIngresoEval(){ 
         super();
-        GestorArchivo gestor=new GestorArchivo();
-        gestor.creadorAsignatura();
+        
         //-------Button---------------------------------------------------------[]//Seccion JButton
         
             bGuardar=new JButton("Ingresar"); //----------------------------------//Instanciacion de JButton como bClick 
@@ -86,7 +85,7 @@ public class GUIIngresoEval extends JFrame implements ActionListener  {
         //----------------------------------------------------------------------
         //--------JComboBox-----------------------------------------------------
         
-            cbAsignatura=new JComboBox(gestor.getNombres());
+            cbAsignatura=new JComboBox(getNombres());
             cbAsignatura.setBounds(50,100,150,30);
             add(cbAsignatura);
         //----------------------------------------------------------------------
@@ -161,6 +160,12 @@ public class GUIIngresoEval extends JFrame implements ActionListener  {
             
         }
         return "";
+    }
+    
+    public String[] getNombres(){
+        GestorArchivo gestor=new GestorArchivo();
+        gestor.creadorAsignatura();
+        return gestor.getNombres();
     }
 }
 
