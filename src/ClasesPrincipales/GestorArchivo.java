@@ -8,6 +8,7 @@ package ClasesPrincipales;
 import Archivos.ArchivoAsignatura;
 import Archivos.ArchivoEvaluacion;
 import java.util.ArrayList;
+import java.util.Arrays;
 
 /**
  *
@@ -120,40 +121,6 @@ public class GestorArchivo {
         return datosSeparados;
     }
     
-    /*public void SepararDato() {
-    ArchivoAsignatura archivo = new ArchivoAsignatura();
-    
-    String [] letras2 ;
-    String[] letras = archivo.leerArchivo();
-    String[] hola = letras[0].split("@");
-    String [] alfa = archivo.leerArchivo()[0].split("@");
-    String[] omega[]=new String[alfa.length][2];
-    for (int i = 0; i < alfa.length-1; i++) {
-    //System.out.println(alfa[i]);
-    
-    omega[i]=alfa[i].split("_");
-    System.out.print(omega[i][0]+"---");
-    System.out.println(omega[i][1]);
-    
-    
-    }
-    
-    }*/
-    
-    /*public void mkHorario(){
-    ArchivoAsignatura archivo = new ArchivoAsignatura();
-    String[] datos = archivo.leerArchivo();
-    String[] asignatura=datos[0].split(",");   //Actualmente lo hago para una sola asignatura
-    String[] clases=asignatura[3].split(";");
-    
-    String[] diaPeriodo=clases[0].split("@");   //Actualmente solo para 1 periodo de clases
-    
-    this.horario.setHorario(Integer.parseInt(diaPeriodo[0]), Integer.parseInt(diaPeriodo[1]), asignatura[1]);
-    
-    //this.horario.showXConsola();
-    
-    }*/
-    
     public void mkHorario(){
         ArchivoAsignatura archivo = new ArchivoAsignatura();
         String[] datos = archivo.leerArchivo();
@@ -201,4 +168,19 @@ public class GestorArchivo {
         }
         return null;
     }
+    
+    public ArrayList<ArrayList> getPeriodosDeClase(String horario){
+        
+        
+        String[] periodos=horario.split(";");
+        String[][] periodosClase=new String[periodos.length][2];
+        for (int i = 0; i < periodos.length; i++) {
+            periodosClase[i]=periodos[i].split("@");
+        }
+         
+        return periodosClase;
+    }
+        
+        
+    
 }
