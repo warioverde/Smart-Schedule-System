@@ -18,7 +18,7 @@ public class Evaluacion {
    private String tipo;
    private String codigo;
 
-    public Evaluacion(String codigo,int diaE, int mesE, int añoE, String tipo) {
+    public Evaluacion(String codigo, String tipo,int diaE, int mesE, int añoE) {
         this.añoE = añoE;
         this.mesE = mesE;
         this.diaE = diaE;

@@ -45,7 +45,7 @@ public class GestorArchivo {
     String array [][] = this.separarDatosEvaluacion();
     ArrayList<Evaluacion> evaluaciones=new ArrayList<>();
         for (int i = 0; i < array.length; i++) {
-            Evaluacion eva = new Evaluacion(array[i][0],Integer.parseInt(array[i][1]),Integer.parseInt(array[i][2]),Integer.parseInt(array[i][3]),array[i][4]);
+            Evaluacion eva = new Evaluacion(array[i][0],array[i][1],Integer.parseInt(array[i][2]),Integer.parseInt(array[i][3]),Integer.parseInt(array[i][4]));
             evaluaciones.add(eva);
         }
         return evaluaciones;

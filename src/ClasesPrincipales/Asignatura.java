@@ -31,7 +31,7 @@ public class Asignatura {
         this.horasExtra=horasExtra;
     }
    public void agregarPrueba(String codigo,int año,int mes,int dia,String tipo){
-       Evaluacion evaluacion = new Evaluacion(codigo,dia, mes, año, tipo);
+       Evaluacion evaluacion = new Evaluacion(codigo,tipo,dia, mes, año);
        this.pruebas.add(evaluacion);
        //return true;
       }
