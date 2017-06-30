@@ -239,7 +239,7 @@ public class GUIIngresoAsign extends JFrame implements ActionListener  {
         switch(ae.getActionCommand()){
         
             case "guardar": 
-                if (chkNombre() && chkHoras() && chkCodigo() && chkBoxes()){
+                if (chkNombre() && chkHoras() && chkCodigo() && chkBoxes() && matchesCodigo() && intHoras()){
                     GestorArchivo gestor=new GestorArchivo();
                         String horario=returnHorario();
                         System.out.println(tfCodigo.getText()+","+tfNombre.getText()+","+tfHoras.getText()+","+horario);
@@ -258,6 +258,19 @@ public class GUIIngresoAsign extends JFrame implements ActionListener  {
     }
     
     //Validaciones internas
+    
+    public boolean matchesCodigo(){
+        if(tfCodigo.getText().matches("[a-zA-Z]{3}[0-9]{3}")){                  //formato "aaa111"
+            return true;
+        }return false;
+    }
+
+    public boolean intHoras(){
+        if(tfHoras.getText().matches("[1-9]{1}")){                              //Considero numeros entre 1 y 9                  
+            return true;
+        }return false;
+    }
+    
     
     public boolean chkNombre(){
         if (tfNombre.getText().equals("")){return false;}
