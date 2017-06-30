@@ -16,6 +16,7 @@ public class Asignatura {
    private String nombre;
    private String codigo;
    private int horasExtra;
+   private String[][] horario;
    
    /*public Asignatura(Evaluacion evaluacion, String nombre) {
    
@@ -24,11 +25,12 @@ public class Asignatura {
    //agregarPrueba(evaluacion);
    }*/
     
-    public Asignatura(String codigo,String nombre,int horasExtra){
+    public Asignatura(String codigo,String nombre,int horasExtra,String[][] horario){
         this.pruebas = new ArrayList<Evaluacion>();
         this.codigo=codigo;
         this.nombre=nombre;
         this.horasExtra=horasExtra;
+        this.horario=horario;
     }
    public void agregarPrueba(String codigo,int año,int mes,int dia,String tipo){
        Evaluacion evaluacion = new Evaluacion(codigo,tipo,dia, mes, año);
@@ -39,6 +41,16 @@ public class Asignatura {
        this.pruebas.add(eva);
        //return true;
       }
+
+    public String[][] getHorario() {
+        return horario;
+    }
+
+    public void setHorario(String[][] horario) {
+        this.horario = horario;
+    }
+   
+   
    
    
 

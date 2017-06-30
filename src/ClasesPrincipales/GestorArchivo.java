@@ -29,7 +29,7 @@ public class GestorArchivo {
     public void creadorAsignatura(){
     String array [][] = this.separarDatosAsignatura();
         for (int i = 0; i < array.length; i++) {
-            Asignatura asignatura = new Asignatura(array[i][0],array[i][1],Integer.parseInt(array[i][2]));
+            Asignatura asignatura = new Asignatura(array[i][0],array[i][1],Integer.parseInt(array[i][2]),getPeriodosDeClase(array[i][3]));
             this.asignaturas.add(asignatura);
             
             ArrayList<Evaluacion> evaluaciones = creadorEvaluaciones();
@@ -169,7 +169,7 @@ public class GestorArchivo {
         return null;
     }
     
-    public ArrayList<ArrayList> getPeriodosDeClase(String horario){
+    public String[][] getPeriodosDeClase(String horario){
         
         
         String[] periodos=horario.split(";");
