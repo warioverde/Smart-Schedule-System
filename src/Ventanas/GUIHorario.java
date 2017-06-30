@@ -9,13 +9,15 @@ package Ventanas;
 import ClasesPrincipales.GestorArchivo;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.event.MouseEvent;
+import java.awt.event.MouseListener;
 import javax.swing.*; //librerias de JFrame,JButton,JLabel,etc.
 
 /**
  *
  * @author Jorge
  */
-public class GUIHorario extends JFrame implements ActionListener  {
+public class GUIHorario extends JFrame implements ActionListener,MouseListener {
     
     
 
@@ -52,7 +54,10 @@ public class GUIHorario extends JFrame implements ActionListener  {
             tHorario=new JTable(getHorario(),col);
             tHorario.setBounds(50,50,440,192);
             
-            tHorario.getColumnModel().getSelectionModel();
+            tHorario.addMouseListener(this);
+    
+    
+            
             
             add(tHorario);
         //----------------------------------------------------------------------
@@ -76,6 +81,8 @@ public class GUIHorario extends JFrame implements ActionListener  {
         }
     }
     
+    
+    
     public String[][] getHorario(){
         GestorArchivo gestor=new GestorArchivo();
         gestor.creadorAsignatura();
@@ -83,6 +90,33 @@ public class GUIHorario extends JFrame implements ActionListener  {
         String horario[][]=gestor.getHorario();
         return horario;
         
+    }
+
+    @Override
+    public void mouseClicked(MouseEvent me) {
+        int row = tHorario.rowAtPoint(me.getPoint());
+        int column = tHorario.columnAtPoint(me.getPoint());
+        JOptionPane.showMessageDialog(null, "-"+row+"-"+column);
+    }
+
+    @Override
+    public void mousePressed(MouseEvent me) {
+        //throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
+    @Override
+    public void mouseReleased(MouseEvent me) {
+        //throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
+    @Override
+    public void mouseEntered(MouseEvent me) {
+        //throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
+    @Override
+    public void mouseExited(MouseEvent me) {
+        //throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 
     
