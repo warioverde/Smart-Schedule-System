@@ -10,6 +10,7 @@ import Archivos.ArchivoAsignatura;
 import ClasesPrincipales.Asignatura;
 import ClasesPrincipales.GestorArchivo;
 import com.toedter.calendar.JDateChooser;
+import com.toedter.calendar.JTextFieldDateEditor;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.ArrayList;
@@ -81,6 +82,8 @@ public class GUIIngresoEval extends JFrame implements ActionListener  {
         //--------JDateChooser-----------------------------------------------------
             dcFecha=new JDateChooser();
             dcFecha.setBounds(430,100,100,30);
+            JTextFieldDateEditor editor=(JTextFieldDateEditor) dcFecha.getDateEditor();
+            editor.setEditable(false);
             add(dcFecha);
         //----------------------------------------------------------------------
         //--------JComboBox-----------------------------------------------------
@@ -99,14 +102,16 @@ public class GUIIngresoEval extends JFrame implements ActionListener  {
     public void actionPerformed(ActionEvent ae) {
         switch(ae.getActionCommand()){
             
-            case "guardar": if(chkTipo() && chkOtro() && chkFecha() && cbAsignatura.getSelectedItem()!=null ){
-                GestorArchivo gestor=new GestorArchivo();
-                gestor.creadorAsignatura();
-               ArrayList<Asignatura>asignaturas=gestor.getAsignaturas();
-               
-                gestor.addEvaluacion(asignaturas.get(cbAsignatura.getSelectedIndex()),getTipo(),(dcFecha.getDate().getDate()),(dcFecha.getDate().getMonth()+1),(dcFecha.getDate().getYear()+1900));
-                JOptionPane.showMessageDialog(null, "Evaluacion ingresada exitosamente");
-                this.dispose();
+            case "guardar": if(chkTipo() && chkOtro() &&  cbAsignatura.getSelectedItem()!=null ){
+                if (chkFecha()) {
+                    GestorArchivo gestor=new GestorArchivo();
+                    gestor.creadorAsignatura();
+                    ArrayList<Asignatura>asignaturas=gestor.getAsignaturas();
+                    gestor.addEvaluacion(asignaturas.get(cbAsignatura.getSelectedIndex()),getTipo(),(dcFecha.getDate().getDate()),(dcFecha.getDate().getMonth()+1),(dcFecha.getDate().getYear()+1900));
+                    JOptionPane.showMessageDialog(null, "Evaluacion ingresada exitosamente");
+                    this.dispose();
+                }
+                
             }else{
                 int ax = JOptionPane.showConfirmDialog(null, "Se han encontrado campos incompletos, ¿desea volver al menu principal?");
                     if(ax == JOptionPane.YES_OPTION)
@@ -141,11 +146,18 @@ public class GUIIngresoEval extends JFrame implements ActionListener  {
     }
     
     public boolean chkFecha(){
-        if (dcFecha.getDateFormatString().equals("")){
+        System.out.println(((JTextField)dcFecha.getDateEditor().getUiComponent()).getText());
+        String fecha=((JTextField)dcFecha.getDateEditor().getUiComponent()).getText();
+        
+        if (fecha.isEmpty()){                 
+            System.out.println("entro");
+            JOptionPane.showMessageDialog(this, "No ha ingresado fechas","Error",JOptionPane.ERROR_MESSAGE);
             return false;
         }
         return true;
+        
     }
+
         //
     public String getTipo(){
         JRadioButton localMatrix[]={rbPrueba,rbTaller,rbTrabajo,rbTarea};

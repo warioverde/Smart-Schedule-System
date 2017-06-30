@@ -10,6 +10,7 @@ import ClasesPrincipales.GestorArchivo;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import javax.swing.*; //librerias de JFrame,JButton,JLabel,etc.
+import javax.swing.table.DefaultTableModel;
 
 /**
  *
@@ -25,7 +26,7 @@ public class GUIHorario extends JFrame implements ActionListener  {
     protected String hD[],h1[],h2[],h3[],h4[],hAlm[],h5[],h6[],h7[],h8[],h9[],h10[];
     protected GUIHorario(){ 
         super();
-        /*hD=new String[7];hD[0]="Periodo";hD[1]="Lunes";hD[2]="Martes";hD[3]="Miercoles";hD[4]="Jueves";hD[5]="Viernes";hD[6]="Sabado";
+        hD=new String[7];hD[0]="Periodo";hD[1]="Lunes";hD[2]="Martes";hD[3]="Miercoles";hD[4]="Jueves";hD[5]="Viernes";hD[6]="Sabado";
         h1=new String[7];h1[0]="1°";h1[1]="-";h1[2]="-";h1[3]="-";h1[4]="-";h1[5]="-";h1[6]="-";
         h2=new String[7];h2[0]="2°";h2[1]="-";h2[2]="-";h2[3]="-";h2[4]="-";h2[5]="-";h2[6]="-";
         h3=new String[7];h3[0]="3°";h3[1]="-";h3[2]="-";h3[3]="-";h3[4]="-";h3[5]="-";h3[6]="-";
@@ -39,7 +40,8 @@ public class GUIHorario extends JFrame implements ActionListener  {
         h10=new String[7];h10[0]="10°";h10[1]="-";h10[2]="-";h10[3]="-";h10[4]="-";h10[5]="-";h10[6]="-";
         
         
-        String horario[][]={hD,h1,h2,h3,h4,hAlm,h5,h6,h7,h8,h9,h10};*/
+        String horario[][]={hD,h1,h2,h3,h4,hAlm,h5,h6,h7,h8,h9,h10};
+        
          String col[]={"Periodo","Lunes","Martes","Miercoles","Jueves","Viernes","Sabado"}; 
          //--------jButton------------------------------------------------------
             bVolver=new JButton("VOLVER");  
@@ -54,6 +56,18 @@ public class GUIHorario extends JFrame implements ActionListener  {
             
             tHorario.getColumnModel().getSelectionModel();
             
+            
+            DefaultTableModel tableModel = new DefaultTableModel(getHorario(), col) {
+
+             @Override
+            public boolean isCellEditable(int row, int column) {
+            //all cells false
+            return false;
+            }
+            };
+
+            tHorario.setModel(tableModel);
+
             add(tHorario);
         //----------------------------------------------------------------------
         //--------JLabel--------------------------------------------------------[]//Seccion JLabel

@@ -274,7 +274,7 @@ public class GUIIngresoAsign extends JFrame implements ActionListener  {
         if(tfHoras.getText().matches("[1-9]{1}")){                              //Considero numeros entre 1 y 9                  
             return true;
         }else{
-            JOptionPane.showMessageDialog(null, "Solo se permite ingresar numeros enteros entre 0 y 9 dentro de el apartado de 'Horas'");
+            JOptionPane.showMessageDialog(null, "Solo se permite ingresar numeros enteros entre 1 y 9 dentro de el apartado de 'Horas'");
             return false;
         }
     }

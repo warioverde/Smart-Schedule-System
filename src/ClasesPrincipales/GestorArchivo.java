@@ -162,7 +162,6 @@ public class GestorArchivo {
     public Asignatura buscarAsignatura(String codigo){
         for (int i = 0; i < asignaturas.size(); i++) {
             if (asignaturas.get(i).getCodigo().equals(codigo)){
-                System.out.println("La pillé");
                 return asignaturas.get(i);
             }
             
