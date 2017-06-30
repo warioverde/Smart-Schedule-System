@@ -34,7 +34,9 @@ public class GestorArchivo {
             ArrayList<Evaluacion> evaluaciones = creadorEvaluaciones();
             
             for (int j = 0; j < evaluaciones.size(); j++) {
-                if (evaluaciones.get(i).)
+                if (evaluaciones.get(i).getCodigo()==asignatura.getCodigo()){
+                    asignatura.agregarPrueba(evaluaciones.get(i));
+                }
             }
         }
         
@@ -85,7 +87,7 @@ public class GestorArchivo {
     }*/
 
     public void addEvaluacion(Asignatura asignatura, String tipo, int dia, int mes, int año) {
-        asignatura.agregarPrueba(año,mes,dia,tipo);
+        
         ArchivoEvaluacion añadir = new ArchivoEvaluacion();
 
         añadir.escribirArchivo(asignatura.getNombre() + "," + tipo + "," + dia + "," + mes + "," + año + ",");

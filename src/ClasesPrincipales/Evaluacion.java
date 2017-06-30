@@ -54,6 +54,10 @@ public class Evaluacion {
         this.tipo = tipo;
     }
 
+    public String getCodigo() {
+        return codigo;
+    }
+
     
     
     
