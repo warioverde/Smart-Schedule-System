@@ -239,13 +239,15 @@ public class GUIIngresoAsign extends JFrame implements ActionListener  {
         switch(ae.getActionCommand()){
         
             case "guardar": 
-                if (chkNombre() && chkHoras() && chkCodigo() && chkBoxes()){
-                    GestorArchivo gestor=new GestorArchivo();
+                if (chkNombre() && chkHoras() && chkCodigo() && chkBoxes() ){
+                    if (matchesCodigo() && intHoras()) {
+                        GestorArchivo gestor=new GestorArchivo();
                         String horario=returnHorario();
                         System.out.println(tfCodigo.getText()+","+tfNombre.getText()+","+tfHoras.getText()+","+horario);
-                    gestor.addAsignatura(tfCodigo.getText(),tfNombre.getText(),tfHoras.getText(),horario);
-                    JOptionPane.showMessageDialog(null, "Asignatura ingresada exitosamente");
-                    this.dispose();
+                        gestor.addAsignatura(tfCodigo.getText(),tfNombre.getText(),tfHoras.getText(),horario);
+                        JOptionPane.showMessageDialog(null, "Asignatura ingresada exitosamente");
+                        this.dispose();
+                    }
                 }else{
                     int ax = JOptionPane.showConfirmDialog(null, "Se han encontrado campos incompletos, ¿desea volver al menu principal?");
                     if(ax == JOptionPane.YES_OPTION)
@@ -259,6 +261,24 @@ public class GUIIngresoAsign extends JFrame implements ActionListener  {
     
     //Validaciones internas
     
+    public boolean matchesCodigo(){
+        if(tfCodigo.getText().matches("[a-zA-Z]{3}[0-9]{3}")){                  //formato "aaa111"
+            return true;
+        }else{
+            JOptionPane.showMessageDialog(null, "El codigo de asignatura debe seguir el siguiente formato 'aaa111'");
+            return false;
+        }
+    }
+
+    public boolean intHoras(){
+        if(tfHoras.getText().matches("[1-9]{1}")){                              //Considero numeros entre 1 y 9                  
+            return true;
+        }else{
+            JOptionPane.showMessageDialog(null, "Solo se permite ingresar numeros enteros entre 0 y 9 dentro de el apartado de 'Horas'");
+            return false;
+        }
+    }
+
     public boolean chkNombre(){
         if (tfNombre.getText().equals("")){return false;}
         else{return true;}
