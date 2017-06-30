@@ -65,7 +65,7 @@ public class GestorArchivo {
 
     public void addAsignatura(String codigo, String nombre, String horas, String horario) {
         ArchivoAsignatura añadir = new ArchivoAsignatura();
-        añadir.escribirArchivo(codigo + "," + nombre + "," + horas + "," + horario + ",");
+        añadir.escribirArchivo(codigo + "," + nombre + "," + horas + "," + horario);
     }
 
     /*public String searchAsignatura(String codigo) {
@@ -91,40 +91,18 @@ public class GestorArchivo {
         
         ArchivoEvaluacion añadir = new ArchivoEvaluacion();
 
-        añadir.escribirArchivo(asignatura.getCodigo() + "," + tipo + "," + dia + "," + mes + "," + año + ",");
+        añadir.escribirArchivo(asignatura.getCodigo() + "," + tipo + "," + dia + "," + mes + "," + año);
     }
 
     public String[][] separarDatosEvaluacion() {
         ArchivoEvaluacion archivo = new ArchivoEvaluacion();
         ArrayList<String> datos = archivo.leerArchivo();
         int contador = 0;
+        
+        String datosSeparados[][] = new String[datos.size()][5];
+
         for (int i = 0; i < datos.size(); i++) {
-            if (datos.get(i) == null) {
-                break;
-            } else {
-                contador++;
-            }
-        }
-        String datosSeparados[][] = new String[contador][5];
-
-        for (int i = 0; i < contador; i++) {
-            String cadena = "";
-            int posDato = 0;
-            for (int j = 0; j < datos.get(i).length(); j++) {
-
-                if (datos.get(i).charAt(j) == ',') {
-                    datosSeparados[i][posDato] = cadena;
-                    cadena = "";
-                    posDato++;
-                } else {
-                    cadena += datos.get(i).charAt(j);
-                }
-                if (posDato >= 5) {     //Metodo para limitar la lectura de datos por linea  
-                    break;
-                }
-
-            }
-
+            datosSeparados[i]=datos.get(i).split(",");
         }
         return datosSeparados;
     }
@@ -133,33 +111,11 @@ public class GestorArchivo {
         ArchivoAsignatura archivo = new ArchivoAsignatura();
         String[] datos = archivo.leerArchivo();
         int contador = 0;
+        
+        String datosSeparados[][] = new String[datos.length][4];
+
         for (int i = 0; i < datos.length; i++) {
-            if (datos[i] == null) {
-                break;
-            } else {
-                contador++;
-            }
-        }
-        String datosSeparados[][] = new String[contador][4];
-
-        for (int i = 0; i < contador; i++) {
-            String cadena = "";
-            int posDato = 0;
-            for (int j = 0; j < datos[i].length(); j++) {
-
-                if (datos[i].charAt(j) == ',') {
-                    datosSeparados[i][posDato] = cadena;
-                    cadena = "";
-                    posDato++;
-                } else {
-                    cadena += datos[i].charAt(j);
-                }
-                //Pendiente: separar los periodos de la asignatura
-                if (posDato >= 4) {     //Metodo para limitar la lectura de datos por linea  
-                    break;
-                }
-            }
-
+            datosSeparados[i]=datos[i].split(",");
         }
         return datosSeparados;
     }
