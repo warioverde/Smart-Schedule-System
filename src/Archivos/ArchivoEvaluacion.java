@@ -10,11 +10,16 @@ import java.util.ArrayList;
  */
 public class ArchivoEvaluacion {
     private String ruta="build\\classes\\Archivos\\Evaluaciones.txt";
-    public ArchivoEvaluacion(){
-        
-        
-    }
     
+    /**
+    * Constructor de la clase
+    */
+    public ArchivoEvaluacion(){}
+    
+    /**
+    * Retorna un arreglo String con cada linea del archivo.
+    * @return String[] de lineas del archivo leido
+    */
     public ArrayList leerArchivo(){
         ArrayList<String> cadenas=new ArrayList<>(); 
         try{
@@ -31,6 +36,11 @@ public class ArchivoEvaluacion {
         return cadenas;
     }
     
+    /**
+    * Cambia una arrayList a un arreglo de String
+    * @param list ArrayList de tipo String
+    * @return String[]
+    */
     public void escribirArchivo(int linea,String cadena){
         try{
             RandomAccessFile arch = new RandomAccessFile(this.ruta,"rw");
@@ -46,6 +56,10 @@ public class ArchivoEvaluacion {
         }
     }
     
+    /**
+    * Escribe el archivo en su ultima linea.
+    * @param cadena a escribir de tipo String.
+    */
     public void escribirArchivo(String cadena){
         try{
             RandomAccessFile arch = new RandomAccessFile(this.ruta,"rw");
@@ -62,6 +76,11 @@ public class ArchivoEvaluacion {
         }
     }
     
+    /**
+    * Escribe el archivo en su ultima linea.
+    * @param cadena a escribir de tipo String.
+    * @param contador de lineas del archivo de tipo entero
+    */
     public void escribir(int contador,String cadena){
         try{
             RandomAccessFile arch = new RandomAccessFile(this.ruta,"rw");
