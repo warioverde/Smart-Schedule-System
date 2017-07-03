@@ -58,6 +58,12 @@ public class Evaluacion {
         return codigo;
     }
 
+    @Override
+    public String toString() {
+        return "Evaluacion{" + "a\u00f1oE=" + añoE + ", mesE=" + mesE + ", diaE=" + diaE + ", tipo=" + tipo + ", codigo=" + codigo + '}';
+    }
+    
+
     
     
     
