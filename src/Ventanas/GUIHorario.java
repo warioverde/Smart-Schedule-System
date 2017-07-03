@@ -7,6 +7,7 @@
 package Ventanas;
 
 import ClasesPrincipales.GestorArchivo;
+import java.awt.Color;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import javax.swing.*; //librerias de JFrame,JButton,JLabel,etc.
@@ -45,15 +46,16 @@ public class GUIHorario extends JFrame implements ActionListener  {
          String col[]={"Periodo","Lunes","Martes","Miercoles","Jueves","Viernes","Sabado"}; 
          //--------jButton------------------------------------------------------
             bVolver=new JButton("VOLVER");  
-            bVolver.setBounds(500,200,100, 30);
+            bVolver.setBounds(250,410,100, 30);
             bVolver.addActionListener(this); 
             bVolver.setActionCommand("volver");    
             add(bVolver);    
         //----------------------------------------------------------------------
         //--------JTable---------------------------------------------------------
             tHorario=new JTable(getHorario(),col);
-            tHorario.setBounds(50,50,440,192);
-            
+            tHorario.setRowHeight(33);
+            tHorario.setBounds(5,5,600,395);
+            tHorario.setBackground(new java.awt.Color(184, 223, 254));
             tHorario.getColumnModel().getSelectionModel();
             
             
@@ -81,6 +83,7 @@ public class GUIHorario extends JFrame implements ActionListener  {
             setLayout(null);  //------------------------------------------------//No se establece un layout, puesto que se eligio la posicion anteriormente
             setVisible(true);  //-----------------------------------------------//Se permite la visibilidad a la frame y sus partes (lValor y bClick)
             //setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);  //--------//Se especifica que al cerrar la frame se detenga la ejecucion
+            setLocationRelativeTo(null);
     }
     public void actionPerformed(ActionEvent ae) {
         switch(ae.getActionCommand()){

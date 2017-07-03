@@ -11,8 +11,6 @@ import java.util.ArrayList;
 public class ArchivoEvaluacion {
     private String ruta="build\\classes\\Archivos\\Evaluaciones.txt";
     public ArchivoEvaluacion(){
-        
-        
     }
     
     public ArrayList leerArchivo(){

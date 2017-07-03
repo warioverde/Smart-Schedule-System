@@ -7,7 +7,6 @@
 package Ventanas;
 
 import ClasesPrincipales.GestorArchivo;
-import com.toedter.calendar.JCalendar;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import javax.swing.*; //librerias de JFrame,JButton,JLabel,etc.
@@ -17,8 +16,6 @@ import javax.swing.*; //librerias de JFrame,JButton,JLabel,etc.
  * @author Jorge
  */
 public class GUIIngresoAsign extends JFrame implements ActionListener  {
-    
-    
 
     protected JLabel lAsignatura,lHoras,lCodigo,lLunes,lMartes,lMiercoles,lJueves,lViernes,lSabado,lPrimero,lSegundo,lTercero,lCuarto,lAlmuerzo,lQuinto,lSexto,lSeptimo,lOctavo,lNoveno,lDecimo,lPeriodo;
     protected JButton bIngresar;
@@ -91,7 +88,6 @@ public class GUIIngresoAsign extends JFrame implements ActionListener  {
             lAlmuerzo.setBounds(50,180,100,30);
             add(lAsignatura);add(lHoras);add(lCodigo);add(lLunes);add(lMartes);add(lMiercoles);add(lJueves);add(lViernes);add(lSabado);add(lPrimero);add(lSegundo);add(lTercero);add(lCuarto);add(lAlmuerzo);add(lQuinto);add(lSexto);add(lSeptimo);add(lOctavo);add(lNoveno);add(lDecimo);add(lPeriodo);
             
-            
         //----------------------------------------------------------------------
         //--------JTextField----------------------------------------------------
         
@@ -105,6 +101,7 @@ public class GUIIngresoAsign extends JFrame implements ActionListener  {
             
         //----------------------------------------------------------------------
         //--------JCheckBox-----------------------------------------------------
+        
             cbL1 = new JCheckBox("");  
             cbL1.setBounds(115,105, 20,20);
             cbL2 = new JCheckBox("");  
@@ -234,14 +231,16 @@ public class GUIIngresoAsign extends JFrame implements ActionListener  {
             setLayout(null);  //------------------------------------------------//No se establece un layout, puesto que se eligio la posicion anteriormente
             setVisible(true);  //-----------------------------------------------//Se permite la visibilidad a la frame y sus partes (lValor y bClick)
             //setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);  //--------//Se especifica que al cerrar la frame se detenga la ejecucion
+            setLocationRelativeTo(null);
     }
     public void actionPerformed(ActionEvent ae) {
         switch(ae.getActionCommand()){
         
-            case "guardar": 
+            case "guardar":
+                GestorArchivo gestor=new GestorArchivo();
+                gestor.codUnico(tfCodigo.getText());
                 if (chkNombre() && chkHoras() && chkCodigo() && chkBoxes() ){
-                    if (matchesCodigo() && intHoras()) {
-                        GestorArchivo gestor=new GestorArchivo();
+                    if (matchesCodigo() && intHoras() && validarCodUnico()) {
                         String horario=returnHorario();
                         System.out.println(tfCodigo.getText()+","+tfNombre.getText()+","+tfHoras.getText()+","+horario);
                         gestor.addAsignatura(tfCodigo.getText(),tfNombre.getText(),tfHoras.getText(),horario);
@@ -258,50 +257,6 @@ public class GUIIngresoAsign extends JFrame implements ActionListener  {
             break;
         }
     }
-    
-    //Validaciones internas
-    
-    public boolean matchesCodigo(){
-        if(tfCodigo.getText().matches("[a-zA-Z]{3}[0-9]{3}")){                  //formato "aaa111"
-            return true;
-        }else{
-            JOptionPane.showMessageDialog(null, "El codigo de asignatura debe seguir el siguiente formato 'aaa111'");
-            return false;
-        }
-    }
-
-    public boolean intHoras(){
-        if(tfHoras.getText().matches("[1-9]{1}")){                              //Considero numeros entre 1 y 9                  
-            return true;
-        }else{
-            JOptionPane.showMessageDialog(null, "Solo se permite ingresar numeros enteros entre 1 y 9 dentro de el apartado de 'Horas'");
-            return false;
-        }
-    }
-
-    public boolean chkNombre(){
-        if (tfNombre.getText().equals("")){return false;}
-        else{return true;}
-    }
-    
-    public boolean chkHoras(){
-        if(tfHoras.getText().equals("")){return false;}
-        else{return true;}
-    }
-    
-    public boolean chkCodigo(){
-        if(tfCodigo.getText().equals("")){return false;}
-        else{return true;}
-    }
-    
-    public boolean chkBoxes(){
-        boolean localMatrix[]={cbL1.isSelected(),cbL2.isSelected(),cbL3.isSelected(),cbL4.isSelected(),cbL5.isSelected(),cbL6.isSelected(),cbL7.isSelected(),cbL8.isSelected(),cbL9.isSelected(),cbL10.isSelected(),cbMar1.isSelected(),cbMar2.isSelected(),cbMar3.isSelected(),cbMar4.isSelected(),cbMar5.isSelected(),cbMar6.isSelected(),cbMar7.isSelected(),cbMar8.isSelected(),cbMar9.isSelected(),cbMar10.isSelected(),cbMie1.isSelected(),cbMie2.isSelected(),cbMie3.isSelected(),cbMie4.isSelected(),cbMie5.isSelected(),cbMie6.isSelected(),cbMie7.isSelected(),cbMie8.isSelected(),cbMie9.isSelected(),cbMie10.isSelected(),cbJ1.isSelected(),cbJ2.isSelected(),cbJ3.isSelected(),cbJ4.isSelected(),cbJ5.isSelected(),cbJ6.isSelected(),cbJ7.isSelected(),cbJ8.isSelected(),cbJ9.isSelected(),cbJ10.isSelected(),cbV1.isSelected(),cbV2.isSelected(),cbV3.isSelected(),cbV4.isSelected(),cbV5.isSelected(),cbV6.isSelected(),cbV7.isSelected(),cbV8.isSelected(),cbV9.isSelected(),cbV10.isSelected(),cbS1.isSelected(),cbS2.isSelected(),cbS3.isSelected(),cbS4.isSelected(),cbS5.isSelected(),cbS6.isSelected(),cbS7.isSelected(),cbS8.isSelected(),cbS9.isSelected(),cbS10.isSelected()};
-        for (int i = 0; i < localMatrix.length; i++) {
-            if(localMatrix[i]==true){ return true;}
-        }
-        return false;
-    }
-    
     public String returnHorario(){
         String horario="";
         boolean localMatrix[][]={{cbL1.isSelected(),cbL2.isSelected(),cbL3.isSelected(),cbL4.isSelected(),cbL5.isSelected(),cbL6.isSelected(),cbL7.isSelected(),cbL8.isSelected(),cbL9.isSelected(),cbL10.isSelected()},{cbMar1.isSelected(),cbMar2.isSelected(),cbMar3.isSelected(),cbMar4.isSelected(),cbMar5.isSelected(),cbMar6.isSelected(),cbMar7.isSelected(),cbMar8.isSelected(),cbMar9.isSelected(),cbMar10.isSelected()},{cbMie1.isSelected(),cbMie2.isSelected(),cbMie3.isSelected(),cbMie4.isSelected(),cbMie5.isSelected(),cbMie6.isSelected(),cbMie7.isSelected(),cbMie8.isSelected(),cbMie9.isSelected(),cbMie10.isSelected()},{cbJ1.isSelected(),cbJ2.isSelected(),cbJ3.isSelected(),cbJ4.isSelected(),cbJ5.isSelected(),cbJ6.isSelected(),cbJ7.isSelected(),cbJ8.isSelected(),cbJ9.isSelected(),cbJ10.isSelected()},{cbV1.isSelected(),cbV2.isSelected(),cbV3.isSelected(),cbV4.isSelected(),cbV5.isSelected(),cbV6.isSelected(),cbV7.isSelected(),cbV8.isSelected(),cbV9.isSelected(),cbV10.isSelected()},{cbS1.isSelected(),cbS2.isSelected(),cbS3.isSelected(),cbS4.isSelected(),cbS5.isSelected(),cbS6.isSelected(),cbS7.isSelected(),cbS8.isSelected(),cbS9.isSelected(),cbS10.isSelected()}};
@@ -316,6 +271,56 @@ public class GUIIngresoAsign extends JFrame implements ActionListener  {
         }
         return horario;
     }
+    
+    //Validaciones internas
+    
+    public boolean matchesCodigo(){
+        if(tfCodigo.getText().matches("[a-zA-Z]{3}[0-9]{3}")){                  //formato "aaa111"
+            return true;
+        }else{
+            JOptionPane.showMessageDialog(null, "El codigo de asignatura debe seguir el siguiente formato 'aaa111'");
+            return false;
+        }
+    } 
+    public boolean validarCodUnico(){
+        GestorArchivo gestor=new GestorArchivo();
+        if(gestor.codUnico(tfCodigo.getText())){
+            return true;
+        }else{
+            JOptionPane.showMessageDialog(null, "El codigo de asignatura debe ser unico");
+            return false;
+        }
+        
+    }
+    public boolean intHoras(){
+        if(tfHoras.getText().matches("[1-9]{1}")){                              //Considero numeros entre 1 y 9                  
+            return true;
+        }else{
+            JOptionPane.showMessageDialog(null, "Solo se permite ingresar numeros enteros entre 1 y 9 dentro de el apartado de 'Horas'");
+            return false;
+        }
+    }
+    public boolean chkNombre(){
+        if (tfNombre.getText().equals("")){return false;}
+        else{return true;}
+    }
+    public boolean chkHoras(){
+        if(tfHoras.getText().equals("")){return false;}
+        else{return true;}
+    }
+    public boolean chkCodigo(){
+        if(tfCodigo.getText().equals("")){return false;}
+        else{return true;}
+    } 
+    public boolean chkBoxes(){
+        boolean localMatrix[]={cbL1.isSelected(),cbL2.isSelected(),cbL3.isSelected(),cbL4.isSelected(),cbL5.isSelected(),cbL6.isSelected(),cbL7.isSelected(),cbL8.isSelected(),cbL9.isSelected(),cbL10.isSelected(),cbMar1.isSelected(),cbMar2.isSelected(),cbMar3.isSelected(),cbMar4.isSelected(),cbMar5.isSelected(),cbMar6.isSelected(),cbMar7.isSelected(),cbMar8.isSelected(),cbMar9.isSelected(),cbMar10.isSelected(),cbMie1.isSelected(),cbMie2.isSelected(),cbMie3.isSelected(),cbMie4.isSelected(),cbMie5.isSelected(),cbMie6.isSelected(),cbMie7.isSelected(),cbMie8.isSelected(),cbMie9.isSelected(),cbMie10.isSelected(),cbJ1.isSelected(),cbJ2.isSelected(),cbJ3.isSelected(),cbJ4.isSelected(),cbJ5.isSelected(),cbJ6.isSelected(),cbJ7.isSelected(),cbJ8.isSelected(),cbJ9.isSelected(),cbJ10.isSelected(),cbV1.isSelected(),cbV2.isSelected(),cbV3.isSelected(),cbV4.isSelected(),cbV5.isSelected(),cbV6.isSelected(),cbV7.isSelected(),cbV8.isSelected(),cbV9.isSelected(),cbV10.isSelected(),cbS1.isSelected(),cbS2.isSelected(),cbS3.isSelected(),cbS4.isSelected(),cbS5.isSelected(),cbS6.isSelected(),cbS7.isSelected(),cbS8.isSelected(),cbS9.isSelected(),cbS10.isSelected()};
+        for (int i = 0; i < localMatrix.length; i++) {
+            if(localMatrix[i]==true){ return true;}
+        }
+        return false;
+    }
+    
+    
     
     
 

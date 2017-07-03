@@ -40,6 +40,7 @@ public class Horario {
             }
         }
     }
+    
     public void setHorario(int dia,int periodo,Asignatura asignatura) {
         if(periodo<5){
             this.horario[periodo][dia] += asignatura.getNombre();

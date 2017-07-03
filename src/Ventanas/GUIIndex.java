@@ -95,6 +95,8 @@ public class GUIIndex extends JFrame implements ActionListener  {
             setLayout(null);//------------------------------------------------//No se establece un layout, puesto que se eligio la posicion anteriormente
             setVisible(true);  //-----------------------------------------------//Se permite la visibilidad a la frame y sus partes (lValor y bClick)
             setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);  //--------//Se especifica que al cerrar la frame se detenga la ejecucion
+            setLocationRelativeTo(null);
+
     }
     public void actionPerformed(ActionEvent ae) {
         switch(ae.getActionCommand()){
@@ -112,9 +114,8 @@ public class GUIIndex extends JFrame implements ActionListener  {
     public void ingresarAsignatura(){GUIIngresoAsign ingreso=new GUIIngresoAsign();}
     
     public void ingresarEvaluacion(){GUIIngresoEval ingreso=new GUIIngresoEval();}
-    public void verNotificaciones(){
-        GUINotificacion notificacion=new GUINotificacion(); 
-    }
+    
+    public void verNotificaciones(){GUINotificacion notificacion=new GUINotificacion();}
     
     public void verHorario(){ GUIHorario horario=new GUIHorario();}
 

@@ -8,8 +8,8 @@ package Ventanas;
 
 import ClasesPrincipales.GestorArchivo;
 import ClasesPrincipales.Notificacion;
+import java.awt.Color;
 import java.awt.Font;
-import javax.swing.border.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import javax.swing.*; //librerias de JFrame,JButton,JLabel,etc.
@@ -20,8 +20,6 @@ import javax.swing.*; //librerias de JFrame,JButton,JLabel,etc.
  */
 public class GUINotificacion extends JFrame implements ActionListener  {
     
-    
-
     protected JLabel lAsignatura,lNotificacion,lFecha;
     protected JPanel pNotificacion;
     protected JButton bVolver,bSiguiente;
@@ -43,12 +41,12 @@ public class GUINotificacion extends JFrame implements ActionListener  {
             //bClick.setActionCommand("String");    //--------------------------//Establecer un string que se recibirá al accionar el boton
             //add(boton);    //-------------------------------------------------//Añadir el boton
             bVolver=new JButton("Volver al menu principal");
-            bVolver.setBounds(40,200,200,30);
+            bVolver.setBounds(70,200,200,30);
             bVolver.addActionListener(this);
             bVolver.setActionCommand("volver");
             
             bSiguiente=new JButton("Siguiente notificacion");
-            bSiguiente.setBounds(290,200,200,30);
+            bSiguiente.setBounds(320,200,200,30);
             bSiguiente.addActionListener(this);
             bSiguiente.setActionCommand("siguiente");
             
@@ -56,24 +54,25 @@ public class GUINotificacion extends JFrame implements ActionListener  {
         //----------------------------------------------------------------------
         //---------JPanel-------------------------------------------------------
             pNotificacion=new JPanel();
-            pNotificacion.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
-            pNotificacion.setBounds(40,100,450,60);
+            pNotificacion.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 250)));
+            pNotificacion.setBounds(70,80,450,60);
+//            pNotificacion.setBackground(Color.WHITE);
             add(pNotificacion);
         //----------------------------------------------------------------------
         //--------JLabel--------------------------------------------------------[]//Seccion JLabel
             Font fontNotificacion = new Font("TimesRoman", Font.BOLD, 20);
-            Font fontAsignatura = new Font("TimesRoman", 0, 20);
+            Font fontAsignatura = new Font("TimesRoman", 0, 23);
             //lValor=new JLabel(contador+"");  //---------------------------------//Instanciacion de JLabel como lValor
             //lValor.setBounds(50,50, 100,30);    //------------------------------//Mediante SetBounds se especifica su pocicion en la frame
             //add(lValor);
             lAsignatura=new JLabel();
-            lAsignatura.setBounds(150,50,450,60);
+            lAsignatura.setBounds(230,20,450,60);
             lAsignatura.setFont(fontAsignatura);
             lNotificacion=new JLabel();
-            lNotificacion.setBounds(50,100,450,60);
+            lNotificacion.setBounds(80,100,450,60);
             lNotificacion.setFont(fontNotificacion);
             lFecha=new JLabel();
-            lFecha.setBounds(240,150,300,60);
+            lFecha.setBounds(210,140,300,60);
             lFecha.setFont(fontAsignatura);
             actualizarLabels();
             /*lHora=new JLabel("");
@@ -92,7 +91,7 @@ public class GUINotificacion extends JFrame implements ActionListener  {
             setLayout(null);  //------------------------------------------------//No se establece un layout, puesto que se eligio la posicion anteriormente
             setVisible(true);  //-----------------------------------------------//Se permite la visibilidad a la frame y sus partes (lValor y bClick)
             setDefaultCloseOperation(WindowConstants.DISPOSE_ON_CLOSE);  //--------//Se especifica que al cerrar la frame se detenga la ejecucion
-            
+            setLocationRelativeTo(null);
     }
     public void actionPerformed(ActionEvent ae) {
         switch(ae.getActionCommand()){
@@ -114,23 +113,24 @@ public class GUINotificacion extends JFrame implements ActionListener  {
         GestorArchivo gestor = new GestorArchivo();
         String[][] evaluaciones=gestor.separarDatosEvaluacion();
         gestor.creadorAsignatura();
+        
         if (!(this.contadorNotificaciones>evaluaciones.length-1 )){             //Si el contador no sobrepasa los limites del array
             int dia=Integer.parseInt(evaluaciones[this.contadorNotificaciones][2]);
             int mes=Integer.parseInt(evaluaciones[this.contadorNotificaciones][3]);
             int año=Integer.parseInt(evaluaciones[this.contadorNotificaciones][4]);
-            int dias=getDiasRestantes(dia,mes,año);
-            if (dias>=0) {                                                      //Si la evaluacion no ha ocurrido aún
+            int diasRestantes=getDiasRestantes(dia,mes,año);
+            if (diasRestantes>=0) {                                                      //Si la evaluacion no ha ocurrido aún
                 lAsignatura.setText(gestor.buscarAsignatura(evaluaciones[this.contadorNotificaciones][0]).getNombre());
-                lFecha.setText(evaluaciones[this.contadorNotificaciones][1]+"-"+dia+"/"+mes+"/"+año);
+                lFecha.setText(evaluaciones[this.contadorNotificaciones][1]+" el "+dia+"/"+mes+"/"+año);
                 this.contadorNotificaciones++;
-                lNotificacion.setText(dias+" dias restantes para la siguiente evaluacion");
-                if (dias==0){
+                lNotificacion.setText(diasRestantes+" dias restantes para la siguiente evaluacion");
+                if (diasRestantes==0){
                     lNotificacion.setText("La evaluacion es hoy!!!");
                     JOptionPane.showMessageDialog(null, "SSS(fs) te desea que vaya exelente en tu evaluacion :)");
                 }else{
-                    if (dias<=3) {
+                    if (diasRestantes<=3) {
                         JOptionPane.showMessageDialog(null,"Aviso: Menos de 3 dias restantes \n Accion recomendada: Postergar toda actividad para liberar este tiempo \n y utilizar este tiempo para estudiar, obvio.");
-                    }else if(dias<=7){
+                    }else if(diasRestantes<=7){
                         JOptionPane.showMessageDialog(null, "Aviso: Menos de una semana restante \n Accion recomendada: Estudiar o trabajar inmediatamente.");
                     }
                 }
@@ -138,17 +138,13 @@ public class GUINotificacion extends JFrame implements ActionListener  {
                 this.contadorNotificaciones++;
                 actualizarLabels();
             }
-            
         }
         else{
             JOptionPane.showMessageDialog(null,"No quedan mas evaluaciones que mostrar");
             this.dispose();
         }
-        
-        
     }
 
-    
 }
 
 

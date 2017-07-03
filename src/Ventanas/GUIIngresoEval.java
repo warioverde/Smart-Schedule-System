@@ -6,7 +6,6 @@
 
 package Ventanas;
 
-import Archivos.ArchivoAsignatura;
 import ClasesPrincipales.Asignatura;
 import ClasesPrincipales.GestorArchivo;
 import com.toedter.calendar.JDateChooser;
@@ -22,8 +21,6 @@ import javax.swing.*; //librerias de JFrame,JButton,JLabel,etc.
  */
 public class GUIIngresoEval extends JFrame implements ActionListener  {
     
-    
-
     protected JLabel lAsignatura,lTipo,lFecha;
     protected JButton bGuardar;
     protected JRadioButton rbPrueba,rbTrabajo,rbTaller,rbTarea,rbOtro;
@@ -98,33 +95,32 @@ public class GUIIngresoEval extends JFrame implements ActionListener  {
             setLayout(null);  //------------------------------------------------//No se establece un layout, puesto que se eligio la posicion anteriormente
             setVisible(true);  //-----------------------------------------------//Se permite la visibilidad a la frame y sus partes (lValor y bClick)
             //setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);  //--------//Se especifica que al cerrar la frame se detenga la ejecucion
+            setLocationRelativeTo(null);
     }
+    
     public void actionPerformed(ActionEvent ae) {
         switch(ae.getActionCommand()){
             
-            case "guardar": if(chkTipo() && chkOtro() &&  cbAsignatura.getSelectedItem()!=null ){
-                if (chkFecha()) {
+            case "guardar": if(chkTipo() &&  cbAsignatura.getSelectedItem()!=null && chkFecha()){
+                if ( chkOtro()) {
                     GestorArchivo gestor=new GestorArchivo();
                     gestor.creadorAsignatura();
                     ArrayList<Asignatura>asignaturas=gestor.getAsignaturas();
                     gestor.addEvaluacion(asignaturas.get(cbAsignatura.getSelectedIndex()),getTipo(),(dcFecha.getDate().getDate()),(dcFecha.getDate().getMonth()+1),(dcFecha.getDate().getYear()+1900));
                     JOptionPane.showMessageDialog(null, "Evaluacion ingresada exitosamente");
                     this.dispose();
-                }
-                
+                }    
             }else{
                 int ax = JOptionPane.showConfirmDialog(null, "Se han encontrado campos incompletos, ¿desea volver al menu principal?");
                     if(ax == JOptionPane.YES_OPTION)
                         this.dispose();
-            }
-                
-                
+            } 
             break;
         }
     }
 
     //Validaciones internas
-        //
+    
     public boolean chkTipo(){
         boolean localMatrix[]={rbPrueba.isSelected(),rbTaller.isSelected(),rbTrabajo.isSelected(),rbTarea.isSelected(),rbOtro.isSelected()};
         for (int i = 0; i < localMatrix.length; i++) {
@@ -136,21 +132,16 @@ public class GUIIngresoEval extends JFrame implements ActionListener  {
     }
     
     public boolean chkOtro(){
-        if (rbOtro.isSelected()) {
-            if (tfOtro.equals("")){
-                return false;
-            }
-            return true;
-        }
-        return true;
+        if(rbOtro.isSelected() && tfOtro.getText().equals("")){
+            JOptionPane.showMessageDialog(null, "Campo 'otro' esta vacio");
+            return false;
+        }return true;
+        
     }
     
     public boolean chkFecha(){
-        System.out.println(((JTextField)dcFecha.getDateEditor().getUiComponent()).getText());
         String fecha=((JTextField)dcFecha.getDateEditor().getUiComponent()).getText();
-        
         if (fecha.isEmpty()){                 
-            System.out.println("entro");
             JOptionPane.showMessageDialog(this, "No ha ingresado fechas","Error",JOptionPane.ERROR_MESSAGE);
             return false;
         }
@@ -158,7 +149,6 @@ public class GUIIngresoEval extends JFrame implements ActionListener  {
         
     }
 
-        //
     public String getTipo(){
         JRadioButton localMatrix[]={rbPrueba,rbTaller,rbTrabajo,rbTarea};
         for (int i = 0; i < localMatrix.length; i++) {
@@ -169,7 +159,6 @@ public class GUIIngresoEval extends JFrame implements ActionListener  {
                 return tfOtro.getText();
                 }
             }
-            
         }
         return "";
     }
