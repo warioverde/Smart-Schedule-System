@@ -25,6 +25,9 @@ public class GUIIndex extends JFrame implements ActionListener  {
     protected JButton bIr,bNotificacion,bHorario,bIngresarEval;
     protected JSeparator jSeparador;
     
+    /**
+    * Constructor de la clase
+    */
     public GUIIndex(){ 
         super();
         
@@ -96,6 +99,10 @@ public class GUIIndex extends JFrame implements ActionListener  {
             setVisible(true);  //-----------------------------------------------//Se permite la visibilidad a la frame y sus partes (lValor y bClick)
             setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);  //--------//Se especifica que al cerrar la frame se detenga la ejecucion
     }
+    
+    /**
+    * Metodo que se acciona al realizarse una accion sobreun boton
+    */
     public void actionPerformed(ActionEvent ae) {
         switch(ae.getActionCommand()){
         
@@ -109,14 +116,28 @@ public class GUIIndex extends JFrame implements ActionListener  {
             break;
         }
     }
+    
+    /**
+    * Instancia una ventana que permite ingresar asignaturas
+    */
     public void ingresarAsignatura(){GUIIngresoAsign ingreso=new GUIIngresoAsign();}
     
+    /**
+    * Instancia una ventana que permite ingresar evaluaciones
+    */
     public void ingresarEvaluacion(){GUIIngresoEval ingreso=new GUIIngresoEval();}
+    
+    /**
+    * Instancia una ventana que permite ver las proximas pruebas mas recientes
+    */
     public void verNotificaciones(){
         GUINotificacion notificacion=new GUINotificacion();
         notificacion.init();
     }
     
+    /**
+    * Instancia una ventana que permite ver el horario de clases
+    */
     public void verHorario(){ GUIHorario horario=new GUIHorario();}
 
     
