@@ -102,6 +102,7 @@ public class GUIIndex extends JFrame implements ActionListener  {
     
     /**
     * Metodo que se acciona al realizarse una accion sobreun boton
+    * @param ae ActionEvent
     */
     public void actionPerformed(ActionEvent ae) {
         switch(ae.getActionCommand()){
