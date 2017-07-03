@@ -14,11 +14,10 @@ import java.util.ArrayList;
  */
 public class Horario {
     String horario[][];
-    Asignatura[][][] horarioObjetos;
-    
+    //ArrayList<Asignatura> horarioObjetos[][];
     public Horario(){
         horario=new String[12][7];
-        horarioObjetos=new Asignatura[12][7][10 /* asignaturas */];
+        //horarioObjetos=new ArrayList[12][7];
     }
 
     public String[][] getHorario() {
@@ -44,21 +43,10 @@ public class Horario {
     public void setHorario(int dia,int periodo,Asignatura asignatura) {
         if(periodo<5){
             this.horario[periodo][dia] += asignatura.getNombre();
-            for (int i = 0; i < 10; i++) {
-                if (this.horarioObjetos[periodo][dia][i]==null) {
-                    this.horarioObjetos[periodo][dia][i]=asignatura;
-                    break;
-                }
-            }
-            
+            //this.horarioObjetos[periodo][dia].add(asignatura);
         }else{
             this.horario[periodo+1][dia] += asignatura.getNombre();
-            for (int i = 0; i < 10; i++) {
-                if (this.horarioObjetos[periodo+1][dia][i]==null) {
-                    this.horarioObjetos[periodo+1][dia][i]=asignatura;
-                    break;
-                }
-            }
+            //this.horarioObjetos[periodo+1][dia].add(asignatura);
         }
         
         
@@ -72,22 +60,8 @@ public class Horario {
             System.out.println("");
         }
     }
-
-    public Asignatura getHorarioObjetos(int periodo, int dia,int objeto) {
-        return horarioObjetos[periodo][dia][objeto];
-    }
     
-    public String getHorarioNombres(int periodo, int dia){
-        String linea="";
-        for (int i = 0; i < 10; i++) {
-            if (getHorarioObjetos(periodo,dia,i)!=null) {
-                linea+=getHorarioObjetos(periodo,dia,i).getNombre()+"\n";
-            }
-            
-        }
-        return linea;
-    }
-
+    
     
     
 }

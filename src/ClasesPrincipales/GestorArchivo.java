@@ -155,8 +155,8 @@ public class GestorArchivo {
         }
     }
     
-    public Horario getHorario(){
-        return this.horario; //-------------
+    public String[][] getHorario(){
+        return this.horario.getHorario();
     }
     
     public Asignatura buscarAsignatura(String codigo){
