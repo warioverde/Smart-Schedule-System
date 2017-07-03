@@ -182,6 +182,54 @@ public class GestorArchivo {
         return periodosClase;
     }
         
+    public ArrayList<Evaluacion> EvaluacionesMasCercanas() {
+        ArrayList<Evaluacion> evaluaciones = creadorEvaluaciones();
         
+        ArrayList<Integer> diasRestantes = new ArrayList();
+        Notificacion noti = new Notificacion();
+
+        for (int i = 0; i < evaluaciones.size(); i++) {
+            int diaE = evaluaciones.get(i).getDia();
+            int mesE = evaluaciones.get(i).getMes();
+            int añoE = evaluaciones.get(i).getAño();
+
+            diasRestantes.add(noti.tiempoRestante(diaE, mesE, añoE));
+
+        }
+
+        for (int i = diasRestantes.size() - 1; i >= 0; i--) {
+            for (int j = 0; j < i; j++) {
+                if (diasRestantes.get(j) > diasRestantes.get(j + 1)) {
+                    int temp = diasRestantes.get(j);
+                    Evaluacion eva = evaluaciones.get(j);
+                    diasRestantes.set(j, diasRestantes.get(j + 1));
+                    evaluaciones.set(j, evaluaciones.get(j + 1));
+                    diasRestantes.set(j + 1, temp);
+                    evaluaciones.set(j + 1, eva);
+
+                }
+            }
+        }
+
+        for (Integer el : diasRestantes) { //una vez finalizado el metodo , borrar esto
+            System.out.print(el + " ");
+
+        }
+//    for(Evaluacion el : evaluaciones){ //una vez finalizado el metodo borrar esto
+//        System.out.println(el+" ");
+//    }    
+
+        return evaluaciones;
+    }
+
+    public static void main(String[] args) { //una vez finalizado el metodo borrar esto
+        GestorArchivo gest = new GestorArchivo();
+
+        ArrayList<Evaluacion> evaluaciones = gest.EvaluacionesMasCercanas();
+        for (int i = 0; i < evaluaciones.size(); i++) {
+            System.out.println(evaluaciones.get(i).toString());
+
+        }
+    }    
     
 }

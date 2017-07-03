@@ -6,12 +6,14 @@
 
 package Ventanas;
 
+import ClasesPrincipales.Evaluacion;
 import ClasesPrincipales.GestorArchivo;
 import ClasesPrincipales.Notificacion;
 import java.awt.Font;
 import javax.swing.border.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.util.ArrayList;
 import javax.swing.*; //librerias de JFrame,JButton,JLabel,etc.
 
 /**
@@ -112,16 +114,18 @@ public class GUINotificacion extends JFrame implements ActionListener  {
     
     public void actualizarLabels(){
         GestorArchivo gestor = new GestorArchivo();
-        String[][] evaluaciones=gestor.separarDatosEvaluacion();
+        //String[][] evaluaciones=gestor.separarDatosEvaluacion();
+        ArrayList <Evaluacion> evaluaciones = gestor.EvaluacionesMasCercanas();
         gestor.creadorAsignatura();
-        if (!(this.contadorNotificaciones>evaluaciones.length-1 )){             //Si el contador no sobrepasa los limites del array
-            int dia=Integer.parseInt(evaluaciones[this.contadorNotificaciones][2]);
-            int mes=Integer.parseInt(evaluaciones[this.contadorNotificaciones][3]);
-            int año=Integer.parseInt(evaluaciones[this.contadorNotificaciones][4]);
+        if (!(this.contadorNotificaciones>evaluaciones.size()-1 )){             //Si el contador no sobrepasa los limites del array
+            int mes=evaluaciones.get(this.contadorNotificaciones).getMes();
+            int dia=evaluaciones.get(this.contadorNotificaciones).getDia();
+            int año=evaluaciones.get(this.contadorNotificaciones).getAño();
             int dias=getDiasRestantes(dia,mes,año);
             if (dias>=0) {                                                      //Si la evaluacion no ha ocurrido aún
-                lAsignatura.setText(gestor.buscarAsignatura(evaluaciones[this.contadorNotificaciones][0]).getNombre());
-                lFecha.setText(evaluaciones[this.contadorNotificaciones][1]+"-"+dia+"/"+mes+"/"+año);
+                String nombreAsignatura=gestor.buscarAsignatura(evaluaciones.get(this.contadorNotificaciones).getCodigo()).getNombre();
+                lAsignatura.setText(nombreAsignatura);
+                lFecha.setText(evaluaciones.get(this.contadorNotificaciones).getTipo()+"-"+dia+"/"+mes+"/"+año);
                 this.contadorNotificaciones++;
                 lNotificacion.setText(dias+" dias restantes para la siguiente evaluacion");
                 if (dias==0){
