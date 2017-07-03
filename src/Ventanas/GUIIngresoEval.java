@@ -32,8 +32,15 @@ public class GUIIngresoEval extends JFrame implements ActionListener  {
     protected JTextField tfOtro;
     protected ButtonGroup bgTipo;
     
+    /**
+    * Constructor de la clase.
+    */
     protected GUIIngresoEval(){ 
         super();
+        
+    }
+    
+    public void init(){
         
         //-------Button---------------------------------------------------------[]//Seccion JButton
         
@@ -90,6 +97,7 @@ public class GUIIngresoEval extends JFrame implements ActionListener  {
         
             cbAsignatura=new JComboBox(getNombres());
             cbAsignatura.setBounds(50,100,150,30);
+            
             add(cbAsignatura);
         //----------------------------------------------------------------------
         //---------JFrame-------------------------------------------------------[]//Seccion JFrame
@@ -98,7 +106,9 @@ public class GUIIngresoEval extends JFrame implements ActionListener  {
             setLayout(null);  //------------------------------------------------//No se establece un layout, puesto que se eligio la posicion anteriormente
             setVisible(true);  //-----------------------------------------------//Se permite la visibilidad a la frame y sus partes (lValor y bClick)
             //setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);  //--------//Se especifica que al cerrar la frame se detenga la ejecucion
+            checkComboBox();
     }
+    
     public void actionPerformed(ActionEvent ae) {
         switch(ae.getActionCommand()){
             
@@ -171,6 +181,15 @@ public class GUIIngresoEval extends JFrame implements ActionListener  {
         GestorArchivo gestor=new GestorArchivo();
         gestor.creadorAsignatura();
         return gestor.getNombres();
+    }
+    
+    public void checkComboBox(){
+        System.out.println(cbAsignatura.getItemCount());
+        if (cbAsignatura.getItemCount()==0) {
+            JOptionPane.showMessageDialog(null,"No existen asignaturas ingresadas, no se puede ingresar evaluaciones sin asignatura");
+            this.dispose();
+        }
+        
     }
 }
 

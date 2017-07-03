@@ -126,7 +126,10 @@ public class GUIIndex extends JFrame implements ActionListener  {
     /**
     * Instancia una ventana que permite ingresar evaluaciones
     */
-    public void ingresarEvaluacion(){GUIIngresoEval ingreso=new GUIIngresoEval();}
+    public void ingresarEvaluacion(){
+        GUIIngresoEval ingreso=new GUIIngresoEval();
+        ingreso.init();
+    }
     
     /**
     * Instancia una ventana que permite ver las proximas pruebas mas recientes
