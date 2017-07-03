@@ -18,12 +18,6 @@ public class Asignatura {
    private int horasExtra;
    private String[][] horario;
    
-   /*public Asignatura(Evaluacion evaluacion, String nombre) {
-   
-   this.pruebas = new ArrayList<Evaluacion>();
-   this.nombre = nombre;
-   //agregarPrueba(evaluacion);
-   }*/
     
     public Asignatura(String codigo,String nombre,int horasExtra,String[][] horario){
         this.pruebas = new ArrayList<Evaluacion>();

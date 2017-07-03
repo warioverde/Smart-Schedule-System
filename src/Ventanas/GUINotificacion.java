@@ -27,14 +27,13 @@ public class GUINotificacion extends JFrame implements ActionListener  {
     protected JLabel lAsignatura,lNotificacion,lFecha;
     protected JPanel pNotificacion;
     protected JButton bVolver,bSiguiente;
-                                            //Evaluaciones de [1-n] y [nombreAsignatura,tipoEvaluacion,dia,mes,año]
     private int contadorNotificaciones;
-    /*protected String asignatura="Calculo de una variable";
-    Notificacion notificacion=new Notificacion();                                 //Borrar
-    int fecha[]={25,8,2017};
-    protected String dia=notificacion.tiempoRestante(fecha[0], fecha[1], fecha[2])+"";*/
+    
     protected GUINotificacion(){ 
         super();
+    }
+    
+    public void init(){
            
         //----------------------------------------------------------------------
         //-------Button---------------------------------------------------------[]//Seccion JButton
@@ -78,12 +77,7 @@ public class GUINotificacion extends JFrame implements ActionListener  {
             lFecha.setBounds(240,150,300,60);
             lFecha.setFont(fontAsignatura);
             actualizarLabels();
-            /*lHora=new JLabel("");
-            lHora.setBounds(150,50,450,60);
-            lTipo=new JLabel("");
-            lTipo.setBounds(150,50,450,60);
-            lPorcentaje=new JLabel(asignatura);
-            lPorcentaje.setBounds(150,50,450,60);*/
+            
             
             add(lAsignatura);pNotificacion.add(lNotificacion);add(lFecha);
         //----------------------------------------------------------------------
@@ -94,7 +88,6 @@ public class GUINotificacion extends JFrame implements ActionListener  {
             setLayout(null);  //------------------------------------------------//No se establece un layout, puesto que se eligio la posicion anteriormente
             setVisible(true);  //-----------------------------------------------//Se permite la visibilidad a la frame y sus partes (lValor y bClick)
             setDefaultCloseOperation(WindowConstants.DISPOSE_ON_CLOSE);  //--------//Se especifica que al cerrar la frame se detenga la ejecucion
-            
     }
     public void actionPerformed(ActionEvent ae) {
         switch(ae.getActionCommand()){
@@ -114,7 +107,6 @@ public class GUINotificacion extends JFrame implements ActionListener  {
     
     public void actualizarLabels(){
         GestorArchivo gestor = new GestorArchivo();
-        //String[][] evaluaciones=gestor.separarDatosEvaluacion();
         ArrayList <Evaluacion> evaluaciones = gestor.EvaluacionesMasCercanas();
         gestor.creadorAsignatura();
         if (!(this.contadorNotificaciones>evaluaciones.size()-1 )){             //Si el contador no sobrepasa los limites del array

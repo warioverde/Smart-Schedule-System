@@ -113,7 +113,8 @@ public class GUIIndex extends JFrame implements ActionListener  {
     
     public void ingresarEvaluacion(){GUIIngresoEval ingreso=new GUIIngresoEval();}
     public void verNotificaciones(){
-        GUINotificacion notificacion=new GUINotificacion(); 
+        GUINotificacion notificacion=new GUINotificacion();
+        notificacion.init();
     }
     
     public void verHorario(){ GUIHorario horario=new GUIHorario();}
