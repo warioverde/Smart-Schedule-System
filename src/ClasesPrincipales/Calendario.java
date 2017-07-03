@@ -15,19 +15,35 @@ import java.util.GregorianCalendar;
 public class Calendario extends GregorianCalendar {
     
     
-    
+    /**
+    * Constructor de la clase.
+    */
     public Calendario(){
         
     }
     
+    /**
+    * Retorna el dia actual.
+    * @return Dia actual de tipo entero.
+    */
     public int getDay(){
         String diaS = Integer.toString(get(Calendar.DATE));
         return Integer.parseInt(diaS);
     }
+    
+    /**
+    * Retorna el mes actual.
+    * @return Mes actual de tipo entero.
+    */
     public int getMonth(){
         String mesS = Integer.toString(get(Calendar.MONTH));
         return Integer.parseInt(mesS)+1;
     }
+    
+    /**
+    * Retorna el año actual.
+    * @return Año actual de tipo entero.
+    */
     public int getYear(){
         String añoS = Integer.toString(get(Calendar.YEAR));
         return Integer.parseInt(añoS);
