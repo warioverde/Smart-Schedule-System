@@ -21,10 +21,17 @@ public class Horario {
         horarioObjetos = new Asignatura[12][7][10 /* asignaturas */];
     }
 
+    /**
+    * Devuelve un arreglo bidimensional de tipo String de horario
+    * @return String[][]
+    */
     public String[][] getHorario() {
         return horario;
     }
 
+    /**
+    * Establece una forma inicial para el horario
+    */
     public void setHorarioInicial() {
         for (int i = 0; i < 12; i++) {
             for (int j = 0; j < 7; j++) {
@@ -47,6 +54,12 @@ public class Horario {
 
     }
 
+    /**
+    * Agrega una hora de clases al horario y un objeto de tipo Asignatura al arreglo horarioObjetos
+    * @param dia Numero entero que representa el dia de la semana
+    * @param periodo Numero entero que representa el periodo de clases
+    * @param asignatura Objeto de tipo asignatura
+    */
     public void setHorario(int dia, int periodo, Asignatura asignatura) {
         if (periodo < 5) {
             this.horario[periodo][dia] += asignatura.getNombre();
@@ -68,6 +81,9 @@ public class Horario {
 
     }
 
+    /**
+    * Muestra por consola un horario
+    */
     public void showXConsola() {
         for (int i = 0; i < 12; i++) {
             for (int j = 0; j < 7; j++) {
@@ -76,11 +92,24 @@ public class Horario {
             System.out.println("");
         }
     }
-
+    
+    /**
+    * Devuelve un objeto de tipo Asignatura
+    * @param periodo Un entero que representa el periodo de clases
+    * @param dia Un entero que representa el dia de clases
+    * @param objeto Un entero que representa la posicion de el objeto Asignatura
+    * @return Asignatura Un objeto de tipo Asignatura   
+    */
     public Asignatura getHorarioObjetos(int periodo, int dia, int objeto) {
         return horarioObjetos[periodo][dia][objeto];
     }
 
+    /**
+    * Devuelve una cadena de tipo String con el nombre y (clase/hora extra)
+    * @param periodo Entero que representa el periodo de clases
+    * @param dia Entero que representa el dia de clases
+    * @return una cadena con el nombre y (clase/hora extra)
+    */
     public String getHorarioInfo(int periodo, int dia) {
         String linea = "";
         for (int i = 0; i < 10; i++) {
