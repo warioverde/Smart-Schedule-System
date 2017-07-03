@@ -37,14 +37,15 @@ public class GUIHorario extends JFrame implements ActionListener,MouseListener {
             add(bVolver);    
         //----------------------------------------------------------------------
         //--------JTable---------------------------------------------------------
-            tHorario=new JTable(getHorario(),col);
+            String[][] horario=getHorario();
+            tHorario=new JTable(horario,col);
             tHorario.setRowHeight(33);
             tHorario.setBounds(5,5,600,395);
             tHorario.setBackground(new java.awt.Color(184, 223, 254));
             
             tHorario.addMouseListener(this);
     
-            DefaultTableModel tableModel = new DefaultTableModel(getHorario(), col) {
+            DefaultTableModel tableModel = new DefaultTableModel(horario, col) {
 
              @Override
             public boolean isCellEditable(int row, int column) {
@@ -57,6 +58,8 @@ public class GUIHorario extends JFrame implements ActionListener,MouseListener {
             
             
             add(tHorario);
+            
+            
         //----------------------------------------------------------------------
         //--------JLabel--------------------------------------------------------[]//Seccion JLabel
         
@@ -69,6 +72,7 @@ public class GUIHorario extends JFrame implements ActionListener,MouseListener {
             setLayout(null);  //------------------------------------------------//No se establece un layout, puesto que se eligio la posicion anteriormente
             setVisible(true);  //-----------------------------------------------//Se permite la visibilidad a la frame y sus partes (lValor y bClick)
             //setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);  //--------//Se especifica que al cerrar la frame se detenga la ejecucion
+            
     }
     public void actionPerformed(ActionEvent ae) {
         switch(ae.getActionCommand()){
@@ -84,6 +88,7 @@ public class GUIHorario extends JFrame implements ActionListener,MouseListener {
         GestorArchivo gestor=new GestorArchivo();
         gestor.creadorAsignatura();
         gestor.mkHorario();
+        gestor.hacerHorasDeEstudio();
         String horario[][]=gestor.getHorario().getHorario();
         return horario;
         
@@ -96,7 +101,9 @@ public class GUIHorario extends JFrame implements ActionListener,MouseListener {
         GestorArchivo gestor=new GestorArchivo();
         gestor.creadorAsignatura();
         gestor.mkHorario();
-        JOptionPane.showMessageDialog(null, gestor.getHorario().getHorarioNombres(row, column));
+        gestor.hacerHorasDeEstudio();
+        JOptionPane.showMessageDialog(null, gestor.getHorario().getHorarioInfo(row, column));
+        
     }
 
     @Override

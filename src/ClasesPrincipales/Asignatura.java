@@ -67,6 +67,10 @@ public class Asignatura {
     public int getHorasExtra() {
         return horasExtra;
     }
+
+    public void setCodigo(String codigo) {
+        this.codigo = codigo;
+    }
    
     
 }

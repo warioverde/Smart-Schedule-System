@@ -22,7 +22,7 @@ public class GestorArchivo {
     public GestorArchivo() {
         this.horario.setHorarioInicial();
     }
-
+    
     public ArrayList<Asignatura> getAsignaturas() {
         return asignaturas;
     }
@@ -178,4 +178,66 @@ public class GestorArchivo {
         return true;
     }
 
+    public int[] checkHorasExtra(int horasExtra){
+        int horasLibresHorario = this.horario.getEspaciosLibresHorario();
+        if(horasLibresHorario>=horasExtra){
+            int[] check={1,horasLibresHorario-horasExtra};// 1: true    0: false
+            return check;
+        }else{
+            int[] check={0,horasLibresHorario-horasExtra};
+            return check;
+        }
+        
+    }
+    
+    public void hacerHorasDeEstudio(){
+        ArrayList<Asignatura> horasExtra=new ArrayList<>();
+        
+        /*for (int i = 0; i < asignaturas.size(); i++) {
+        Asignatura ramo=new Asignatura("Hora extra",asignaturas.get(i).getNombre(),asignaturas.get(i).getHorasExtra(),auxiliar);
+        horasExtra.add(ramo);
+        }*/
+        for (int i = 0; i < this.asignaturas.size(); i++) {
+            for (int j = 0; j < this.asignaturas.get(i).getHorasExtra(); j++) {
+                Asignatura ramo=new Asignatura(asignaturas.get(i).getCodigo(),asignaturas.get(i).getNombre(),asignaturas.get(i).getHorasExtra(),asignaturas.get(i).getHorario());
+                horasExtra.add(ramo);
+            }
+        }
+        horasExtra=ordenarArrayListEnPar(horasExtra);
+        horasExtra=codigoToExtra(horasExtra);
+        horario.planEstudios(horasExtra);
+    }
+    
+    public ArrayList<Asignatura> ordenarArrayListEnPar(ArrayList<Asignatura> asignaturas){
+        String codigo="";
+        int contador=0;
+        
+        for (int i = 0; i < asignaturas.size(); i++) {
+            System.out.println(asignaturas.get(i).getCodigo());
+            if(codigo==asignaturas.get(i).getCodigo()){
+                contador++;
+                if(contador>2){
+                    asignaturas.add(asignaturas.get(i));
+                    asignaturas.remove(i);
+                    i--;
+                    if(contador>15){break;}
+                }
+            }else{
+                codigo=asignaturas.get(i).getCodigo();
+                contador=1;
+            }
+        }
+        return asignaturas;
+    }
+    
+    public ArrayList<Asignatura> codigoToExtra(ArrayList<Asignatura> asignaturas){
+        System.out.println(asignaturas.size());
+        for (int i = 0; i < asignaturas.size(); i++) {
+            
+            asignaturas.get(i).setCodigo("Hora extra");
+        }
+        return asignaturas;
+    }
+    
+    
 }

@@ -242,7 +242,7 @@ public class GUIIngresoAsign extends JFrame implements ActionListener  {
                 GestorArchivo gestor=new GestorArchivo();
                 gestor.codUnico(tfCodigo.getText());
                 if (chkNombre() && chkHoras() && chkCodigo() && chkBoxes() ){
-                    if (matchesCodigo() && intHoras() && validarCodUnico()) {
+                    if (matchesCodigo() && intHoras() && validarCodUnico() && checkHorasExtra()) {
                         String horario=returnHorario();
                         System.out.println(tfCodigo.getText()+","+tfNombre.getText()+","+tfHoras.getText()+","+horario);
                         gestor.addAsignatura(tfCodigo.getText(),tfNombre.getText(),tfHoras.getText(),horario);
@@ -262,6 +262,33 @@ public class GUIIngresoAsign extends JFrame implements ActionListener  {
     
     //Validaciones internas
     
+    public boolean checkHorasExtra(){
+        GestorArchivo gestor=new GestorArchivo();
+        gestor.creadorAsignatura();
+        gestor.mkHorario();
+        gestor.hacerHorasDeEstudio();
+        int horasDeClase=returnHorario().split(";").length;
+        System.out.println("\n\n"+horasDeClase+"\n\n");
+        int[] check=gestor.checkHorasExtra(Integer.parseInt(tfHoras.getText())+horasDeClase);
+        boolean booleano;
+        if(check[0]==1){
+            booleano=true;
+        }else{
+            booleano=false;
+        }
+        if(!booleano){
+            String mensaje="Las horas extra exceden la capacidad del horario";
+             
+             if(check[1]>=0){
+                 mensaje+=", horas disponibles: "+check[1];
+             }else{
+                 mensaje+=", estas se exceden en: "+(-check[1]);
+             }
+             JOptionPane.showMessageDialog(null,mensaje);
+             return false;
+        }
+        return true;
+    }
     public boolean matchesCodigo(){
         if(tfCodigo.getText().matches("[a-zA-Z]{3}[0-9]{3}")){                  //formato "aaa111"
             return true;
