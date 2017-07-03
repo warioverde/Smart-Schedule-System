@@ -40,6 +40,9 @@ public class GUIIngresoEval extends JFrame implements ActionListener  {
         
     }
     
+    /**
+    * Iniciador de los componentes de la ventana.
+    */
     public void init(){
         
         //-------Button---------------------------------------------------------[]//Seccion JButton
@@ -109,6 +112,10 @@ public class GUIIngresoEval extends JFrame implements ActionListener  {
             checkComboBox();
     }
     
+    /**
+    * Metodo que se acciona al realizarse una accion sobreun boton
+    * @param ae ActionEvent
+    */
     public void actionPerformed(ActionEvent ae) {
         switch(ae.getActionCommand()){
             
@@ -133,6 +140,10 @@ public class GUIIngresoEval extends JFrame implements ActionListener  {
     }
     //Validaciones internas
     
+    /**
+    * Retorna un booleano segun si existe al menos una casilla marcada entre los radioButton.
+    * @return Retorna verdadero o falso
+    */
     public boolean chkTipo(){
         boolean localMatrix[]={rbPrueba.isSelected(),rbTaller.isSelected(),rbTrabajo.isSelected(),rbTarea.isSelected(),rbOtro.isSelected()};
         for (int i = 0; i < localMatrix.length; i++) {
@@ -143,6 +154,10 @@ public class GUIIngresoEval extends JFrame implements ActionListener  {
         return false;
     }
     
+    /**
+    * Retorna un booleano segun si el campo de tfOtro (TextField) contiene un String
+    * @return Retorna verdadero o falso
+    */
     public boolean chkOtro(){
         if(rbOtro.isSelected() && tfOtro.getText().equals("")){
             JOptionPane.showMessageDialog(null, "Campo 'otro' esta vacio");
@@ -151,6 +166,10 @@ public class GUIIngresoEval extends JFrame implements ActionListener  {
         
     }
     
+    /**
+    * Retorna un booleano segun si se ha ingresado alguna fecha.
+    * @return Retorna verdadero o falso
+    */
     public boolean chkFecha(){
         String fecha=((JTextField)dcFecha.getDateEditor().getUiComponent()).getText();
         
@@ -161,7 +180,11 @@ public class GUIIngresoEval extends JFrame implements ActionListener  {
             }
             return true;
     }
-        //
+    
+    /**
+    * Retorna un String con el tipo de evaluacion ingresada.
+    * @return Un String con el tipo de evaluacion 
+    */
     public String getTipo(){
         JRadioButton localMatrix[]={rbPrueba,rbTaller,rbTrabajo,rbTarea};
         for (int i = 0; i < localMatrix.length; i++) {
@@ -177,12 +200,20 @@ public class GUIIngresoEval extends JFrame implements ActionListener  {
         return "";
     }
     
+    /**
+    * Retorna un String bidimensional con los nombres de las asignaturas ingresadas.
+    * @return Un String bidimensional con nombres de asignatura. 
+    */
     public String[] getNombres(){
         GestorArchivo gestor=new GestorArchivo();
         gestor.creadorAsignatura();
         return gestor.getNombres();
     }
     
+    /**
+    * Retorna un booleano segun si se ha ingresado alguna asignatura anteriormente.
+    * @return Retorna verdadero o falso
+    */
     public void checkComboBox(){
         System.out.println(cbAsignatura.getItemCount());
         if (cbAsignatura.getItemCount()==0) {
