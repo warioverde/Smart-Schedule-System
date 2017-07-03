@@ -239,9 +239,10 @@ public class GUIIngresoAsign extends JFrame implements ActionListener  {
         switch(ae.getActionCommand()){
         
             case "guardar": 
+                GestorArchivo gestor=new GestorArchivo();
+                gestor.codUnico(tfCodigo.getText());
                 if (chkNombre() && chkHoras() && chkCodigo() && chkBoxes() ){
-                    if (matchesCodigo() && intHoras()) {
-                        GestorArchivo gestor=new GestorArchivo();
+                    if (matchesCodigo() && intHoras() && validarCodUnico()) {
                         String horario=returnHorario();
                         System.out.println(tfCodigo.getText()+","+tfNombre.getText()+","+tfHoras.getText()+","+horario);
                         gestor.addAsignatura(tfCodigo.getText(),tfNombre.getText(),tfHoras.getText(),horario);
@@ -274,7 +275,7 @@ public class GUIIngresoAsign extends JFrame implements ActionListener  {
         if(tfHoras.getText().matches("[1-9]{1}")){                              //Considero numeros entre 1 y 9                  
             return true;
         }else{
-            JOptionPane.showMessageDialog(null, "Solo se permite ingresar numeros enteros entre 0 y 9 dentro de el apartado de 'Horas'");
+            JOptionPane.showMessageDialog(null, "Solo se permite ingresar numeros enteros entre 1 y 9 dentro de el apartado de 'Horas'");
             return false;
         }
     }
@@ -317,8 +318,16 @@ public class GUIIngresoAsign extends JFrame implements ActionListener  {
         return horario;
     }
     
+    public boolean validarCodUnico(){
+        GestorArchivo gestor=new GestorArchivo();
+        if(gestor.codUnico(tfCodigo.getText())){
+            return true;
+        }else{
+            JOptionPane.showMessageDialog(null, "El codigo de asignatura debe ser unico");
+            return false;
+        }
     
-
+    }
     
 }
 

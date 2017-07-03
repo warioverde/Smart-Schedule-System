@@ -121,30 +121,7 @@ public class GestorArchivo {
         return datosSeparados;
     }
     
-    /*public void mkHorario(){
-    ArchivoAsignatura archivo = new ArchivoAsignatura();
-    String[] datos = archivo.leerArchivo();
-    String asignatura[][]=new String[datos.length][5];
     
-    for (int i = 0; i < datos.length; i++) {                              //
-    asignatura[i]=datos[i].split(",");
-    }
-    
-    for (int i = 0; i < asignatura.length; i++) {
-    String[] clases=asignatura[i][3].split(";");
-    
-    
-    for (int j = 0; j < clases.length; j++) {
-    String[] diaPeriodo=clases[j].split("@");
-    
-    this.horario.setHorario(Integer.parseInt(diaPeriodo[0]), Integer.parseInt(diaPeriodo[1]), asignatura[i][1]);
-    }
-    
-    
-    }
-    
-    
-    }*/
     
     public void mkHorario(){
         for (int i = 0; i < asignaturas.size(); i++) {
@@ -162,7 +139,6 @@ public class GestorArchivo {
     public Asignatura buscarAsignatura(String codigo){
         for (int i = 0; i < asignaturas.size(); i++) {
             if (asignaturas.get(i).getCodigo().equals(codigo)){
-                System.out.println("La pillé");
                 return asignaturas.get(i);
             }
             
@@ -222,14 +198,14 @@ public class GestorArchivo {
         return evaluaciones;
     }
 
-    public static void main(String[] args) { //una vez finalizado el metodo borrar esto
-        GestorArchivo gest = new GestorArchivo();
-
-        ArrayList<Evaluacion> evaluaciones = gest.EvaluacionesMasCercanas();
-        for (int i = 0; i < evaluaciones.size(); i++) {
-            System.out.println(evaluaciones.get(i).toString());
-
+    public boolean codUnico(String cod){
+        String [][] cadena=this.separarDatosAsignatura();
+        for (int i = 0; i < cadena.length; i++) {
+            if(cod.equals(cadena[i][0])){
+                    return false;
+                }
         }
+        return true;
     }    
     
 }

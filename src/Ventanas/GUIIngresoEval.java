@@ -10,6 +10,7 @@ import Archivos.ArchivoAsignatura;
 import ClasesPrincipales.Asignatura;
 import ClasesPrincipales.GestorArchivo;
 import com.toedter.calendar.JDateChooser;
+import com.toedter.calendar.JTextFieldDateEditor;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.ArrayList;
@@ -82,6 +83,8 @@ public class GUIIngresoEval extends JFrame implements ActionListener  {
             dcFecha=new JDateChooser();
             dcFecha.setBounds(430,100,100,30);
             add(dcFecha);
+            JTextFieldDateEditor editor=(JTextFieldDateEditor) dcFecha.getDateEditor();
+            editor.setEditable(false);
         //----------------------------------------------------------------------
         //--------JComboBox-----------------------------------------------------
         
@@ -99,27 +102,27 @@ public class GUIIngresoEval extends JFrame implements ActionListener  {
     public void actionPerformed(ActionEvent ae) {
         switch(ae.getActionCommand()){
             
-            case "guardar": if(chkTipo() && chkOtro() && chkFecha() && cbAsignatura.getSelectedItem()!=null ){
-                GestorArchivo gestor=new GestorArchivo();
-                gestor.creadorAsignatura();
-               ArrayList<Asignatura>asignaturas=gestor.getAsignaturas();
-               
-                gestor.addEvaluacion(asignaturas.get(cbAsignatura.getSelectedIndex()),getTipo(),(dcFecha.getDate().getDate()),(dcFecha.getDate().getMonth()+1),(dcFecha.getDate().getYear()+1900));
-                JOptionPane.showMessageDialog(null, "Evaluacion ingresada exitosamente");
-                this.dispose();
-            }else{
+            case "guardar": if(chkTipo() &&  cbAsignatura.getSelectedItem()!=null && chkFecha()){
+                if ( chkOtro()) {
+                    GestorArchivo gestor=new GestorArchivo();
+                    gestor.creadorAsignatura();
+                    ArrayList<Asignatura>asignaturas=gestor.getAsignaturas();
+                    gestor.addEvaluacion(asignaturas.get(cbAsignatura.getSelectedIndex()),getTipo(),(dcFecha.getDate().getDate()),(dcFecha.getDate().getMonth()+1),(dcFecha.getDate().getYear()+1900));
+                    JOptionPane.showMessageDialog(null, "Evaluacion ingresada exitosamente");
+                    this.dispose();
+                }else{
                 int ax = JOptionPane.showConfirmDialog(null, "Se han encontrado campos incompletos, ¿desea volver al menu principal?");
                     if(ax == JOptionPane.YES_OPTION)
                         this.dispose();
-            }
+                }
                 
                 
             break;
+            }
         }
     }
-
     //Validaciones internas
-        //
+    
     public boolean chkTipo(){
         boolean localMatrix[]={rbPrueba.isSelected(),rbTaller.isSelected(),rbTrabajo.isSelected(),rbTarea.isSelected(),rbOtro.isSelected()};
         for (int i = 0; i < localMatrix.length; i++) {
@@ -131,20 +134,22 @@ public class GUIIngresoEval extends JFrame implements ActionListener  {
     }
     
     public boolean chkOtro(){
-        if (rbOtro.isSelected()) {
-            if (tfOtro.equals("")){
-                return false;
-            }
-            return true;
-        }
-        return true;
+        if(rbOtro.isSelected() && tfOtro.getText().equals("")){
+            JOptionPane.showMessageDialog(null, "Campo 'otro' esta vacio");
+            return false;
+        }return true;
+        
     }
     
     public boolean chkFecha(){
-        if (dcFecha.getDateFormatString().equals("")){
-            return false;
-        }
-        return true;
+        String fecha=((JTextField)dcFecha.getDateEditor().getUiComponent()).getText();
+        
+        if (fecha.isEmpty()){                 
+            System.out.println("entro");
+            JOptionPane.showMessageDialog(this, "No ha ingresado fechas","Error",JOptionPane.ERROR_MESSAGE);
+                return false;
+            }
+            return true;
     }
         //
     public String getTipo(){
