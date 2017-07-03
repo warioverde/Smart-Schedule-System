@@ -29,10 +29,16 @@ public class GUINotificacion extends JFrame implements ActionListener  {
     protected JButton bVolver,bSiguiente;
     private int contadorNotificaciones;
     
+    /**
+    * Constructor de la clase GUINotificacion.
+    */
     protected GUINotificacion(){ 
         super();
     }
     
+    /**
+    * Iniciador de los componentes de la ventana.
+    */
     public void init(){
            
         //----------------------------------------------------------------------
@@ -89,6 +95,11 @@ public class GUINotificacion extends JFrame implements ActionListener  {
             setVisible(true);  //-----------------------------------------------//Se permite la visibilidad a la frame y sus partes (lValor y bClick)
             setDefaultCloseOperation(WindowConstants.DISPOSE_ON_CLOSE);  //--------//Se especifica que al cerrar la frame se detenga la ejecucion
     }
+    
+    /**
+    * Metodo que se ejecuta al realizar un click sobre un boton.
+    * @param ae ActionEvent
+    */
     public void actionPerformed(ActionEvent ae) {
         switch(ae.getActionCommand()){
         
@@ -98,6 +109,13 @@ public class GUINotificacion extends JFrame implements ActionListener  {
         }
     }
     
+    /**
+    * Retorna los dias restantes para la evaluacion ingresada.
+    * @param dia Dia de la evaluacion de tipo entero.
+    * @param mes Mes de la evaluacion de tipo entero.
+    * @param año Año de la evaluacion de tipo entero.
+    * @return Dias restantes para la evaluacion ingresada
+    */
     public int getDiasRestantes(int dia,int mes,int año){
         Notificacion notificacion = new Notificacion();
         return notificacion.tiempoRestante(dia, mes, año);
@@ -105,6 +123,9 @@ public class GUINotificacion extends JFrame implements ActionListener  {
     
     //Conectar con el gestor
     
+    /**
+    * Metodo que se encarga de cambiar las notificaciones y pasar evaluacion a evaluacion.
+    */
     public void actualizarLabels(){
         GestorArchivo gestor = new GestorArchivo();
         ArrayList <Evaluacion> evaluaciones = gestor.EvaluacionesMasCercanas();
