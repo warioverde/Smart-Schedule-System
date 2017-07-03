@@ -93,7 +93,7 @@ public class Horario {
     }
     
     public String tipoClase(String codigo){
-        if(codigo.equals("Hora extra")){
+        if(codigo.equals("Hora_extra")){
             return codigo;
         }else{
             return "Clase";

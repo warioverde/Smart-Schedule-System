@@ -268,7 +268,6 @@ public class GUIIngresoAsign extends JFrame implements ActionListener  {
         gestor.mkHorario();
         gestor.hacerHorasDeEstudio();
         int horasDeClase=returnHorario().split(";").length;
-        System.out.println("\n\n"+horasDeClase+"\n\n");
         int[] check=gestor.checkHorasExtra(Integer.parseInt(tfHoras.getText())+horasDeClase);
         boolean booleano;
         if(check[0]==1){

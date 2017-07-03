@@ -7,6 +7,8 @@
 package Ventanas;
 
 import ClasesPrincipales.GestorArchivo;
+import java.awt.Color;
+import java.awt.Rectangle;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.MouseEvent;
@@ -92,6 +94,42 @@ public class GUIHorario extends JFrame implements ActionListener,MouseListener {
         String horario[][]=gestor.getHorario().getHorario();
         return horario;
         
+    }
+    
+    /*public void colorHorario(){
+    GestorArchivo gestor=new GestorArchivo();
+    gestor.creadorAsignatura();
+    gestor.mkHorario();
+    gestor.hacerHorasDeEstudio();
+    for (int i = 1; i < gestor.getHorario().getHorario().length; i++) {
+    for (int j = 1; j < gestor.getHorario().getHorario()[0].length; j++) {
+    
+    
+    if(buscador("\n",gestor.getHorario().getHorarioInfo(i, j))){
+    //Pintar celda
+    }
+    if(buscador("Hora_extra",gestor.getHorario().getHorarioInfo(i, j))){
+    //Pintar celda
+    }
+    }
+    }
+    
+    }*/
+    
+    public boolean buscador(String palabraABuscar,String cadena){
+        String cadenaAuxiliar="";
+        for (int i = 0; i < cadena.length(); i++) {
+            if (cadena.charAt(i)==(' ')){
+                if(cadenaAuxiliar.equals(palabraABuscar)){
+                    return true;
+                }else{
+                    cadenaAuxiliar="";
+                }
+            }else{
+                cadenaAuxiliar+=cadena.charAt(i);
+            }
+        }
+        return false;
     }
 
     @Override

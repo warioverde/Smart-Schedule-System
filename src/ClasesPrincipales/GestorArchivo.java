@@ -234,7 +234,7 @@ public class GestorArchivo {
         System.out.println(asignaturas.size());
         for (int i = 0; i < asignaturas.size(); i++) {
             
-            asignaturas.get(i).setCodigo("Hora extra");
+            asignaturas.get(i).setCodigo("Hora_extra");
         }
         return asignaturas;
     }
