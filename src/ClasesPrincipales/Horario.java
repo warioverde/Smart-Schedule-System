@@ -16,6 +16,9 @@ public class Horario {
     String horario[][];
     Asignatura[][][] horarioObjetos;
 
+    /**
+    * Constructor de la clase Horario
+    */
     public Horario() {
         horario = new String[12][7];
         horarioObjetos = new Asignatura[12][7][10 /* asignaturas */];
@@ -98,7 +101,7 @@ public class Horario {
     * @param periodo Un entero que representa el periodo de clases
     * @param dia Un entero que representa el dia de clases
     * @param objeto Un entero que representa la posicion de el objeto Asignatura
-    * @return Asignatura Un objeto de tipo Asignatura   
+    * @return Un objeto de tipo Asignatura   
     */
     public Asignatura getHorarioObjetos(int periodo, int dia, int objeto) {
         return horarioObjetos[periodo][dia][objeto];
@@ -121,6 +124,11 @@ public class Horario {
         return linea;
     }
     
+    /**
+    * Determina mediante un codigo si algo es una clase o una hora extra
+    * @param codigo cadena de tipo String
+    * @return Una cadena de tipo String (Clase o Hora_extra)
+    */
     public String tipoClase(String codigo){
         if(codigo.equals("Hora_extra")){
             return codigo;
@@ -129,6 +137,10 @@ public class Horario {
         }
     }
 
+    /**
+    * Devuelve un entero segun cuantos espacios libres existan en el arreglo horario
+    * @return Un entero que representa la cantidad de espacios vacios en el arreglo horario
+    */
     public int getEspaciosLibresHorario() {
         int espaciosVacios = 0;
         for (int i = 1; i < this.horario.length; i++) {
@@ -144,6 +156,10 @@ public class Horario {
         return espaciosVacios;
     }
 
+    /**
+    * Toma una ArrayList de objetos Asignatura y los agrega a los espacios vacios en el arreglo horario
+    * @param asignaturas Una ArrayList de objetos de Asignatura
+    */
     public void planEstudios(ArrayList<Asignatura> asignaturas) {
         int indiceAsignaturas = 0;
 
