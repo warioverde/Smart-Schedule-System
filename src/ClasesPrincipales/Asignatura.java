@@ -12,6 +12,7 @@ import java.util.ArrayList;
  * @author Jorge
  */
 public class Asignatura {
+    
    private ArrayList<Evaluacion> pruebas;
    private String nombre;
    private String codigo;

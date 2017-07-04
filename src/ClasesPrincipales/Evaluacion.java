@@ -10,33 +10,43 @@ package ClasesPrincipales;
  * @author Jorge
  */
 public class Evaluacion {
-   
-    
-   private int añoE;
-   private int mesE;
-   private int diaE;
-   private String tipo;
-   private String codigo;
 
-    public Evaluacion(String codigo, String tipo,int diaE, int mesE, int añoE) {
+    private int añoE;
+    private int mesE;
+    private int diaE;
+    private String tipo;
+    private String codigo;
+
+    public Evaluacion(String codigo, String tipo, int diaE, int mesE, int añoE) {
         this.añoE = añoE;
         this.mesE = mesE;
         this.diaE = diaE;
         this.tipo = tipo;
-        this.codigo=codigo;
+        this.codigo = codigo;
     }
-   
-   
 
-   public void set(int dia, int mes,int año,String tipo){
-        this.añoE=año; this.mesE=mes; this.diaE=dia; this.tipo=tipo;
+    public void set(int dia, int mes, int año, String tipo) {
+        this.añoE = año;
+        this.mesE = mes;
+        this.diaE = dia;
+        this.tipo = tipo;
     }
-    
-    public int getDia(){return this.diaE;}
-    public int getMes(){return this.mesE;}
-    public int getAño(){return this.añoE;}
-    
-    public String getTipo(){return this.tipo;}
+
+    public int getDia() {
+        return this.diaE;
+    }
+
+    public int getMes() {
+        return this.mesE;
+    }
+
+    public int getAño() {
+        return this.añoE;
+    }
+
+    public String getTipo() {
+        return this.tipo;
+    }
 
     public void setAñoE(int añoE) {
         this.añoE = añoE;
@@ -62,6 +72,5 @@ public class Evaluacion {
     public String toString() {
         return "Evaluacion{" + "a\u00f1oE=" + añoE + ", mesE=" + mesE + ", diaE=" + diaE + ", tipo=" + tipo + ", codigo=" + codigo + '}';
     }
-    
-    
+
 }

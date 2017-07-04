@@ -3,7 +3,6 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-
 package Ventanas;
 
 import ClasesPrincipales.GestorArchivo;
@@ -20,83 +19,82 @@ import javax.swing.table.DefaultTableModel;
  *
  * @author Jorge
  */
-public class GUIHorario extends JFrame implements ActionListener,MouseListener {
-    
-    
+public class GUIHorario extends JFrame implements ActionListener, MouseListener {
 
     //protected JLabel ;
     protected JButton bVolver;
     protected JTable tHorario;
-    protected GUIHorario(){ 
+
+    protected GUIHorario() {
         super();
-        
-         String col[]={"Periodo","Lunes","Martes","Miercoles","Jueves","Viernes","Sabado"}; 
-         //--------jButton------------------------------------------------------
-            bVolver=new JButton("VOLVER");  
-            bVolver.setBounds(250,410,100, 30);
-            bVolver.addActionListener(this); 
-            bVolver.setActionCommand("volver");    
-            add(bVolver);    
+
+        String col[] = {"Periodo", "Lunes", "Martes", "Miercoles", "Jueves", "Viernes", "Sabado"};
+        //--------jButton------------------------------------------------------
+        bVolver = new JButton("VOLVER");
+        bVolver.setBounds(250, 410, 100, 30);
+        bVolver.addActionListener(this);
+        bVolver.setActionCommand("volver");
+        add(bVolver);
         //----------------------------------------------------------------------
         //--------JTable---------------------------------------------------------
-            String[][] horario=getHorario();
-            tHorario=new JTable(horario,col);
-            tHorario.setRowHeight(33);
-            tHorario.setBounds(5,5,600,395);
-            tHorario.setBackground(new java.awt.Color(184, 223, 254));
-            
-            tHorario.addMouseListener(this);
-    
-            DefaultTableModel tableModel = new DefaultTableModel(horario, col) {
+        String[][] horario = getHorario();
+        tHorario = new JTable(horario, col);
+        tHorario.setRowHeight(33);
+        tHorario.setBounds(5, 5, 600, 395);
+        tHorario.setBackground(new java.awt.Color(184, 223, 254));
+        
+        
 
-             @Override
+        tHorario.addMouseListener(this);
+
+        DefaultTableModel tableModel = new DefaultTableModel(horario, col) {
+
+            @Override
             public boolean isCellEditable(int row, int column) {
-            //all cells false
-            return false;
+                //all cells false
+                return false;
             }
-            };
+        };
 
-            tHorario.setModel(tableModel);
-            
-            
-            add(tHorario);
-            
-            
+        tHorario.setModel(tableModel);
+
+        add(tHorario);
+
         //----------------------------------------------------------------------
         //--------JLabel--------------------------------------------------------[]//Seccion JLabel
-        
-            //lValor=new JLabel(contador+"");  //---------------------------------//Instanciacion de JLabel como lValor
-            //lValor.setBounds(50,50, 100,30);    //------------------------------//Mediante SetBounds se especifica su pocicion en la frame
-            //add(lValor);
+        //lValor=new JLabel(contador+"");  //---------------------------------//Instanciacion de JLabel como lValor
+        //lValor.setBounds(50,50, 100,30);    //------------------------------//Mediante SetBounds se especifica su pocicion en la frame
+        //add(lValor);
         //---------JFrame-------------------------------------------------------[]//Seccion JFrame
-        
-            setSize(620,500);  //-----------------------------------------------//Se establece el tamaño de la frame
-            setLayout(null);  //------------------------------------------------//No se establece un layout, puesto que se eligio la posicion anteriormente
-            setVisible(true);  //-----------------------------------------------//Se permite la visibilidad a la frame y sus partes (lValor y bClick)
-            //setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);  //--------//Se especifica que al cerrar la frame se detenga la ejecucion
-            
+        setSize(620, 500);  //-----------------------------------------------//Se establece el tamaño de la frame
+        setLayout(null);  //------------------------------------------------//No se establece un layout, puesto que se eligio la posicion anteriormente
+        setVisible(true);  //-----------------------------------------------//Se permite la visibilidad a la frame y sus partes (lValor y bClick)
+        setLocationRelativeTo(null);
+        //setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);  //--------//Se especifica que al cerrar la frame se detenga la ejecucion
+
     }
+
     public void actionPerformed(ActionEvent ae) {
-        switch(ae.getActionCommand()){
-        
-            case "volver": this.dispose();
-            break;
+        switch (ae.getActionCommand()) {
+
+            case "volver":
+                this.dispose();
+                break;
         }
     }
     
-    
-    
-    public String[][] getHorario(){
-        GestorArchivo gestor=new GestorArchivo();
+
+    public String[][] getHorario() {
+        GestorArchivo gestor = new GestorArchivo();
         gestor.creadorAsignatura();
         gestor.mkHorario();
         gestor.hacerHorasDeEstudio();
-        String horario[][]=gestor.getHorario().getHorario();
+        String horario[][] = gestor.getHorario().getHorario();
         return horario;
-        
+
     }
-    
-    /*public void colorHorario(){
+
+    /*  public void colorHorario(){
     GestorArchivo gestor=new GestorArchivo();
     gestor.creadorAsignatura();
     gestor.mkHorario();
@@ -106,42 +104,45 @@ public class GUIHorario extends JFrame implements ActionListener,MouseListener {
     
     
     if(buscador("\n",gestor.getHorario().getHorarioInfo(i, j))){
-    //Pintar celda
-    }
+    System.out.println("asdasdasdasd");    }
     if(buscador("Hora_extra",gestor.getHorario().getHorarioInfo(i, j))){
-    //Pintar celda
+    System.out.println("qweqweqweqwe");
     }
     }
     }
     
     }*/
-    
-    public boolean buscador(String palabraABuscar,String cadena){
-        String cadenaAuxiliar="";
+    public boolean buscador(String palabraABuscar, String cadena) {
+        String cadenaAuxiliar = "";
         for (int i = 0; i < cadena.length(); i++) {
-            if (cadena.charAt(i)==(' ')){
-                if(cadenaAuxiliar.equals(palabraABuscar)){
+            if (cadena.charAt(i) == (' ')) {
+                if (cadenaAuxiliar.equals(palabraABuscar)) {
                     return true;
-                }else{
-                    cadenaAuxiliar="";
+                } else {
+                    cadenaAuxiliar = "";
                 }
-            }else{
-                cadenaAuxiliar+=cadena.charAt(i);
+            } else {
+                cadenaAuxiliar += cadena.charAt(i);
             }
         }
         return false;
+    }
+    
+    public void cambiarColor(){
+        setBackground(Color.GREEN);
+        
     }
 
     @Override
     public void mouseClicked(MouseEvent me) {
         int row = tHorario.rowAtPoint(me.getPoint());
         int column = tHorario.columnAtPoint(me.getPoint());
-        GestorArchivo gestor=new GestorArchivo();
+        GestorArchivo gestor = new GestorArchivo();
         gestor.creadorAsignatura();
         gestor.mkHorario();
         gestor.hacerHorasDeEstudio();
         JOptionPane.showMessageDialog(null, gestor.getHorario().getHorarioInfo(row, column));
-        
+
     }
 
     @Override
@@ -164,12 +165,4 @@ public class GUIHorario extends JFrame implements ActionListener,MouseListener {
         //throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 
-    
 }
-
-
-
-    
-    
-   
-    
