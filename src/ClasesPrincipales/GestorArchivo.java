@@ -17,17 +17,28 @@ import java.util.Arrays;
 public class GestorArchivo {
 
     private ArrayList<Asignatura> asignaturas = new ArrayList();
-    
     private Horario horario = new Horario();
 
+    /**
+     * + * Constructor de la clase GestorArchivo. +
+     */
     public GestorArchivo() {
         this.horario.setHorarioInicial();
     }
 
+    /**
+     * + * Retorna un arrayList de asignaturas de tipo Asignatura + * @return
+     * Retorna un arrayList de asignaturas de tipo Asignatura +
+     */
     public ArrayList<Asignatura> getAsignaturas() {
         return asignaturas;
     }
 
+    /**
+     * + * metodo que crea los objetos del programa y los guarda en una
+     * arraylist de tipo Asignatura y evaluaciones dentro de sus respectivas
+     * asignaturas. +
+     */
     public void creadorAsignatura() {
         String array[][] = this.separarDatosAsignatura();
         for (int i = 0; i < array.length; i++) {
@@ -43,6 +54,10 @@ public class GestorArchivo {
 
     }
 
+    /**
+     * + * Crea y retorna una arrayList con objetos de tipo Evaluacion + *
+     * @return ArrayList de tipo Evaluacion +
+     */
     public ArrayList<Evaluacion> creadorEvaluaciones() {
         String array[][] = this.separarDatosEvaluacion();
         ArrayList<Evaluacion> evaluaciones = new ArrayList<>();
@@ -53,6 +68,10 @@ public class GestorArchivo {
         return evaluaciones;
     }
 
+    /**
+     * + * Retorna un arreglo de nombres de asignaturas de tipo String + *
+     * @return String[] con nombres de asignaturas +
+     */
     public String[] getNombres() {
         //String arrayy[][]=this.separarDatosAsignatura();
         String[] nombres = new String[this.asignaturas.size()];
@@ -63,16 +82,33 @@ public class GestorArchivo {
         return nombres;
     }
 
+    /**
+     * + * Añade una asignatura al archivo + * @param codigo Codigo de la
+     * asignatura de tipo String + * @param nombre Nombre de la asignatura de
+     * tipo String + * @param horas Horas extra de la asignatura de tipo String
+     * + * @param horario Horario de la asignatura de tipo String +
+     */
     public void addAsignatura(String codigo, String nombre, String horas, String horario) {
         ArchivoAsignatura añadir = new ArchivoAsignatura();
         añadir.escribirArchivo(codigo + "," + nombre + "," + horas + "," + horario);
     }
 
+    /**
+     * + * Añade una evaluacion al archivo + * @param asignatura Objeto de tipo
+     * Asignatura. + * @param tipo Tipo de evaluacion de tipo String. + * @param
+     * dia Dia de evaluacion de tipo entero. + * @param mes Mes de la evaluacion
+     * de tipo entero. + * @param año Año de la evaluacion de tipo entero. +
+     */
     public void addEvaluacion(Asignatura asignatura, String tipo, int dia, int mes, int año) {
         ArchivoEvaluacion añadir = new ArchivoEvaluacion();
         añadir.escribirArchivo(asignatura.getCodigo() + "," + tipo + "," + dia + "," + mes + "," + año);
     }
 
+    /**
+     * + * Separa los datos de evaluacion recibidos desde el archivo y retorna
+     * un arreglo bidimensional de tipo String[][] + * @return String[][] de
+     * datos de evaluacion. +
+     */
     public String[][] separarDatosEvaluacion() {
         ArchivoEvaluacion archivo = new ArchivoEvaluacion();
         ArrayList<String> datos = archivo.leerArchivo();
@@ -83,6 +119,12 @@ public class GestorArchivo {
         }
         return datosSeparados;
     }
+
+    /**
+     * + * Separa los datos de asignatura recibidos desde el archivo y retorna
+     * un arreglo bidimensional de tipo String[][] + * @return String[][] de
+     * datos de evaluacion. +
+     */
 
     public String[][] separarDatosAsignatura() {
         ArchivoAsignatura archivo = new ArchivoAsignatura();
@@ -97,6 +139,10 @@ public class GestorArchivo {
         return datosSeparados;
     }
 
+    /**
+     * + * Genera el horario ingresando horas de clase al objeto de tipo horario
+     * de esta clase. +
+     */
     public void mkHorario() {
         for (int i = 0; i < asignaturas.size(); i++) {
             for (int j = 0; j < asignaturas.get(i).getHorario().length; j++) {
@@ -106,10 +152,18 @@ public class GestorArchivo {
         }
     }
 
+    /**
+     * + * Retorna un objeto de tipo Horario. + * @return Objeto de tipo
+     * Horario. +
+     */
     public Horario getHorario() {
         return this.horario;
     }
 
+    /**
+     * + * Retorna un objeto de tipo Horario. + * @return Objeto de tipo
+     * Horario. +
+     */
     public Asignatura buscarAsignatura(String codigo) {
         for (int i = 0; i < asignaturas.size(); i++) {
             if (asignaturas.get(i).getCodigo().equals(codigo)) {
@@ -119,6 +173,12 @@ public class GestorArchivo {
         return null;
     }
 
+    /**
+     * + * Retorna los periodos de clase recibidos mediante el String y retorna
+     * un arreglo bidimensional con el dia y el periodo de clase por cada nivel
+     * {clase,{Dia,Periodo}} + * @param horario Horario bruto de clases de tipo
+     * String + * @return String[][] de datos de evaluacion. +
+     */
     public String[][] getPeriodosDeClase(String horario) {
         String[] periodos = horario.split(";");
         String[][] periodosClase = new String[periodos.length][2];
@@ -129,6 +189,10 @@ public class GestorArchivo {
         return periodosClase;
     }
 
+    /**
+     * + * Retorna un arrayList de los objetos de tipo Evaluacion mas cercanos a
+     * la fecha actual. + * @return ArrayList de Objetos de tipo Evaluacion. +
+     */
     public ArrayList<Evaluacion> EvaluacionesMasCercanas() {
         ArrayList<Evaluacion> evaluaciones = creadorEvaluaciones();
         ArrayList<Integer> diasRestantes = new ArrayList();
@@ -155,6 +219,10 @@ public class GestorArchivo {
         return evaluaciones;
     }
 
+    /**
+     * + * Retorna un booleano segun si el codigo recibido se repite o no. + *
+     * @return boolean (true/false) +
+     */
     public boolean codUnico(String cod) {
         String[][] cadena = this.separarDatosAsignatura();
         for (int i = 0; i < cadena.length; i++) {
@@ -165,6 +233,13 @@ public class GestorArchivo {
         return true;
     }
 
+    /**
+     * + * Retorna un arreglo de booleano (entero) y la diferencia entre
+     * espacios libres del horario y las horas extra recibidas. + * @param
+     * horasExtra Un entero con las Horas extra de asignatura a ingresar + *
+     * @return Arreglo de enteros con un booleano (entero) la diferencia entre
+     * espacios libres del horario y las horas extra recibidas. +
+     */
     public int[] checkHorasExtra(int horasExtra) {
         int horasLibresHorario = this.horario.getEspaciosLibresHorario();
         if (horasLibresHorario >= horasExtra) {
@@ -177,6 +252,9 @@ public class GestorArchivo {
 
     }
 
+    /**
+     * + * Agrega al objeto de tipo Horario de la clase horas extra de estudio +
+     */
     public void hacerHorasDeEstudio() {
         ArrayList<Asignatura> horasExtra = new ArrayList<>();
 
@@ -193,9 +271,14 @@ public class GestorArchivo {
         horasExtra = ordenarArrayListEnPar(horasExtra);
         horasExtra = codigoToExtra(horasExtra);
         horario.planEstudios(horasExtra);
-        
+
     }
 
+    /**
+     * + * Retorna una ArrayList de tipo Asignatura ordenada de par en par segun
+     * el codigo de asignatura + * @param ArrayList desordenada de tipo
+     * Asignatura. + * @return ArrayList ordenada de tipo Asignatura. +
+     */
     public ArrayList<Asignatura> ordenarArrayListEnPar(ArrayList<Asignatura> asignaturas) {
         String codigo = "";
         int contador = 0;
@@ -219,6 +302,12 @@ public class GestorArchivo {
         return asignaturas;
     }
 
+    /**
+     * + * Retorna una ArrayList de tipo Asignatura con todos sus codigos
+     * cambiados a "Hora_extra". + * @param ArrayList de tipo Asignatura. + *
+     * @return ArrayList de tipo Asignatura con sus codigos cambiados a
+     * "Hora_extra". +
+     */
     public ArrayList<Asignatura> codigoToExtra(ArrayList<Asignatura> asignaturas) {
         System.out.println(asignaturas.size());
         for (int i = 0; i < asignaturas.size(); i++) {

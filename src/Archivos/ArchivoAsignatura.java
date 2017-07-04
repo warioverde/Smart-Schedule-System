@@ -11,9 +11,16 @@ public class ArchivoAsignatura {
 
     private String ruta = "build\\classes\\Archivos\\Asignaturas.txt";
 
+    /**
+     * + * Constructor de la clase +
+     */
     public ArchivoAsignatura() {
     }
 
+    /**
+     * + * Retorna un arreglo String con cada linea del archivo. + * @return
+     * String[] de lineas del archivo leido +
+     */
     public String[] leerArchivo() {
         ArrayList<String> cadenas = new ArrayList<>(); //Limito a 8 registros para asignaturas
         int contador = 0;
@@ -32,6 +39,10 @@ public class ArchivoAsignatura {
         return arrayToAList(cadenas);
     }
 
+    /**
+     * + * Cambia una arrayList a un arreglo de String + * @param list ArrayList
+     * de tipo String + * @return String[] +
+     */
     public String[] arrayToAList(ArrayList<String> list) {
         String[] array = new String[list.size()];
         for (int i = 0; i < list.size(); i++) {
@@ -40,6 +51,10 @@ public class ArchivoAsignatura {
         return array;
     }
 
+    /**
+     * + * Escribe el archivo en una linea especifica con una cadena ingresada.
+     * + * @param cadena A escribir. +
+     */
     public void escribirArchivo(int linea, String cadena) {
         try {
             RandomAccessFile arch = new RandomAccessFile(this.ruta, "rw");
@@ -55,6 +70,10 @@ public class ArchivoAsignatura {
         }
     }
 
+    /**
+     * + * Escribe el archivo en su ultima linea. + * @param cadena a escribir
+     * de tipo String. +
+     */
     public void escribirArchivo(String cadena) {
         try {
             RandomAccessFile arch = new RandomAccessFile(this.ruta, "rw");
@@ -71,6 +90,11 @@ public class ArchivoAsignatura {
         }
     }
 
+    /**
+     * + * Escribe el archivo en su ultima linea. + * @param cadena a escribir
+     * de tipo String. + * @param contador de lineas del archivo de tipo entero
+     * +
+     */
     public void escribir(int contador, String cadena) {
         try {
             RandomAccessFile arch = new RandomAccessFile(this.ruta, "rw");

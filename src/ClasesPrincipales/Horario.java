@@ -5,7 +5,7 @@
  */
 package ClasesPrincipales;
 
-import Ventanas.GUIHorario;
+
 import java.util.ArrayList;
 
 /**
@@ -17,6 +17,9 @@ public class Horario {
     String horario[][];
     Asignatura[][][] horarioObjetos;
 
+    /**
+     * + * Constructor de la clase Horario +
+     */
     public Horario() {
         horario = new String[12][7];
         horarioObjetos = new Asignatura[12][7][10 /* asignaturas */];
@@ -103,7 +106,7 @@ public class Horario {
      * @param dia Un entero que representa el dia de clases
      * @param objeto Un entero que representa la posicion de el objeto
      * Asignatura
-     * @return Asignatura Un objeto de tipo Asignatura
+     * @return Un objeto de tipo Asignatura
      */
     public Asignatura getHorarioObjetos(int periodo, int dia, int objeto) {
         return horarioObjetos[periodo][dia][objeto];
@@ -126,6 +129,12 @@ public class Horario {
         return linea;
     }
 
+    /**
+     * + * Determina mediante un codigo si algo es una clase o una hora extra +
+     *
+     * * @param codigo cadena de tipo String + * @return Una cadena de tipo
+     * String (Clase o Hora_extra) +
+     */
     public String tipoClase(String codigo) {
         if (codigo.equals("Hora_extra")) {
             return codigo;
@@ -134,6 +143,11 @@ public class Horario {
         }
     }
 
+    /**
+     * + * Devuelve un entero segun cuantos espacios libres existan en el
+     * arreglo horario + * @return Un entero que representa la cantidad de
+     * espacios vacios en el arreglo horario +
+     */
     public int getEspaciosLibresHorario() {
         int espaciosVacios = 0;
         for (int i = 1; i < this.horario.length; i++) {
@@ -149,23 +163,22 @@ public class Horario {
         return espaciosVacios;
     }
 
-    public ArrayList<Integer> planEstudios(ArrayList<Asignatura> asignaturas) {
+    /**
+     * + * Toma una ArrayList de objetos Asignatura y los agrega a los espacios
+     * vacios en el arreglo horario + * @param asignaturas Una ArrayList de
+     * objetos de Asignatura +
+     */
+    public void planEstudios(ArrayList<Asignatura> asignaturas) {
         int indiceAsignaturas = 0;
-        ArrayList<Integer> coordenadas=new ArrayList();
-        
         for (int i = 1; i < this.horario[0].length; i++) {
             for (int j = 1; j < this.horario.length - 1; j++) {
                 if (j < 5) {
                     if (indiceAsignaturas == asignaturas.size()) {
                         break;
-                        
-                        
                     }
                     if (horario[j][i].equals("")) {
                         setHorario(i, j, asignaturas.get(indiceAsignaturas));
-                        indiceAsignaturas++;  
-                        coordenadas.add(i);
-                        coordenadas.add(j);
+                        indiceAsignaturas++;
                     }
                 } else {
                     if (indiceAsignaturas == asignaturas.size()) {
@@ -179,7 +192,6 @@ public class Horario {
 
             }
         }
-        return coordenadas;
     }
 
 }

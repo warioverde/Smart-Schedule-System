@@ -13,6 +13,12 @@ import java.util.Date;
  */
 public class Notificacion {
 
+    /**
+     * + * Retorna los dias restantes a la fecha respecto a la fecha ingresada.
+     * + * + * @param diaE Dia a calcular de tipo entero. + * @param mesE Mes a
+     * calcular de tipo entero. + * @param añoE Año a calcular de tipo entero. +
+     * * @return Dias restantes a la fecha. +
+     */
     public int tiempoRestante(int diaE, int mesE, int añoE) {
         Calendario calendario = new Calendario();
         int diaA = calendario.getDay();
@@ -23,6 +29,13 @@ public class Notificacion {
     }
 
     //Metodos internos de la clase
+    /**
+     * + * Retorna los dias desde la fecha hasta el principio del año + * + *
+     * @param dia Dia de la fecha a evaluar. + * @param mes Mes de la fecha a
+     * evaluar. + * @param añoE Año de la fecha a evaluar. + * @param añoA Año
+     * de la fecha actual. + * @return Retorna los dias desde la fecha hasta el
+     * principio del año +
+     */
     public int contadorDiasE(int dia, int mes, int añoE, int añoA) {               //Metodo que tiene de fin calcular los dias desde la fecha de la evaluacion hasta el primer dia del año actual
         int dias = contadorDias(dia, mes, añoE);
         for (int i = (añoE - 1); i >= (añoA); i--) {
@@ -31,6 +44,12 @@ public class Notificacion {
         return dias;
     }
 
+    /**
+     * + * Contador de dias de la fecha al principio del año. + * + * @param dia
+     * Dia de la fecha a calcular. + * @param mes Mes de la fecha a calcular. +
+     * * @param año Año de la fecha a calcular. + * @return dias de la fecha
+     * hasta el principio del año. +
+     */
     public int contadorDias(int dia, int mes, int año) {
         int dias = dia;
 
@@ -41,6 +60,11 @@ public class Notificacion {
         return dias;
     }
 
+    /**
+     * + * Retorna los dias de un mes segun su año + * @param mes Mes de la
+     * fecha a calcular + * @param año Año de la fecha a calcular + * @return
+     * Dias del mes respecto a la fecha recibida. +
+     */
     public int verificarMes(int mes, int año) {
         int mesVer;
         if (mes <= 7) {
@@ -64,7 +88,6 @@ public class Notificacion {
                 mesVer = 31;
                 /*   tiene 31 dias   */
             }
-
         }
         return mesVer;
     }

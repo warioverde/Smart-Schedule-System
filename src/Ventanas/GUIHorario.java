@@ -25,6 +25,10 @@ public class GUIHorario extends JFrame implements ActionListener, MouseListener 
     protected JButton bVolver;
     protected JTable tHorario;
 
+    /**
+     * + * Constructor de la clase e iniciador de los componentes de la ventana.
+     * +
+     */
     protected GUIHorario() {
         super();
 
@@ -42,8 +46,6 @@ public class GUIHorario extends JFrame implements ActionListener, MouseListener 
         tHorario.setRowHeight(33);
         tHorario.setBounds(5, 5, 600, 395);
         tHorario.setBackground(new java.awt.Color(184, 223, 254));
-        
-        
 
         tHorario.addMouseListener(this);
 
@@ -74,6 +76,12 @@ public class GUIHorario extends JFrame implements ActionListener, MouseListener 
 
     }
 
+    /**
+     * + * Metodo que se acciona al realizarse una accion sobreun boton +
+     *
+     *
+     * @param ae ActionEvent +
+     */
     public void actionPerformed(ActionEvent ae) {
         switch (ae.getActionCommand()) {
 
@@ -82,8 +90,12 @@ public class GUIHorario extends JFrame implements ActionListener, MouseListener 
                 break;
         }
     }
-    
 
+    /**
+     * + * Retorna un String bidimensional con el horario de clases (Periodo x
+     * Dia). + * @return Un String bidimensional de horario de clases (Periodo x
+     * Dia). +
+     */
     public String[][] getHorario() {
         GestorArchivo gestor = new GestorArchivo();
         gestor.creadorAsignatura();
@@ -94,45 +106,10 @@ public class GUIHorario extends JFrame implements ActionListener, MouseListener 
 
     }
 
-    /*  public void colorHorario(){
-    GestorArchivo gestor=new GestorArchivo();
-    gestor.creadorAsignatura();
-    gestor.mkHorario();
-    gestor.hacerHorasDeEstudio();
-    for (int i = 1; i < gestor.getHorario().getHorario().length; i++) {
-    for (int j = 1; j < gestor.getHorario().getHorario()[0].length; j++) {
-    
-    
-    if(buscador("\n",gestor.getHorario().getHorarioInfo(i, j))){
-    System.out.println("asdasdasdasd");    }
-    if(buscador("Hora_extra",gestor.getHorario().getHorarioInfo(i, j))){
-    System.out.println("qweqweqweqwe");
-    }
-    }
-    }
-    
-    }*/
-    public boolean buscador(String palabraABuscar, String cadena) {
-        String cadenaAuxiliar = "";
-        for (int i = 0; i < cadena.length(); i++) {
-            if (cadena.charAt(i) == (' ')) {
-                if (cadenaAuxiliar.equals(palabraABuscar)) {
-                    return true;
-                } else {
-                    cadenaAuxiliar = "";
-                }
-            } else {
-                cadenaAuxiliar += cadena.charAt(i);
-            }
-        }
-        return false;
-    }
-    
-    public void cambiarColor(){
-        setBackground(Color.GREEN);
-        
-    }
-
+    /**
+     * + * Metodo que se ejecuta al realizar un click sobre una celda del
+     * JTable. + * @param me MouseEvent +
+     */
     @Override
     public void mouseClicked(MouseEvent me) {
         int row = tHorario.rowAtPoint(me.getPoint());
@@ -145,21 +122,37 @@ public class GUIHorario extends JFrame implements ActionListener, MouseListener 
 
     }
 
+    /**
+     * + * Metodo que se ejecuta al mantener un click sobre una celda del
+     * JTable. + * @param me MouseEvent +
+     */
     @Override
     public void mousePressed(MouseEvent me) {
         //throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 
+    /**
+     * + * Metodo que se ejecuta al soltar un click sobre una celda del JTable.
+     * + * @param me MouseEvent +
+     */
     @Override
     public void mouseReleased(MouseEvent me) {
         //throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 
+    /**
+     * + * Metodo que se ejecuta al pasar sobre una celda del JTable. + * @param
+     * me MouseEvent +
+     */
     @Override
     public void mouseEntered(MouseEvent me) {
         //throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 
+    /**
+     * + * Metodo que se ejecuta al salir de una celda del JTable. + * @param me
+     * MouseEvent +
+     */
     @Override
     public void mouseExited(MouseEvent me) {
         //throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.

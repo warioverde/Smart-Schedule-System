@@ -6,7 +6,6 @@
 package Ventanas;
 
 import ClasesPrincipales.GestorArchivo;
-import com.toedter.calendar.JCalendar;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import javax.swing.*; //librerias de JFrame,JButton,JLabel,etc.
@@ -24,6 +23,9 @@ public class GUIIngresoAsign extends JFrame implements ActionListener {
     protected boolean checkMatrix;
     protected String cbMatrix;
 
+    /**
+     * + * Constructor de la clase +
+     */
     protected GUIIngresoAsign() {
         super();
 
@@ -313,6 +315,10 @@ public class GUIIngresoAsign extends JFrame implements ActionListener {
         //setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);  //--------//Se especifica que al cerrar la frame se detenga la ejecucion
     }
 
+    /**
+     * + * Metodo que se acciona al realizarse una accion sobreun boton + *
+     * @param ae ActionEvent +
+     */
     public void actionPerformed(ActionEvent ae) {
         switch (ae.getActionCommand()) {
 
@@ -338,6 +344,11 @@ public class GUIIngresoAsign extends JFrame implements ActionListener {
     }
 
     //Validaciones internas
+    /**
+     * + * Retorna un booleano segun si existen horas suficientes en el horario
+     * para cubrir la asignatura a ingresar + * @return Retorna verdadero o
+     * falso +
+     */
     public boolean checkHorasExtra() {
         GestorArchivo gestor = new GestorArchivo();
         gestor.creadorAsignatura();
@@ -365,6 +376,11 @@ public class GUIIngresoAsign extends JFrame implements ActionListener {
         return true;
     }
 
+    /**
+     * + * Retorna un booleano segun si lo ingresado en tfCodigo (un textField)
+     * es equivalente a la expresion regular descrita + * @return Retorna
+     * verdadero o falso +
+     */
     public boolean matchesCodigo() {
         if (tfCodigo.getText().matches("[a-zA-Z]{3}[0-9]{3}")) {                  //formato "aaa111"
             return true;
@@ -374,6 +390,11 @@ public class GUIIngresoAsign extends JFrame implements ActionListener {
         }
     }
 
+    /**
+     * + * Retorna un booleano segun si lo ingresado en tfHoras (un textField)
+     * es equivalente a la expresion regular descrita + * @return Retorna
+     * verdadero o falso +
+     */
     public boolean intHoras() {
         if (tfHoras.getText().matches("[1-9]{1}")) {                              //Considero numeros entre 1 y 9                  
             return true;
@@ -383,6 +404,10 @@ public class GUIIngresoAsign extends JFrame implements ActionListener {
         }
     }
 
+    /**
+     * + * Retorna un booleano segun si lo ingresado en tfNombre (un textField)
+     * no es vacio. + * @return Retorna verdadero o falso +
+     */
     public boolean chkNombre() {
         if (tfNombre.getText().equals("")) {
             return false;
@@ -391,6 +416,10 @@ public class GUIIngresoAsign extends JFrame implements ActionListener {
         }
     }
 
+    /**
+     * + * Retorna un booleano segun si lo ingresado en tfHoras (un textField)
+     * no es vacio. + * @return Retorna verdadero o falso +
+     */
     public boolean chkHoras() {
         if (tfHoras.getText().equals("")) {
             return false;
@@ -399,6 +428,10 @@ public class GUIIngresoAsign extends JFrame implements ActionListener {
         }
     }
 
+    /**
+     * + * Retorna un booleano segun si lo ingresado en tfCodigo (un textField)
+     * no es vacio. + * @return Retorna verdadero o falso +
+     */
     public boolean chkCodigo() {
         if (tfCodigo.getText().equals("")) {
             return false;
@@ -407,6 +440,10 @@ public class GUIIngresoAsign extends JFrame implements ActionListener {
         }
     }
 
+    /**
+     * + * Retorna un booleano segun si se ha marcado al menos una casilla de
+     * los checkBox . + * @return Retorna verdadero o falso +
+     */
     public boolean chkBoxes() {
         boolean localMatrix[] = {cbL1.isSelected(), cbL2.isSelected(), cbL3.isSelected(), cbL4.isSelected(), cbL5.isSelected(), cbL6.isSelected(), cbL7.isSelected(), cbL8.isSelected(), cbL9.isSelected(), cbL10.isSelected(), cbMar1.isSelected(), cbMar2.isSelected(), cbMar3.isSelected(), cbMar4.isSelected(), cbMar5.isSelected(), cbMar6.isSelected(), cbMar7.isSelected(), cbMar8.isSelected(), cbMar9.isSelected(), cbMar10.isSelected(), cbMie1.isSelected(), cbMie2.isSelected(), cbMie3.isSelected(), cbMie4.isSelected(), cbMie5.isSelected(), cbMie6.isSelected(), cbMie7.isSelected(), cbMie8.isSelected(), cbMie9.isSelected(), cbMie10.isSelected(), cbJ1.isSelected(), cbJ2.isSelected(), cbJ3.isSelected(), cbJ4.isSelected(), cbJ5.isSelected(), cbJ6.isSelected(), cbJ7.isSelected(), cbJ8.isSelected(), cbJ9.isSelected(), cbJ10.isSelected(), cbV1.isSelected(), cbV2.isSelected(), cbV3.isSelected(), cbV4.isSelected(), cbV5.isSelected(), cbV6.isSelected(), cbV7.isSelected(), cbV8.isSelected(), cbV9.isSelected(), cbV10.isSelected(), cbS1.isSelected(), cbS2.isSelected(), cbS3.isSelected(), cbS4.isSelected(), cbS5.isSelected(), cbS6.isSelected(), cbS7.isSelected(), cbS8.isSelected(), cbS9.isSelected(), cbS10.isSelected()};
         for (int i = 0; i < localMatrix.length; i++) {
@@ -417,6 +454,10 @@ public class GUIIngresoAsign extends JFrame implements ActionListener {
         return false;
     }
 
+    /**
+     * + * Retorna una cadena de tipo String con todo el horario ingresado y
+     * separado por ";" y "@" + * @return Retorna una cadena de tipo String +
+     */
     public String returnHorario() {
         String horario = "";
         boolean localMatrix[][] = {{cbL1.isSelected(), cbL2.isSelected(), cbL3.isSelected(), cbL4.isSelected(), cbL5.isSelected(), cbL6.isSelected(), cbL7.isSelected(), cbL8.isSelected(), cbL9.isSelected(), cbL10.isSelected()}, {cbMar1.isSelected(), cbMar2.isSelected(), cbMar3.isSelected(), cbMar4.isSelected(), cbMar5.isSelected(), cbMar6.isSelected(), cbMar7.isSelected(), cbMar8.isSelected(), cbMar9.isSelected(), cbMar10.isSelected()}, {cbMie1.isSelected(), cbMie2.isSelected(), cbMie3.isSelected(), cbMie4.isSelected(), cbMie5.isSelected(), cbMie6.isSelected(), cbMie7.isSelected(), cbMie8.isSelected(), cbMie9.isSelected(), cbMie10.isSelected()}, {cbJ1.isSelected(), cbJ2.isSelected(), cbJ3.isSelected(), cbJ4.isSelected(), cbJ5.isSelected(), cbJ6.isSelected(), cbJ7.isSelected(), cbJ8.isSelected(), cbJ9.isSelected(), cbJ10.isSelected()}, {cbV1.isSelected(), cbV2.isSelected(), cbV3.isSelected(), cbV4.isSelected(), cbV5.isSelected(), cbV6.isSelected(), cbV7.isSelected(), cbV8.isSelected(), cbV9.isSelected(), cbV10.isSelected()}, {cbS1.isSelected(), cbS2.isSelected(), cbS3.isSelected(), cbS4.isSelected(), cbS5.isSelected(), cbS6.isSelected(), cbS7.isSelected(), cbS8.isSelected(), cbS9.isSelected(), cbS10.isSelected()}};
@@ -432,6 +473,10 @@ public class GUIIngresoAsign extends JFrame implements ActionListener {
         return horario;
     }
 
+    /**
+     * + * Retorna un booleano segun si el codigo ingresado en tfCodigo
+     * (textField) es unico. + * @return Retorna verdadero o falso +
+     */
     public boolean validarCodUnico() {
         GestorArchivo gestor = new GestorArchivo();
         if (gestor.codUnico(tfCodigo.getText())) {

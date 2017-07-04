@@ -26,9 +26,16 @@ public class GUINotificacion extends JFrame implements ActionListener {
     protected JButton bVolver, bSiguiente;
     private int contadorNotificaciones;
 
+    /**
+     * + * Constructor de la clase GUINotificacion. +
+     */
     protected GUINotificacion() {
         super();
     }
+
+    /**
+     * + * Iniciador de los componentes de la ventana. +
+     */
 
     public void init() {
         try {
@@ -93,6 +100,10 @@ public class GUINotificacion extends JFrame implements ActionListener {
         }
     }
 
+    /**
+     * + * Metodo que se ejecuta al realizar un click sobre un boton. + * @param
+     * ae ActionEvent +
+     */
     public void actionPerformed(ActionEvent ae) {
         switch (ae.getActionCommand()) {
 
@@ -104,50 +115,60 @@ public class GUINotificacion extends JFrame implements ActionListener {
         }
     }
 
+    /**
+     * + * Retorna los dias restantes para la evaluacion ingresada. + * @param
+     * dia Dia de la evaluacion de tipo entero. + * @param mes Mes de la
+     * evaluacion de tipo entero. + * @param año Año de la evaluacion de tipo
+     * entero. + * @return Dias restantes para la evaluacion ingresada +
+     */
     public int getDiasRestantes(int dia, int mes, int año) {
         Notificacion notificacion = new Notificacion();
         return notificacion.tiempoRestante(dia, mes, año);
     }
 
     //Conectar con el gestor
+    /**
+     * + * Metodo que se encarga de cambiar las notificaciones y pasar
+     * evaluacion a evaluacion. +
+     */
     public void actualizarLabels() {
         GestorArchivo gestor = new GestorArchivo();
         ArrayList<Evaluacion> evaluaciones = gestor.EvaluacionesMasCercanas();
         gestor.creadorAsignatura();
-        try{
-        if (!(this.contadorNotificaciones > evaluaciones.size() - 1)) {             //Si el contador no sobrepasa los limites del array
-            int mes = evaluaciones.get(this.contadorNotificaciones).getMes();
-            int dia = evaluaciones.get(this.contadorNotificaciones).getDia();
-            int año = evaluaciones.get(this.contadorNotificaciones).getAño();
-            int dias = getDiasRestantes(dia, mes, año);
-            if (dias >= 0) {                                                      //Si la evaluacion no ha ocurrido aún
-                String nombreAsignatura = gestor.buscarAsignatura(evaluaciones.get(this.contadorNotificaciones).getCodigo()).getNombre();
-                lAsignatura.setText(nombreAsignatura);
-                lFecha.setText(evaluaciones.get(this.contadorNotificaciones).getTipo() + " el " + dia + "/" + mes + "/" + año);
-                this.contadorNotificaciones++;
-                lNotificacion.setText(dias + " dias restantes para la siguiente evaluacion");
-                if(nombreAsignatura.equals("")){
-                    this.dispose();
-                }
-                if (dias == 0) {
-                    lNotificacion.setText("La evaluacion es hoy!!!");
-                    JOptionPane.showMessageDialog(null, "SSS(fs) te desea que vaya exelente en tu evaluacion :)");
-                } else {
-                    if (dias < 3) {
-                        JOptionPane.showMessageDialog(null, "Aviso: Menos de 3 dias restantes \n Accion recomendada: Postergar toda actividad para liberar este tiempo \n y utilizar este tiempo para estudiar, obvio.");
-                    } else if (dias < 7) {
-                        JOptionPane.showMessageDialog(null, "Aviso: Menos de una semana restante \n Accion recomendada: Estudiar o trabajar inmediatamente.");
+        try {
+            if (!(this.contadorNotificaciones > evaluaciones.size() - 1)) {             //Si el contador no sobrepasa los limites del array
+                int mes = evaluaciones.get(this.contadorNotificaciones).getMes();
+                int dia = evaluaciones.get(this.contadorNotificaciones).getDia();
+                int año = evaluaciones.get(this.contadorNotificaciones).getAño();
+                int dias = getDiasRestantes(dia, mes, año);
+                if (dias >= 0) {                                                      //Si la evaluacion no ha ocurrido aún
+                    String nombreAsignatura = gestor.buscarAsignatura(evaluaciones.get(this.contadorNotificaciones).getCodigo()).getNombre();
+                    lAsignatura.setText(nombreAsignatura);
+                    lFecha.setText(evaluaciones.get(this.contadorNotificaciones).getTipo() + " el " + dia + "/" + mes + "/" + año);
+                    this.contadorNotificaciones++;
+                    lNotificacion.setText(dias + " dias restantes para la siguiente evaluacion");
+                    if (nombreAsignatura.equals("")) {
+                        this.dispose();
                     }
+                    if (dias == 0) {
+                        lNotificacion.setText("La evaluacion es hoy!!!");
+                        JOptionPane.showMessageDialog(null, "SSS(fs) te desea que vaya exelente en tu evaluacion :)");
+                    } else {
+                        if (dias < 3) {
+                            JOptionPane.showMessageDialog(null, "Aviso: Menos de 3 dias restantes \n Accion recomendada: Postergar toda actividad para liberar este tiempo \n y utilizar este tiempo para estudiar, obvio.");
+                        } else if (dias < 7) {
+                            JOptionPane.showMessageDialog(null, "Aviso: Menos de una semana restante \n Accion recomendada: Estudiar o trabajar inmediatamente.");
+                        }
+                    }
+                } else {
+                    this.contadorNotificaciones++;
+                    actualizarLabels();
                 }
             } else {
-                this.contadorNotificaciones++;
-                actualizarLabels();
+                JOptionPane.showMessageDialog(null, "No quedan mas evaluaciones que mostrar");
+                this.dispose();
             }
-        } else {
-            JOptionPane.showMessageDialog(null, "No quedan mas evaluaciones que mostrar");
-            this.dispose();
-        }
-        }catch(java.lang.NullPointerException e){
+        } catch (java.lang.NullPointerException e) {
             JOptionPane.showMessageDialog(null, "No quedan mas evaluaciones que mostrar");
             this.dispose();
         }
